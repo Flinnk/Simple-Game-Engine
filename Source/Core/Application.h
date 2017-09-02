@@ -1,4 +1,5 @@
-
+#ifndef APPLICATION_H
+#define APPLICATION_H
 
 namespace GameEngine {
 
@@ -15,3 +16,5 @@ namespace GameEngine {
 		virtual void OnEnd() = 0;
 	};
 }
+
+#endif // !APPLICATION_H
