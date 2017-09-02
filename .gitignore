@@ -1,0 +1,7 @@
+Intermediate/*
+Build/*
+
+*.VC.*
+
+vs/*
+Projects/Win32/Engine/.vs/
