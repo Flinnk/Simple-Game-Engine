@@ -1,6 +1,7 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
+
 namespace GameEngine {
 
 	class Engine {
@@ -16,9 +17,12 @@ namespace GameEngine {
 		Engine& operator=(Engine &&) = delete;      // Move assign
 
 		void Run();
+		class GraphicContext* GetGraphicContext();
 
 	private:
 		Engine();
+
+		class GraphicContext* GContext;
 	};
 
 }

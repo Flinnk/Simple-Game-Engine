@@ -21,10 +21,14 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Source\Core\Application.cpp" />
     <ClCompile Include="..\..\..\..\Source\Core\Engine.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Core\GraphicContext.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Core\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Source\Core\Application.h" />
     <ClInclude Include="..\..\..\..\Source\Core\Engine.h" />
+    <ClInclude Include="..\..\..\..\Source\Core\GraphicContext.h" />
+    <ClInclude Include="..\..\..\..\Source\Core\Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -80,10 +84,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)\..\..\..\Build\Win32\$(Configuration)\</OutDir>
     <IntDir>\..\..\..\Build\Win32\$(Configuration)\</IntDir>
+    <IncludePath>D:\Desarrollo\C-C++\Simple-Game-Engine\Dependencies\glfw-3.2.1.bin.WIN32\include;D:\Desarrollo\C-C++\Simple-Game-Engine\Dependencies\glew-2.1.0-win32\glew-2.1.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Desarrollo\C-C++\Simple-Game-Engine\Dependencies\glew-2.1.0-win32\glew-2.1.0\lib\Release\Win32;D:\Desarrollo\C-C++\Simple-Game-Engine\Dependencies\glfw-3.2.1.bin.WIN32\lib-vc2015;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\..\..\..\Build\Win32\$(Configuration)\</OutDir>
     <IntDir>\..\..\..\Build\Win32\$(Configuration)\</IntDir>
+    <IncludePath>D:\Desarrollo\C-C++\Simple-Game-Engine\Dependencies\glfw-3.2.1.bin.WIN32\include;D:\Desarrollo\C-C++\Simple-Game-Engine\Dependencies\glew-2.1.0-win32\glew-2.1.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Desarrollo\C-C++\Simple-Game-Engine\Dependencies\glew-2.1.0-win32\glew-2.1.0\lib\Release\Win32;D:\Desarrollo\C-C++\Simple-Game-Engine\Dependencies\glfw-3.2.1.bin.WIN32\lib-vc2015;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -91,6 +99,9 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
+    <Lib>
+      <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -111,6 +122,9 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <Lib>
+      <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>

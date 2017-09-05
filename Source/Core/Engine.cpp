@@ -1,6 +1,6 @@
 #include "Engine.h"
 #include "Application.h"
-
+#include "GraphicContext.h"
 
 
 namespace GameEngine {
@@ -9,7 +9,7 @@ namespace GameEngine {
 
 
 	Engine::Engine() {}
-	Engine::~Engine(){}
+	Engine::~Engine() {}
 
 	Engine& Engine::GetInstance()
 	{
@@ -20,12 +20,28 @@ namespace GameEngine {
 
 	void Engine::Run()
 	{
+		GContext = new GraphicContext();
 		Application* GameInstance = GetApplicationInstance();
-		GameInstance->OnBegin();
-		GameInstance->OnUpdate();
-		GameInstance->OnEnd();
-		delete GameInstance;
+		GameInstance->OnInitialize();
 
+		GameInstance->OnBegin();
+		while (!GContext->HasToCLose()) {
+			GContext->Update();
+			GameInstance->OnUpdate();
+		}
+
+		GContext->Release();
+
+		GameInstance->OnEnd();
+
+		delete GContext;
+		delete GameInstance;
 	}
+
+	GraphicContext* Engine::GetGraphicContext() 
+	{
+		return GContext;
+	}
+
 
 }
