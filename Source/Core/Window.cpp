@@ -5,6 +5,25 @@
 
 namespace GameEngine {
 
+	extern void CursorPositionCallback(double xpos, double ypos);
+	extern void KeyCallback(int key, bool pressed);
+	extern void MouseButtonCallback(int button, bool pressed);
+
+	static void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
+	{
+		CursorPositionCallback(xpos, ypos);
+	}
+
+	void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+	{
+		KeyCallback(key, action != GLFW_RELEASE);
+	}
+
+	void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
+	{
+		MouseButtonCallback(button, action != GLFW_RELEASE);
+	}
+
 	void Window::ResizeCallback(GLFWwindow* window, int width, int height) {
 		Window* WindowPointer = static_cast<Window*>(glfwGetWindowUserPointer(window));
 		WindowPointer->Resize(width, height);
@@ -44,6 +63,9 @@ namespace GameEngine {
 		glfwSetWindowUserPointer(WindowInstance, this);
 
 		glfwSetFramebufferSizeCallback(WindowInstance, ResizeCallback);
+		glfwSetKeyCallback(WindowInstance, key_callback);
+		glfwSetCursorPosCallback(WindowInstance, cursor_position_callback);
+		glfwSetMouseButtonCallback(WindowInstance, mouse_button_callback);
 		
 		glewExperimental = true;
 		if (glewInit() != GLEW_OK)
