@@ -16,6 +16,8 @@
     <ClCompile Include="..\..\..\..\Source\Core\GraphicContext.cpp" />
     <ClCompile Include="..\..\..\..\Source\Core\Input.cpp" />
     <ClCompile Include="..\..\..\..\Source\Core\Window.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Renderer\Shader.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Renderer\Texture.cpp" />
     <ClCompile Include="..\..\..\..\Source\Utils\Log.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -24,6 +26,8 @@
     <ClInclude Include="..\..\..\..\Source\Core\GraphicContext.h" />
     <ClInclude Include="..\..\..\..\Source\Core\Input.h" />
     <ClInclude Include="..\..\..\..\Source\Core\Window.h" />
+    <ClInclude Include="..\..\..\..\Source\Renderer\Shader.h" />
+    <ClInclude Include="..\..\..\..\Source\Renderer\Texture.h" />
     <ClInclude Include="..\..\..\..\Source\Utils\Assert.h" />
     <ClInclude Include="..\..\..\..\Source\Utils\Log.h" />
   </ItemGroup>

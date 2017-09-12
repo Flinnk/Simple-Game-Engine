@@ -10,6 +10,9 @@
     <Filter Include="Source\Utils">
       <UniqueIdentifier>{90c3a6ad-a31c-4212-9651-3c3ec575b9c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Renderer">
+      <UniqueIdentifier>{7b731671-461c-4017-a7d1-ee7e978604be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Source\Core\Engine.cpp">
@@ -29,6 +32,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\Source\Utils\Log.cpp">
       <Filter>Source\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Source\Renderer\Shader.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Source\Renderer\Texture.cpp">
+      <Filter>Source\Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +61,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\Source\Utils\Log.h">
       <Filter>Source\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Source\Renderer\Shader.h">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Source\Renderer\Texture.h">
+      <Filter>Source\Renderer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
