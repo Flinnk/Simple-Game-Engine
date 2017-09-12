@@ -16,6 +16,7 @@
     <ClCompile Include="..\..\..\..\Source\Core\GraphicContext.cpp" />
     <ClCompile Include="..\..\..\..\Source\Core\Input.cpp" />
     <ClCompile Include="..\..\..\..\Source\Core\Window.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Utils\Log.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Source\Core\Application.h" />
@@ -23,6 +24,8 @@
     <ClInclude Include="..\..\..\..\Source\Core\GraphicContext.h" />
     <ClInclude Include="..\..\..\..\Source\Core\Input.h" />
     <ClInclude Include="..\..\..\..\Source\Core\Window.h" />
+    <ClInclude Include="..\..\..\..\Source\Utils\Assert.h" />
+    <ClInclude Include="..\..\..\..\Source\Utils\Log.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -74,11 +77,12 @@
     <IncludePath>..\..\..\..\Dependencies\glfw-3.2.1.bin.WIN32\include;..\..\..\..\Dependencies\glew-2.1.0-win32\glew-2.1.0\include;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\..\..\Dependencies\glew-2.1.0-win32\glew-2.1.0\lib\Release\Win32;..\..\..\..\Dependencies\glfw-3.2.1.bin.WIN32\lib-vc2015;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
-    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>ASSERT_ENABLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Lib>
       <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
