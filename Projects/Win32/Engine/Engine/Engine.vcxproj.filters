@@ -7,6 +7,9 @@
     <Filter Include="Source\Core">
       <UniqueIdentifier>{e29525e4-fcc9-43b9-9378-c11837d97f57}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Utils">
+      <UniqueIdentifier>{90c3a6ad-a31c-4212-9651-3c3ec575b9c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Source\Core\Engine.cpp">
@@ -24,6 +27,9 @@
     <ClCompile Include="..\..\..\..\Source\Core\Input.cpp">
       <Filter>Source\Core</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\Source\Utils\Log.cpp">
+      <Filter>Source\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Source\Core\Engine.h">
@@ -40,6 +46,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\Source\Core\Input.h">
       <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Source\Utils\Assert.h">
+      <Filter>Source\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Source\Utils\Log.h">
+      <Filter>Source\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
