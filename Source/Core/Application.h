@@ -13,7 +13,7 @@ namespace GameEngine {
 
 		virtual void OnInitialize() = 0;
 		virtual void OnBegin() = 0;
-		virtual void OnUpdate() = 0;
+		virtual void OnUpdate(float DeltaTime) = 0;
 		virtual void OnEnd() = 0;
 	};
 }

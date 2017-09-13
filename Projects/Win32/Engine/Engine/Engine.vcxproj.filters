@@ -33,12 +33,16 @@
     <ClCompile Include="..\..\..\..\Source\Utils\Log.cpp">
       <Filter>Source\Utils</Filter>
     </ClCompile>
+	<ClCompile Include="..\..\..\..\Source\Utils\Time.cpp">
+      <Filter>Source\Utils</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\Source\Renderer\Shader.cpp">
       <Filter>Source\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\Source\Renderer\Texture.cpp">
       <Filter>Source\Renderer</Filter>
-    </ClCompile>
+        </ClCompile>
+
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Source\Core\Engine.h">
@@ -62,11 +66,16 @@
     <ClInclude Include="..\..\..\..\Source\Utils\Log.h">
       <Filter>Source\Utils</Filter>
     </ClInclude>
+ <ClInclude Include="..\..\..\..\Source\Utils\Time.h">
+      <Filter>Source\Utils</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\Source\Renderer\Shader.h">
       <Filter>Source\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\Source\Renderer\Texture.h">
       <Filter>Source\Renderer</Filter>
-    </ClInclude>
+	      </ClInclude>
+
+   
   </ItemGroup>
 </Project>

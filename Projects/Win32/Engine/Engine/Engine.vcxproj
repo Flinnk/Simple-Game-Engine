@@ -19,6 +19,7 @@
     <ClCompile Include="..\..\..\..\Source\Renderer\Shader.cpp" />
     <ClCompile Include="..\..\..\..\Source\Renderer\Texture.cpp" />
     <ClCompile Include="..\..\..\..\Source\Utils\Log.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Utils\Time.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Source\Core\Application.h" />
@@ -30,6 +31,7 @@
     <ClInclude Include="..\..\..\..\Source\Renderer\Texture.h" />
     <ClInclude Include="..\..\..\..\Source\Utils\Assert.h" />
     <ClInclude Include="..\..\..\..\Source\Utils\Log.h" />
+    <ClInclude Include="..\..\..\..\Source\Utils\Time.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
