@@ -1,7 +1,7 @@
 #include "Engine.h"
 #include "Application.h"
 #include "GraphicContext.h"
-
+#include "..\Utils\Time.h"
 
 namespace GameEngine {
 
@@ -25,9 +25,17 @@ namespace GameEngine {
 		GameInstance->OnInitialize();
 
 		GameInstance->OnBegin();
+
+		double LastTime = Time::GetElapsedSeconds();
+		double DeltaSeconds = 0;
+
 		while (!GContext->HasToCLose()) {
 			GContext->Update();
-			GameInstance->OnUpdate();
+			GameInstance->OnUpdate(DeltaSeconds);
+
+			double CurrentTime = Time::GetElapsedSeconds();
+			DeltaSeconds = CurrentTime - LastTime;
+			LastTime = CurrentTime;
 		}
 
 		GContext->Release();
