@@ -16,6 +16,8 @@ namespace GameEngine {
 		void Use() const;
 		bool Compile(const char* VertexShaderPath, const char* FragmentShaderPath);
 
+		unsigned int GetID()const;
+
 	protected:
 		unsigned int ID = 0;
 

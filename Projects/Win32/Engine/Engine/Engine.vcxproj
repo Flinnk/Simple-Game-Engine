@@ -16,9 +16,14 @@
     <ClCompile Include="..\..\..\..\Source\Core\GraphicContext.cpp" />
     <ClCompile Include="..\..\..\..\Source\Core\Input.cpp" />
     <ClCompile Include="..\..\..\..\Source\Core\Window.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Math\Matrix4.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Math\Vector2.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Math\Vector3.cpp" />
     <ClCompile Include="..\..\..\..\Source\Renderer\Shader.cpp" />
     <ClCompile Include="..\..\..\..\Source\Renderer\Texture.cpp" />
     <ClCompile Include="..\..\..\..\Source\Utils\Log.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Utils\ResourceManager.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Utils\stb_image.cpp" />
     <ClCompile Include="..\..\..\..\Source\Utils\Time.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -27,10 +32,16 @@
     <ClInclude Include="..\..\..\..\Source\Core\GraphicContext.h" />
     <ClInclude Include="..\..\..\..\Source\Core\Input.h" />
     <ClInclude Include="..\..\..\..\Source\Core\Window.h" />
+    <ClInclude Include="..\..\..\..\Source\Math\Matrix4.h" />
+    <ClInclude Include="..\..\..\..\Source\Math\Math.h" />
+    <ClInclude Include="..\..\..\..\Source\Math\Utils.h" />
+    <ClInclude Include="..\..\..\..\Source\Math\Vector2.h" />
+    <ClInclude Include="..\..\..\..\Source\Math\Vector3.h" />
     <ClInclude Include="..\..\..\..\Source\Renderer\Shader.h" />
     <ClInclude Include="..\..\..\..\Source\Renderer\Texture.h" />
     <ClInclude Include="..\..\..\..\Source\Utils\Assert.h" />
     <ClInclude Include="..\..\..\..\Source\Utils\Log.h" />
+    <ClInclude Include="..\..\..\..\Source\Utils\ResourceManager.h" />
     <ClInclude Include="..\..\..\..\Source\Utils\Time.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -74,13 +85,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\..\..\..\Build\Win32\$(Configuration)\</OutDir>
     <IntDir>\..\..\..\Build\Win32\$(Configuration)\</IntDir>
-    <IncludePath>..\..\..\..\Dependencies\glfw-3.2.1.bin.WIN32\include;..\..\..\..\Dependencies\glew-2.1.0-win32\glew-2.1.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\..\..\Dependencies\stb_image;..\..\..\..\Dependencies\glfw-3.2.1.bin.WIN32\include;..\..\..\..\Dependencies\glew-2.1.0-win32\glew-2.1.0\include;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\..\..\Dependencies\glew-2.1.0-win32\glew-2.1.0\lib\Release\Win32;..\..\..\..\Dependencies\glfw-3.2.1.bin.WIN32\lib-vc2015;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)\..\..\..\Build\Win32\$(Configuration)\</OutDir>
     <IntDir>\..\..\..\Build\Win32\$(Configuration)\</IntDir>
-    <IncludePath>..\..\..\..\Dependencies\glfw-3.2.1.bin.WIN32\include;..\..\..\..\Dependencies\glew-2.1.0-win32\glew-2.1.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\..\..\Dependencies\stb_image;..\..\..\..\Dependencies\glfw-3.2.1.bin.WIN32\include;..\..\..\..\Dependencies\glew-2.1.0-win32\glew-2.1.0\include;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\..\..\Dependencies\glew-2.1.0-win32\glew-2.1.0\lib\Release\Win32;..\..\..\..\Dependencies\glfw-3.2.1.bin.WIN32\lib-vc2015;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

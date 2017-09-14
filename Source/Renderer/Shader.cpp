@@ -88,4 +88,8 @@ namespace GameEngine {
 
 		return success != 0;
 	}
+
+	unsigned int Shader::GetID() const {
+		return ID;
+	}
 }

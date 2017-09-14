@@ -18,7 +18,7 @@ namespace GameEngine {
 		Texture& operator=(Texture const&) = delete;
 		Texture& operator=(Texture &&) = delete;
 
-
+		unsigned int GetID() const;
 	protected:
 		unsigned int ID = -1;
 		unsigned int Width, Height;

@@ -38,4 +38,10 @@ namespace GameEngine {
 	{
 		glBindTexture(GL_TEXTURE_2D, ID);
 	}
+
+	unsigned int Texture::GetID() const
+	{
+		return ID;
+	}
+
 }

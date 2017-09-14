@@ -1,0 +1,72 @@
+#include "Vector2.h"
+#include "Utils.h"
+
+namespace GameEngine
+{
+
+	Vector2::Vector2() : x(0.0f), y(0.0f) {}
+	Vector2::Vector2(float _x, float _y) : x(_x), y(_y) {}
+
+	Vector2 Vector2::operator-()
+	{
+		return Vector2(-x, -y);
+	}
+
+	Vector2 Vector2::operator*(float scalar)
+	{
+		return Vector2(x*scalar, y*scalar);
+	}
+
+	Vector2 Vector2::operator+(float scalar)
+	{
+		return Vector2(x + scalar, y + scalar);
+
+	}
+
+
+	Vector2& Vector2::operator+=(const Vector2& other)
+	{
+		x += other.x;
+		y += other.y;
+		return *this;
+	}
+
+
+	Vector2 Vector2::operator+(const Vector2& other)
+	{
+		Vector2 Result;
+
+		Result.x = x + other.x;
+		Result.y = y + other.y;
+
+		return Result;
+	}
+
+
+	Vector2 Vector2::operator-(const Vector2& other)
+	{
+		Vector2 Result;
+
+		Result.x = x - other.x;
+		Result.y = y - other.y;
+
+		return Result;
+	}
+
+	float Vector2::Length()
+	{
+		return sqrt((x*x) + (y*y));
+	}
+
+
+	Vector2 Vector2::Clamp(Vector2 value, Vector2 min, Vector2 max)
+	{
+		Vector2 Result;
+
+		Result.x = ClampFloat(value.x, min.x, max.x);
+		Result.y = ClampFloat(value.y, min.y, max.y);
+
+		return Result;
+	}
+
+}
