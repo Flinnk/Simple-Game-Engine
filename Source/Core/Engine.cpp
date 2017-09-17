@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "GraphicContext.h"
 #include "..\Utils\Time.h"
+#include "..\Math\Math.h"
 
 namespace GameEngine {
 
@@ -29,9 +30,16 @@ namespace GameEngine {
 		double LastTime = Time::GetElapsedSeconds();
 		double DeltaSeconds = 0;
 
+		const SpriteRenderer* Renderer = GContext->GetRenderer();
 		while (!GContext->HasToCLose()) {
+			GContext->Begin();
+
 			GContext->Update();
 			GameInstance->OnUpdate(DeltaSeconds);
+
+			GameInstance->OnRender(Renderer);
+
+			GContext->End();
 
 			double CurrentTime = Time::GetElapsedSeconds();
 			DeltaSeconds = CurrentTime - LastTime;
@@ -49,6 +57,11 @@ namespace GameEngine {
 	GraphicContext* Engine::GetGraphicContext() 
 	{
 		return GContext;
+	}
+
+	Vector2 Engine::GetDisplaySize()
+	{
+		return GContext->GetDisplaySize();
 	}
 
 

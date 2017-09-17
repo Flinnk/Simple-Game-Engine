@@ -17,9 +17,13 @@ namespace GameEngine {
 		void Release();
 		bool HasToCLose();
 
+		struct Vector2 GetDisplaySize();
+		const class SpriteRenderer* GetRenderer();
+
 	private:
 
 		class Window* WindowInstance;
+		class SpriteRenderer* Renderer = nullptr;
 	};
 
 }

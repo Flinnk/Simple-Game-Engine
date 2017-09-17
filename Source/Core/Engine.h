@@ -18,6 +18,8 @@ namespace GameEngine {
 
 		void Run();
 		class GraphicContext* GetGraphicContext();
+		struct Vector2 GetDisplaySize();
+
 
 	private:
 		Engine();

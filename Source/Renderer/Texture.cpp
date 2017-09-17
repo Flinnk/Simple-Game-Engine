@@ -9,6 +9,11 @@ namespace GameEngine {
 	{
 	}
 
+	Texture::~Texture() {
+
+	}
+
+
 	void Texture::Generate(unsigned int width, unsigned int height, unsigned int channels, unsigned char* data)
 	{
 		glGenTextures(1, &ID);

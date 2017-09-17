@@ -1,5 +1,6 @@
 #include "Shader.h"
 #include <GL\glew.h>
+#include "..\Math\Math.h"
 
 namespace GameEngine {
 
@@ -87,6 +88,25 @@ namespace GameEngine {
 		}
 
 		return success != 0;
+	}
+
+
+	void Shader::SetVector3(const char* UniformName, Vector3 value)
+	{
+
+		glUniform3f(glGetUniformLocation(ID, UniformName), value.x, value.y, value.z);
+	}
+
+	void Shader::SetInterger(const char* UniformName, int value)
+	{
+
+		glUniform1i(glGetUniformLocation(ID, UniformName), value);
+	}
+
+	void Shader::SetMatrix4(const char* UniformName, Matrix4 value)
+	{
+
+		glUniformMatrix4fv(glGetUniformLocation(ID, UniformName), 1, false, value.elements);
 	}
 
 	unsigned int Shader::GetID() const {

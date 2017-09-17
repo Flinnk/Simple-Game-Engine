@@ -16,6 +16,10 @@ namespace GameEngine {
 		void Use() const;
 		bool Compile(const char* VertexShaderPath, const char* FragmentShaderPath);
 
+		void SetVector3(const char* UniformName, struct Vector3 value);
+		void SetMatrix4(const char* UniformName, struct Matrix4 value);
+		void SetInterger(const char* UniformName, int value);
+
 		unsigned int GetID()const;
 
 	protected:

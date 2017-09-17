@@ -1,6 +1,13 @@
 
 #include "GraphicContext.h"
 #include "Window.h"
+#include "..\Math\Math.h"
+#include "..\Renderer\Shader.h"
+#include "..\Renderer\SpriteRenderer.h"
+#include "..\Utils\ResourceManager.h"
+#include "..\Utils\File.h"
+#include "..\Renderer\CompiledShaders.h"
+
 
 namespace GameEngine {
 
@@ -14,6 +21,13 @@ namespace GameEngine {
 		WindowInstance = new Window();
 		if (WindowInstance->Create(Width, Height, Title))
 		{
+			Shader* shader = ResourceManager::GetInstance().LoadShader(std::string(DefaultVertexShader), std::string(DefaultFragmentShader), "default_shader");
+			if (shader) {
+				Renderer = new SpriteRenderer(shader);
+			}
+			else {
+				return false;
+			}
 			return true;
 		}
 
@@ -46,4 +60,19 @@ namespace GameEngine {
 			return true;
 		return WindowInstance->HasToClose();
 	}
+
+	Vector2 GraphicContext::GetDisplaySize()
+	{
+		if (WindowInstance)
+			return Vector2(WindowInstance->GetWidth(), WindowInstance->GetHeight());
+
+		return Vector2();
+	}
+
+	const SpriteRenderer* GraphicContext::GetRenderer()
+	{
+		return Renderer;
+	}
 }
+
+
