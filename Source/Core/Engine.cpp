@@ -27,8 +27,8 @@ namespace GameEngine {
 
 		GameInstance->OnBegin();
 
-		double LastTime = Time::GetElapsedSeconds();
-		double DeltaSeconds = 0;
+		float LastTime = Time::GetElapsedSeconds();
+		float DeltaSeconds = 0;
 
 		const SpriteRenderer* Renderer = GContext->GetRenderer();
 		while (!GContext->HasToCLose()) {
@@ -41,7 +41,7 @@ namespace GameEngine {
 
 			GContext->End();
 
-			double CurrentTime = Time::GetElapsedSeconds();
+			float CurrentTime = Time::GetElapsedSeconds();
 			DeltaSeconds = CurrentTime - LastTime;
 			LastTime = CurrentTime;
 		}

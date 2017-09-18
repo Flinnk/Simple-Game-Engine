@@ -3,6 +3,9 @@
 
 namespace GameEngine
 {
+	struct Vector2;
+	struct Vector3;
+
 	struct Matrix4 {
 
 		float elements[4 * 4];
@@ -14,7 +17,7 @@ namespace GameEngine
 			float e3, float e7, float e11, float e15);
 		Matrix4(float Diagonal);
 
-		Matrix4& operator*(const Matrix4& Right);
+		Matrix4 operator*(const Matrix4& Right);
 		Matrix4& operator*=(const Matrix4& Right);
 
 		static Matrix4 Multiply(const Matrix4& Left, const Matrix4& Right);
@@ -22,13 +25,13 @@ namespace GameEngine
 
 		static Matrix4 Ortho(float Left, float Right, float Bottom, float Top, float NearPlane, float FarPlane);
 
-		static Matrix4 Translation(const struct Vector3& TranslationVector);
-		static Matrix4 Translation(const struct Vector2& TranslationVector);
+		static Matrix4 Translation(const Vector3& TranslationVector);
+		static Matrix4 Translation(const Vector2& TranslationVector);
 
-		static Matrix4 Rotation(float Angle, const struct Vector3& Axis);
+		static Matrix4 Rotation(float Angle, const  Vector3& Axis);
 
-		static Matrix4 Scale(const struct Vector2& ScaleVector);
-		static Matrix4 Scale(const struct Vector3& ScaleVector);
+		static Matrix4 Scale(const Vector2& ScaleVector);
+		static Matrix4 Scale(const Vector3& ScaleVector);
 
 	};
 }

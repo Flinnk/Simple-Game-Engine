@@ -4,6 +4,9 @@
 
 namespace GameEngine {
 
+	class GraphicContext;
+	struct Vector2;
+
 	class Engine {
 
 	public:
@@ -17,14 +20,14 @@ namespace GameEngine {
 		Engine& operator=(Engine &&) = delete;      // Move assign
 
 		void Run();
-		class GraphicContext* GetGraphicContext();
-		struct Vector2 GetDisplaySize();
+		GraphicContext* GetGraphicContext();
+		Vector2 GetDisplaySize();
 
 
 	private:
 		Engine();
 
-		class GraphicContext* GContext;
+		GraphicContext* GContext;
 	};
 
 }

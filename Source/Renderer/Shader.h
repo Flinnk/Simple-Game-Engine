@@ -2,6 +2,9 @@
 #define SHADER_H
 namespace GameEngine {
 
+	struct Vector3;
+	struct Matrix4;
+
 	class Shader
 	{
 	public:
@@ -16,8 +19,8 @@ namespace GameEngine {
 		void Use() const;
 		bool Compile(const char* VertexShaderPath, const char* FragmentShaderPath);
 
-		void SetVector3(const char* UniformName, struct Vector3 value);
-		void SetMatrix4(const char* UniformName, struct Matrix4 value);
+		void SetVector3(const char* UniformName, Vector3 value);
+		void SetMatrix4(const char* UniformName, Matrix4 value);
 		void SetInterger(const char* UniformName, int value);
 
 		unsigned int GetID()const;

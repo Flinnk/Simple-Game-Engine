@@ -55,7 +55,7 @@ namespace GameEngine
 
 	float Vector2::Length()
 	{
-		return sqrt((x*x) + (y*y));
+		return static_cast<float>(sqrt((x*x) + (y*y)));
 	}
 
 

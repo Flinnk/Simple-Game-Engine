@@ -5,7 +5,7 @@ namespace GameEngine {
 
 	class Time {
 	public:
-		static double GetElapsedSeconds();
+		static float GetElapsedSeconds();
 
 	};
 }

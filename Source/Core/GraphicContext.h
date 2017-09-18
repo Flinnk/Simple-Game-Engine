@@ -4,6 +4,10 @@
 
 namespace GameEngine {
 
+	class SpriteRenderer;
+	class Window;
+	struct Vector2;
+
 	class GraphicContext {
 
 	public:
@@ -17,13 +21,13 @@ namespace GameEngine {
 		void Release();
 		bool HasToCLose();
 
-		struct Vector2 GetDisplaySize();
-		const class SpriteRenderer* GetRenderer();
+		Vector2 GetDisplaySize();
+		const SpriteRenderer* GetRenderer();
 
 	private:
 
-		class Window* WindowInstance;
-		class SpriteRenderer* Renderer = nullptr;
+		Window* WindowInstance;
+		SpriteRenderer* Renderer = nullptr;
 	};
 
 }

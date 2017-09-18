@@ -34,7 +34,7 @@ namespace GameEngine {
 
 		model *= Matrix4::Scale(size);
 
-		Vector2 Size = Engine::GetInstance().GetDisplaySize();//TODO: Graphic context debera notificar al renderer de los cambios de dimension para no estar preguntando a traves de un callback y la proyeccion solo se calculara en estos cambios y al principio
+		Vector2 Size = Engine::GetInstance().GetDisplaySize();//TODO: Callback with Graphic context to be notified of resizing to adjust the viewport parameters
 		Matrix4  projection = Matrix4::Ortho(0.0f, Size.x, Size.y, 0.0, -1.0f, 1.0f);
 
 		shader->SetInterger("image", 0);

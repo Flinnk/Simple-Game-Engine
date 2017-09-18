@@ -3,9 +3,8 @@
 
 namespace GameEngine {
 
-	double Time::GetElapsedSeconds()
+	float Time::GetElapsedSeconds()
 	{
-		double seconds = glfwGetTime();
-		return seconds;
+		return static_cast<float>(glfwGetTime());
 	}
 }

@@ -108,9 +108,9 @@ namespace GameEngine
 
 		float Radians = ToRadians(Angle);
 
-		float Cos = cos(Radians);
-		float Sin = sin(Radians);
-		float OMC = 1.0 - Cos;//One Minus Cosine
+		float Cos = cosf(Radians);
+		float Sin = sinf(Radians);
+		float OMC = 1.0f - Cos;//One Minus Cosine
 
 		Result.elements[0] = Cos + Axis.x*Axis.x*OMC;
 		Result.elements[1] = Axis.y*Axis.x*OMC + Axis.z*Sin;
@@ -175,7 +175,7 @@ namespace GameEngine
 	}
 
 
-	Matrix4& Matrix4::operator*(const Matrix4& Right)
+	Matrix4 Matrix4::operator*(const Matrix4& Right)
 	{
 		return Multiply(*this, Right);
 	}

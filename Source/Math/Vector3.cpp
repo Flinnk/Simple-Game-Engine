@@ -2,7 +2,7 @@
 
 namespace GameEngine 
 {
-	Vector3& Vector3::operator*(float scalar)
+	Vector3 Vector3::operator*(float scalar)
 	{
 		return Vector3(x*scalar, y*scalar, z*scalar);
 	}

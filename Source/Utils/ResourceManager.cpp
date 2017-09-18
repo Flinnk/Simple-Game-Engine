@@ -17,7 +17,7 @@ namespace GameEngine
 		return Instance;
 	}
 
-	Shader* ResourceManager::LoadShader(std::string VertexSourceCode, std::string FragmentSourceCode, std::string ResourceID)//TODO VER CONFLICTO NOMBRE DISTINTO PATH O BIEN RECARGA DEL SHADER
+	Shader* ResourceManager::LoadShader(std::string VertexSourceCode, std::string FragmentSourceCode, std::string ResourceID)//TODO: Use path instead of provided string as id?
 	{
 		if (Shaders.find(ResourceID) == Shaders.end())//Not found
 		{
@@ -51,20 +51,27 @@ namespace GameEngine
 
 	const Texture* ResourceManager::LoadTexture(std::string Path, std::string ResourceID)
 	{
-		Texture* LoadTexture = nullptr;
-
-		int Width, Height, NrChannels;
-		stbi_set_flip_vertically_on_load(false);
-		unsigned char *Image = stbi_load(Path.c_str(), &Width, &Height, &NrChannels, 0);
-		if (Image)
+		if (Textures.find(ResourceID) == Textures.end())//Not found
 		{
-			LoadTexture = new Texture();
-			LoadTexture->Generate(Width, Height, NrChannels, Image);
-			Textures[ResourceID] = LoadTexture;
-		}
+			Texture* LoadTexture = nullptr;
 
-		stbi_image_free(Image);
-		return LoadTexture;
+			int Width, Height, NrChannels;
+			stbi_set_flip_vertically_on_load(false);
+			unsigned char *Image = stbi_load(Path.c_str(), &Width, &Height, &NrChannels, 0);
+			if (Image)
+			{
+				LoadTexture = new Texture();
+				LoadTexture->Generate(Width, Height, NrChannels, Image);
+				Textures[ResourceID] = LoadTexture;
+			}
+
+			stbi_image_free(Image);
+			return LoadTexture;
+		}
+		else 
+		{
+			return GetTexture(ResourceID);
+		}
 	}
 
 	const Texture* ResourceManager::GetTexture(std::string ResourceID)

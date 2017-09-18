@@ -8,7 +8,7 @@ namespace GameEngine {
 		Vector3();
 		Vector3(float _x, float _y, float _z);
 
-		Vector3& operator*(float scalar);
+		Vector3 operator*(float scalar);
 	};
 }
 

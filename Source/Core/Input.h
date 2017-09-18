@@ -166,7 +166,7 @@ namespace GameEngine {
 	class Input {
 
 	public:
-		static void GetMousePosition(int &XPos, int &YPos);
+		static void GetMousePosition(double &XPos, double &YPos);
 		static bool IsKeyPressed(int Key);
 		static bool IsMouseButtonPressed(int Button);
 		static bool IsControllerConnected(int ControllerNumber);
