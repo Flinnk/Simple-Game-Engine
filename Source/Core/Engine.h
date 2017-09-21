@@ -23,10 +23,15 @@ namespace GameEngine {
 		GraphicContext* GetGraphicContext();
 		Vector2 GetDisplaySize();
 
-
+		void SetTargetFPS(unsigned int FPS);
+		int GetFpsStat();
 	private:
 		Engine();
 
+		float TargetTimePerFrame = (1.0f/60.0f);
+		int CurrentFPS=0;
+		float FrameTime = 0;
+		void Wait(float Milliseconds);
 		GraphicContext* GContext;
 	};
 

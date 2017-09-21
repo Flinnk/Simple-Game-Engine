@@ -3,6 +3,7 @@
 #include "GraphicContext.h"
 #include "..\Utils\Time.h"
 #include "..\Math\Math.h"
+#include <stdio.h>
 
 namespace GameEngine {
 
@@ -27,8 +28,8 @@ namespace GameEngine {
 
 		GameInstance->OnBegin();
 
-		float LastTime = Time::GetElapsedSeconds();
-		float DeltaSeconds = 0;
+		double LastTime = Time::GetElapsedSeconds();
+		double DeltaSeconds = 0;
 
 		const SpriteRenderer* Renderer = GContext->GetRenderer();
 		while (!GContext->HasToCLose()) {
@@ -40,10 +41,19 @@ namespace GameEngine {
 			GameInstance->OnRender(Renderer);
 
 			GContext->End();
+			FrameTime = 0.0f;
 
-			float CurrentTime = Time::GetElapsedSeconds();
+			double CurrentTime = Time::GetElapsedSeconds();
 			DeltaSeconds = CurrentTime - LastTime;
-			LastTime = CurrentTime;
+
+			FrameTime += DeltaSeconds;
+			if (DeltaSeconds < TargetTimePerFrame) {
+				float SleepTime = TargetTimePerFrame - DeltaSeconds;
+				Wait((TargetTimePerFrame - DeltaSeconds)*1000.0f);
+				FrameTime += SleepTime;
+			}
+
+			LastTime = Time::GetElapsedSeconds();
 		}
 
 		GContext->Release();
@@ -54,7 +64,21 @@ namespace GameEngine {
 		delete GameInstance;
 	}
 
-	GraphicContext* Engine::GetGraphicContext() 
+	void Engine::Wait(float Milliseconds)
+	{
+		double prevTime = Time::GetElapsedSeconds();
+		double nextTime = 0.0;
+
+		while ((nextTime - prevTime) < Milliseconds / 1000.0f) nextTime = Time::GetElapsedSeconds();
+	}
+
+	int Engine::GetFpsStat()
+	{
+		return 1.0f / FrameTime;
+	}
+
+
+	GraphicContext* Engine::GetGraphicContext()
 	{
 		return GContext;
 	}
@@ -62,6 +86,11 @@ namespace GameEngine {
 	Vector2 Engine::GetDisplaySize()
 	{
 		return GContext->GetDisplaySize();
+	}
+
+	void Engine::SetTargetFPS(unsigned int FPS)
+	{
+		TargetTimePerFrame = 1.0f / FPS;
 	}
 
 
