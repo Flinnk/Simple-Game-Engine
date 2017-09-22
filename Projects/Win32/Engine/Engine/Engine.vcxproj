@@ -19,6 +19,7 @@
     <ClCompile Include="..\..\..\..\Source\Math\Matrix4.cpp" />
     <ClCompile Include="..\..\..\..\Source\Math\Vector2.cpp" />
     <ClCompile Include="..\..\..\..\Source\Math\Vector3.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Physics\SandboxPhysics.cpp" />
     <ClCompile Include="..\..\..\..\Source\Renderer\Shader.cpp" />
     <ClCompile Include="..\..\..\..\Source\Renderer\SpriteRenderer.cpp" />
     <ClCompile Include="..\..\..\..\Source\Renderer\Texture.cpp" />
@@ -39,6 +40,7 @@
     <ClInclude Include="..\..\..\..\Source\Math\Utils.h" />
     <ClInclude Include="..\..\..\..\Source\Math\Vector2.h" />
     <ClInclude Include="..\..\..\..\Source\Math\Vector3.h" />
+    <ClInclude Include="..\..\..\..\Source\Physics\SandboxPhysics.h" />
     <ClInclude Include="..\..\..\..\Source\Renderer\CompiledShaders.h" />
     <ClInclude Include="..\..\..\..\Source\Renderer\Shader.h" />
     <ClInclude Include="..\..\..\..\Source\Renderer\SpriteRenderer.h" />
