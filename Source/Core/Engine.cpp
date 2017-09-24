@@ -4,6 +4,7 @@
 #include "..\Utils\Time.h"
 #include "..\Math\Math.h"
 #include <stdio.h>
+#include "..\Audio\SoundManager.h"
 
 namespace GameEngine {
 
@@ -23,6 +24,7 @@ namespace GameEngine {
 	void Engine::Run()
 	{
 		GContext = new GraphicContext();
+		SoundManager::GetInstance().Init();
 		Application* GameInstance = GetApplicationInstance();
 		GameInstance->OnInitialize();
 
@@ -36,7 +38,7 @@ namespace GameEngine {
 			GContext->Begin();
 
 			GContext->Update();
-			GameInstance->OnUpdate(DeltaSeconds);
+			GameInstance->OnUpdate(static_cast<float>(DeltaSeconds));
 
 			GameInstance->OnRender(Renderer);
 
@@ -48,15 +50,19 @@ namespace GameEngine {
 
 			FrameTime += DeltaSeconds;
 			if (DeltaSeconds < TargetTimePerFrame) {
-				float SleepTime = TargetTimePerFrame - DeltaSeconds;
+				double SleepTime = TargetTimePerFrame - DeltaSeconds;
 				Wait((TargetTimePerFrame - DeltaSeconds)*1000.0f);
 				FrameTime += SleepTime;
 			}
 
+			CurrentTime = Time::GetElapsedSeconds();
+			DeltaSeconds += CurrentTime - LastTime;
 			LastTime = Time::GetElapsedSeconds();
+
 		}
 
 		GContext->Release();
+		SoundManager::GetInstance().Release();
 
 		GameInstance->OnEnd();
 
@@ -64,7 +70,7 @@ namespace GameEngine {
 		delete GameInstance;
 	}
 
-	void Engine::Wait(float Milliseconds)
+	void Engine::Wait(double Milliseconds)
 	{
 		double prevTime = Time::GetElapsedSeconds();
 		double nextTime = 0.0;
@@ -74,7 +80,7 @@ namespace GameEngine {
 
 	int Engine::GetFpsStat()
 	{
-		return 1.0f / FrameTime;
+		return static_cast<int>(1.0 / FrameTime);
 	}
 
 

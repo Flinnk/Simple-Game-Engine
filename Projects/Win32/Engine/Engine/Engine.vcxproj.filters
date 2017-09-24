@@ -19,11 +19,11 @@
     <Filter Include="Source\Physics">
       <UniqueIdentifier>{cf2540c9-289f-4361-b611-2348dfdb24df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Audio">
+      <UniqueIdentifier>{34601c67-6da9-4fcd-ac93-fcab2168a1d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Source\Core\Engine.cpp">
-      <Filter>Source\Core</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\Source\Core\Application.cpp">
       <Filter>Source\Core</Filter>
     </ClCompile>
@@ -71,6 +71,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\Source\Physics\SandboxPhysics.cpp">
       <Filter>Source\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Source\Audio\SoundManager.cpp">
+      <Filter>Source\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Source\Core\Engine.cpp">
+      <Filter>Source\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +139,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\Source\Physics\SandboxPhysics.h">
       <Filter>Source\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Source\Audio\SoundManager.h">
+      <Filter>Source\Audio</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

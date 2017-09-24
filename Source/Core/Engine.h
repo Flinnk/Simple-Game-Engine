@@ -30,8 +30,8 @@ namespace GameEngine {
 
 		float TargetTimePerFrame = (1.0f/60.0f);
 		int CurrentFPS=0;
-		float FrameTime = 0;
-		void Wait(float Milliseconds);
+		double FrameTime = 0;
+		void Wait(double Milliseconds);
 		GraphicContext* GContext;
 	};
 

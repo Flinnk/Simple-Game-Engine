@@ -3,7 +3,7 @@
 
 namespace GameEngine {
 
-	bool Collision::CheckCollision(const Rect &one, const Rect &two)
+	bool CheckCollision(const Rect &one, const Rect &two)
 	{
 		bool collisionX = one.x + one.width >= two.x &&
 			two.x + two.width >= one.x;
@@ -13,8 +13,9 @@ namespace GameEngine {
 		return collisionX && collisionY;
 	}
 
-	bool Collision::CheckCollision(const Circle &one, const Rect &two)
+	CollisionData CheckCollision(const Circle &one, const Rect &two)
 	{
+		CollisionData result;
 		Vector2 center(Vector2(one.x, one.y) + one.radius);
 
 		Vector2 aabb_half_extents(two.width / 2, two.height / 2);
@@ -29,6 +30,16 @@ namespace GameEngine {
 		Vector2 closest = aabb_center + clamped;
 
 		difference = closest - center;
-		return difference.Length() < one.radius;
+		if (difference.Length() < one.radius) {
+			result.Hit = true;
+			result.DifferenceVector = difference;
+		}
+		else 
+		{
+			result.Hit = false;
+			result.DifferenceVector = Vector2(0,0);
+		}
+
+		return result;
 	}
 }

@@ -53,6 +53,22 @@ namespace GameEngine
 		return Result;
 	}
 
+	Vector2 Vector2::Normalize()
+	{
+		Vector2 NormalizedVector (0,0);
+		float VectorLength = Length();
+
+		NormalizedVector.x = x / VectorLength;
+		NormalizedVector.y = y / VectorLength;
+
+		return NormalizedVector;
+	}
+
+	float Vector2::Dot(Vector2& other)
+	{
+		return ((x*other.x) + (y*other.y));
+	}
+
 	float Vector2::Length()
 	{
 		return static_cast<float>(sqrt((x*x) + (y*y)));

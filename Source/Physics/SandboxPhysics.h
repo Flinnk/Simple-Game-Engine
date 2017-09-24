@@ -1,6 +1,7 @@
 #ifndef PHYSICS_H
 #define PHYSICS_H
 
+#include "..\Math\Math.h"
 
 namespace GameEngine {
 	struct Rect {
@@ -21,12 +22,14 @@ namespace GameEngine {
 		Circle(float _x, float _y, float _radius) :x(_x), y(_y), radius(_radius) {}
 	};
 
-	class Collision {
-	public:
-		static bool CheckCollision(const Rect &one, const Rect &two);
-		static bool CheckCollision(const Circle &one, const Rect &two);
-
+	struct CollisionData {
+		bool Hit = false;
+		Vector2 DifferenceVector = Vector2(0, 0);
 	};
+
+	bool CheckCollision(const Rect &one, const Rect &two);
+	CollisionData CheckCollision(const Circle &one, const Rect &two);
+
 }
 #endif // !PHYSICS_H
 
