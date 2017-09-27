@@ -10,6 +10,7 @@ namespace GameEngine {
 	public:
 
 		static std::string ReadFile(std::string Path);//Support only Absolute path
+		static std::string GetExecutionDirectory();
 	};
 }
 

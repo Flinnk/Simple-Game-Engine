@@ -18,7 +18,7 @@ namespace GameEngine {
 		SoundEngine = createIrrKlangDevice();
 	}
 
-	void SoundManager::PlaySound(char* FilePath, bool Loop)
+	void SoundManager::PlaySound(const char* FilePath, bool Loop)
 	{
 		if (SoundEngine)
 			SoundEngine->play2D(FilePath, Loop);

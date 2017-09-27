@@ -4,10 +4,15 @@
 #include <GL\glew.h>
 #include <map>
 #include <stb_image.h>
+#include "..\Utils\File.h"
 
 namespace GameEngine
 {
-	ResourceManager::ResourceManager() {}
+	ResourceManager::ResourceManager() 
+	{
+		std::string ExecutionDirectory = File::GetExecutionDirectory();
+		ResourceDirectory = ExecutionDirectory.substr(0,ExecutionDirectory.find_last_of("\\")) + "\\Resources\\";
+	}
 	ResourceManager::~ResourceManager() {}
 
 
@@ -96,5 +101,11 @@ namespace GameEngine
 			iter.second = nullptr;
 		}
 	}
+
+	std::string ResourceManager::GetResourceDirectory() 
+	{
+		return ResourceDirectory;
+	}
+
 
 }

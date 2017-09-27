@@ -10,7 +10,7 @@ namespace GameEngine {
 
 		void Init();
 
-		void PlaySound(char* FilePath, bool Loop);
+		void PlaySound(const char* FilePath, bool Loop);
 
 		void Release();
 

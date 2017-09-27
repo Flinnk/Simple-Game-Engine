@@ -31,11 +31,15 @@ namespace GameEngine
 
 		void Clear();
 
+		std::string GetResourceDirectory();
+
 	private:
 		ResourceManager();
 
 		std::map<std::string, Shader*> Shaders;
 		std::map<std::string, Texture*> Textures;
+
+		std::string ResourceDirectory;
 
 	};
 }
