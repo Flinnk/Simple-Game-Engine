@@ -4,7 +4,7 @@
 
 namespace GameEngine {
 
-	class SpriteRenderer;
+	class Renderer;
 	class Window;
 	struct Vector2;
 
@@ -22,12 +22,12 @@ namespace GameEngine {
 		bool HasToCLose();
 
 		Vector2 GetDisplaySize();
-		const SpriteRenderer* GetRenderer();
+		const Renderer* GetRenderer();
 
 	private:
 
 		Window* WindowInstance;
-		SpriteRenderer* Renderer = nullptr;
+		Renderer* GRenderer = nullptr;
 	};
 
 }

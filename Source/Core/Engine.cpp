@@ -33,7 +33,7 @@ namespace GameEngine {
 		double LastTime = Time::GetElapsedSeconds();
 		double DeltaSeconds = 0;
 
-		const SpriteRenderer* Renderer = GContext->GetRenderer();
+		const Renderer* Renderer = GContext->GetRenderer();
 		while (!GContext->HasToCLose()) {
 			GContext->Begin();
 

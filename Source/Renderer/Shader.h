@@ -19,9 +19,9 @@ namespace GameEngine {
 		void Use() const;
 		bool Compile(const char* VertexShaderPath, const char* FragmentShaderPath);
 
-		void SetVector3(const char* UniformName, Vector3 value);
-		void SetMatrix4(const char* UniformName, Matrix4 value);
-		void SetInterger(const char* UniformName, int value);
+		void SetVector3(const char* UniformName, Vector3 value) const;
+		void SetMatrix4(const char* UniformName, Matrix4 value) const;
+		void SetInteger(const char* UniformName, int value) const;
 
 		unsigned int GetID()const;
 

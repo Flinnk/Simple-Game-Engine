@@ -3,7 +3,7 @@
 #include "Window.h"
 #include "..\Math\Math.h"
 #include "..\Renderer\Shader.h"
-#include "..\Renderer\SpriteRenderer.h"
+#include "..\Renderer\Renderer.h"
 #include "..\Utils\ResourceManager.h"
 #include "..\Utils\File.h"
 #include "..\Renderer\CompiledShaders.h"
@@ -13,7 +13,10 @@ namespace GameEngine {
 
 	GraphicContext::GraphicContext() {}
 
-	GraphicContext::~GraphicContext() {}
+	GraphicContext::~GraphicContext() 
+	{
+		Release();
+	}
 
 
 	bool GraphicContext::Init(int Width, int Height, const char *Title)
@@ -21,9 +24,10 @@ namespace GameEngine {
 		WindowInstance = new Window();
 		if (WindowInstance->Create(Width, Height, Title))
 		{
-			Shader* shader = ResourceManager::GetInstance().LoadShader(std::string(DefaultVertexShader), std::string(DefaultFragmentShader), "default_shader");
-			if (shader) {
-				Renderer = new SpriteRenderer(shader);
+			Shader* SpriteShader = ResourceManager::GetInstance().LoadShader(std::string(DefaultVertexShader), std::string(DefaultFragmentShader), "SpriteShader");
+			Shader* TextShader = ResourceManager::GetInstance().LoadShader(std::string(TextVertexShader), std::string(TextFragmentShader), "TextShader");
+			if (SpriteShader && TextShader) {
+				GRenderer = new Renderer(SpriteShader, TextShader);
 			}
 			else {
 				return false;
@@ -53,6 +57,13 @@ namespace GameEngine {
 	void GraphicContext::Release() {
 		WindowInstance->Terminate();
 		delete WindowInstance;
+
+		WindowInstance = nullptr;
+
+		if (GRenderer)
+			GRenderer->Release();
+		delete GRenderer;
+		GRenderer = nullptr;
 	}
 
 	bool GraphicContext::HasToCLose() {
@@ -69,9 +80,9 @@ namespace GameEngine {
 		return Vector2();
 	}
 
-	const SpriteRenderer* GraphicContext::GetRenderer()
+	const Renderer* GraphicContext::GetRenderer()
 	{
-		return Renderer;
+		return GRenderer;
 	}
 }
 

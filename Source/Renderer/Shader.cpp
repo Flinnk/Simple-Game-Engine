@@ -91,19 +91,19 @@ namespace GameEngine {
 	}
 
 
-	void Shader::SetVector3(const char* UniformName, Vector3 value)
+	void Shader::SetVector3(const char* UniformName, Vector3 value) const
 	{
 
 		glUniform3f(glGetUniformLocation(ID, UniformName), value.x, value.y, value.z);
 	}
 
-	void Shader::SetInterger(const char* UniformName, int value)
+	void Shader::SetInteger(const char* UniformName, int value) const
 	{
 
 		glUniform1i(glGetUniformLocation(ID, UniformName), value);
 	}
 
-	void Shader::SetMatrix4(const char* UniformName, Matrix4 value)
+	void Shader::SetMatrix4(const char* UniformName, Matrix4 value) const
 	{
 
 		glUniformMatrix4fv(glGetUniformLocation(ID, UniformName), 1, false, value.elements);
