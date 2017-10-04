@@ -7,7 +7,7 @@ namespace GameEngine {
 	{
 		SpriteRender = new SpriteRenderer(SpriteShader);
 		TextRender = new TextRenderer(TextShader);
-		TextRender->Load("C:\\Windows\\Fonts\\Arial.ttf",24);
+		TextRender->Load("C:\\Windows\\Fonts\\Arial.ttf",96);
 	}
 
 	Renderer::~Renderer()

@@ -32,4 +32,10 @@ namespace GameEngine {
 		SoundEngine = nullptr;
 	}
 
+	void SoundManager::StopAll()
+	{
+		SoundEngine->stopAllSounds();
+	}
+
+
 }

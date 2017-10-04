@@ -12,6 +12,8 @@ namespace GameEngine {
 
 		void PlaySound(const char* FilePath, bool Loop);
 
+		void StopAll();
+
 		void Release();
 
 	private:

@@ -6,6 +6,7 @@ namespace GameEngine {
 
 	class GraphicContext;
 	struct Vector2;
+	class Application;
 
 	class Engine {
 
@@ -25,6 +26,10 @@ namespace GameEngine {
 
 		void SetTargetFPS(unsigned int FPS);
 		int GetFpsStat();
+
+		Application* GetRunningApplicationInstance();
+
+
 	private:
 		Engine();
 
@@ -33,6 +38,7 @@ namespace GameEngine {
 		double FrameTime = 0;
 		void Wait(double Milliseconds);
 		GraphicContext* GContext;
+		Application* CurrentApplication;
 	};
 
 }

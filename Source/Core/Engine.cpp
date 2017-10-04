@@ -25,10 +25,10 @@ namespace GameEngine {
 	{
 		GContext = new GraphicContext();
 		SoundManager::GetInstance().Init();
-		Application* GameInstance = GetApplicationInstance();
-		GameInstance->OnInitialize();
+		CurrentApplication = GetApplicationInstance();
+		CurrentApplication->OnInitialize();
 
-		GameInstance->OnBegin();
+		CurrentApplication->OnBegin();
 
 		double LastTime = Time::GetElapsedSeconds();
 		double DeltaSeconds = 0;
@@ -36,14 +36,18 @@ namespace GameEngine {
 		const Renderer* Renderer = GContext->GetRenderer();
 		while (!GContext->HasToCLose()) {
 			GContext->Begin();
-
 			GContext->Update();
-			GameInstance->OnUpdate(static_cast<float>(DeltaSeconds));
 
-			GameInstance->OnRender(Renderer);
+			CurrentApplication->OnBeginFrame();
+
+			CurrentApplication->OnUpdate(static_cast<float>(DeltaSeconds));
+
+			CurrentApplication->OnRender(Renderer);
 
 			GContext->End();
 			FrameTime = 0.0f;
+
+			CurrentApplication->OnEndFrame();
 
 			double CurrentTime = Time::GetElapsedSeconds();
 			DeltaSeconds = CurrentTime - LastTime;
@@ -64,10 +68,10 @@ namespace GameEngine {
 		GContext->Release();
 		SoundManager::GetInstance().Release();
 
-		GameInstance->OnEnd();
+		CurrentApplication->OnEnd();
 
 		delete GContext;
-		delete GameInstance;
+		delete CurrentApplication;
 	}
 
 	void Engine::Wait(double Milliseconds)
@@ -99,5 +103,9 @@ namespace GameEngine {
 		TargetTimePerFrame = 1.0f / FPS;
 	}
 
+	Application* Engine::GetRunningApplicationInstance() 
+	{
+		return CurrentApplication;
+	}
 
 }
