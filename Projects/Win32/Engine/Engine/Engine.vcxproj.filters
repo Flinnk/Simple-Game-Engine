@@ -22,6 +22,12 @@
     <Filter Include="Source\Audio">
       <UniqueIdentifier>{34601c67-6da9-4fcd-ac93-fcab2168a1d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Platform">
+      <UniqueIdentifier>{a65bd1f7-6ed8-4b10-a140-0ab920957332}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Platform\Windows">
+      <UniqueIdentifier>{9c24c523-acc7-4aaa-ad63-c1e278145b04}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Source\Core\Application.cpp">
@@ -83,6 +89,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\Source\Renderer\Renderer.cpp">
       <Filter>Source\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Source\Platform\Windows\WindowsLaunch.cpp">
+      <Filter>Source\Platform\Windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

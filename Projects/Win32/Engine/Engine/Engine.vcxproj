@@ -21,6 +21,7 @@
     <ClCompile Include="..\..\..\..\Source\Math\Vector2.cpp" />
     <ClCompile Include="..\..\..\..\Source\Math\Vector3.cpp" />
     <ClCompile Include="..\..\..\..\Source\Physics\SandboxPhysics.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Platform\Windows\WindowsLaunch.cpp" />
     <ClCompile Include="..\..\..\..\Source\Renderer\Renderer.cpp" />
     <ClCompile Include="..\..\..\..\Source\Renderer\Shader.cpp" />
     <ClCompile Include="..\..\..\..\Source\Renderer\SpriteRenderer.cpp" />
