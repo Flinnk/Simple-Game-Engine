@@ -33,9 +33,6 @@
     <ClCompile Include="..\..\..\..\Source\Core\Application.cpp">
       <Filter>Source\Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Source\Core\GraphicContext.cpp">
-      <Filter>Source\Core</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\Source\Core\Window.cpp">
       <Filter>Source\Core</Filter>
     </ClCompile>
@@ -93,15 +90,15 @@
     <ClCompile Include="..\..\..\..\Source\Platform\Windows\WindowsLaunch.cpp">
       <Filter>Source\Platform\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\Source\Platform\Windows\WindowsGraphicContext.cpp">
+      <Filter>Source\Platform\Windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Source\Core\Engine.h">
       <Filter>Source\Core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\Source\Core\Application.h">
-      <Filter>Source\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Source\Core\GraphicContext.h">
       <Filter>Source\Core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\Source\Core\Window.h">
@@ -163,6 +160,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\Source\Renderer\Renderer.h">
       <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Source\Renderer\IGraphicContext.h">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Source\Platform\Windows\WindowsGraphicContext.h">
+      <Filter>Source\Platform\Windows</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

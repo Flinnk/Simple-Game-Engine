@@ -4,7 +4,7 @@
 
 namespace GameEngine {
 
-	class GraphicContext;
+	class IGraphicContext;
 	struct Vector2;
 	class Application;
 
@@ -21,7 +21,7 @@ namespace GameEngine {
 		Engine& operator=(Engine &&) = delete;      // Move assign
 
 		void Run();
-		GraphicContext* GetGraphicContext();
+		IGraphicContext* GetGraphicContext();
 		Vector2 GetDisplaySize();
 
 		void SetTargetFPS(unsigned int FPS);
@@ -37,7 +37,7 @@ namespace GameEngine {
 		int CurrentFPS=0;
 		double FrameTime = 0;
 		void Wait(double Milliseconds);
-		GraphicContext* GContext;
+		IGraphicContext* GraphicContext;
 		Application* CurrentApplication;
 	};
 

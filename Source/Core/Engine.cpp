@@ -1,6 +1,6 @@
 #include "Engine.h"
+#include "..\Renderer\IGraphicContext.h"
 #include "Application.h"
-#include "GraphicContext.h"
 #include "..\Utils\Time.h"
 #include "..\Math\Math.h"
 #include <stdio.h>
@@ -9,7 +9,7 @@
 namespace GameEngine {
 
 	extern Application* GetApplicationInstance();
-
+	extern IGraphicContext* CreateGraphicContext();
 
 	Engine::Engine() {}
 	Engine::~Engine() {}
@@ -23,7 +23,7 @@ namespace GameEngine {
 
 	void Engine::Run()
 	{
-		GContext = new GraphicContext();
+		GraphicContext = CreateGraphicContext();
 		SoundManager::GetInstance().Init();
 		CurrentApplication = GetApplicationInstance();
 		CurrentApplication->OnInitialize();
@@ -33,10 +33,10 @@ namespace GameEngine {
 		double LastTime = Time::GetElapsedSeconds();
 		double DeltaSeconds = 0;
 
-		const Renderer* Renderer = GContext->GetRenderer();
-		while (!GContext->HasToCLose()) {
-			GContext->Begin();
-			GContext->Update();
+		const Renderer* Renderer = GraphicContext->GetRenderer();
+		while (!GraphicContext->HasToCLose()) {
+			GraphicContext->Begin();
+			GraphicContext->Update();
 
 			CurrentApplication->OnBeginFrame();
 
@@ -44,7 +44,7 @@ namespace GameEngine {
 
 			CurrentApplication->OnRender(Renderer);
 
-			GContext->End();
+			GraphicContext->End();
 			FrameTime = 0.0f;
 
 			CurrentApplication->OnEndFrame();
@@ -65,12 +65,12 @@ namespace GameEngine {
 
 		}
 
-		GContext->Release();
+		GraphicContext->Release();
 		SoundManager::GetInstance().Release();
 
 		CurrentApplication->OnEnd();
 
-		delete GContext;
+		delete GraphicContext;
 		delete CurrentApplication;
 	}
 
@@ -88,14 +88,14 @@ namespace GameEngine {
 	}
 
 
-	GraphicContext* Engine::GetGraphicContext()
+	IGraphicContext* Engine::GetGraphicContext()
 	{
-		return GContext;
+		return GraphicContext;
 	}
 
 	Vector2 Engine::GetDisplaySize()
 	{
-		return GContext->GetDisplaySize();
+		return GraphicContext->GetDisplaySize();
 	}
 
 	void Engine::SetTargetFPS(unsigned int FPS)

@@ -1,25 +1,24 @@
-
-#include "GraphicContext.h"
-#include "Window.h"
-#include "..\Math\Math.h"
-#include "..\Renderer\Shader.h"
-#include "..\Renderer\Renderer.h"
-#include "..\Utils\ResourceManager.h"
-#include "..\Utils\File.h"
-#include "..\Renderer\CompiledShaders.h"
+#include "WindowsGraphicContext.h"
+#include "..\..\Math\Math.h"
+#include "..\..\Renderer\Shader.h"
+#include "..\..\Renderer\Renderer.h"
+#include "..\..\Utils\ResourceManager.h"
+#include "..\..\Utils\File.h"
+#include "..\..\Renderer\CompiledShaders.h"
+#include "..\..\Core\Window.h"
 
 
 namespace GameEngine {
 
-	GraphicContext::GraphicContext() {}
+	WindowsGraphicContext::WindowsGraphicContext() {}
 
-	GraphicContext::~GraphicContext() 
+	WindowsGraphicContext::~WindowsGraphicContext()
 	{
 		Release();
 	}
 
 
-	bool GraphicContext::Init(int Width, int Height, const char *Title)
+	bool WindowsGraphicContext::Init(int Width, int Height, const char *Title)
 	{
 		WindowInstance = new Window();
 		if (WindowInstance->Create(Width, Height, Title))
@@ -27,7 +26,7 @@ namespace GameEngine {
 			Shader* SpriteShader = ResourceManager::GetInstance().LoadShader(std::string(DefaultVertexShader), std::string(DefaultFragmentShader), "SpriteShader");
 			Shader* TextShader = ResourceManager::GetInstance().LoadShader(std::string(TextVertexShader), std::string(TextFragmentShader), "TextShader");
 			if (SpriteShader && TextShader) {
-				GRenderer = new Renderer(SpriteShader, TextShader);
+				Render = new Renderer(SpriteShader, TextShader);
 			}
 			else {
 				return false;
@@ -38,41 +37,41 @@ namespace GameEngine {
 		return false;
 	}
 
-	void GraphicContext::Update() {
+	void WindowsGraphicContext::Update() {
 
 		WindowInstance->Update();
 	}
 
-	void GraphicContext::Begin()
+	void WindowsGraphicContext::Begin()
 	{
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
 
-	void GraphicContext::End()
+	void WindowsGraphicContext::End()
 	{
 		WindowInstance->SwapDefaultBuffer();
 	}
 
-	void GraphicContext::Release() {
+	void WindowsGraphicContext::Release() {
 		WindowInstance->Terminate();
 		delete WindowInstance;
 
 		WindowInstance = nullptr;
 
-		if (GRenderer)
-			GRenderer->Release();
-		delete GRenderer;
-		GRenderer = nullptr;
+		if (Render)
+			Render->Release();
+		delete Render;
+		Render = nullptr;
 	}
 
-	bool GraphicContext::HasToCLose() {
+	bool WindowsGraphicContext::HasToCLose() {
 		if (!WindowInstance)
 			return true;
 		return WindowInstance->HasToClose();
 	}
 
-	Vector2 GraphicContext::GetDisplaySize()
+	Vector2 WindowsGraphicContext::GetDisplaySize()
 	{
 		if (WindowInstance)
 			return Vector2(WindowInstance->GetWidth(), WindowInstance->GetHeight());
@@ -80,9 +79,9 @@ namespace GameEngine {
 		return Vector2();
 	}
 
-	const Renderer* GraphicContext::GetRenderer()
+	const Renderer* WindowsGraphicContext::GetRenderer()
 	{
-		return GRenderer;
+		return Render;
 	}
 }
 

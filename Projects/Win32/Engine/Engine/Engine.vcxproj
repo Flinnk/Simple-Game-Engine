@@ -14,13 +14,13 @@
     <ClCompile Include="..\..\..\..\Source\Audio\SoundManager.cpp" />
     <ClCompile Include="..\..\..\..\Source\Core\Application.cpp" />
     <ClCompile Include="..\..\..\..\Source\Core\Engine.cpp" />
-    <ClCompile Include="..\..\..\..\Source\Core\GraphicContext.cpp" />
     <ClCompile Include="..\..\..\..\Source\Core\Input.cpp" />
     <ClCompile Include="..\..\..\..\Source\Core\Window.cpp" />
     <ClCompile Include="..\..\..\..\Source\Math\Matrix4.cpp" />
     <ClCompile Include="..\..\..\..\Source\Math\Vector2.cpp" />
     <ClCompile Include="..\..\..\..\Source\Math\Vector3.cpp" />
     <ClCompile Include="..\..\..\..\Source\Physics\SandboxPhysics.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Platform\Windows\WindowsGraphicContext.cpp" />
     <ClCompile Include="..\..\..\..\Source\Platform\Windows\WindowsLaunch.cpp" />
     <ClCompile Include="..\..\..\..\Source\Renderer\Renderer.cpp" />
     <ClCompile Include="..\..\..\..\Source\Renderer\Shader.cpp" />
@@ -37,7 +37,6 @@
     <ClInclude Include="..\..\..\..\Source\Audio\SoundManager.h" />
     <ClInclude Include="..\..\..\..\Source\Core\Application.h" />
     <ClInclude Include="..\..\..\..\Source\Core\Engine.h" />
-    <ClInclude Include="..\..\..\..\Source\Core\GraphicContext.h" />
     <ClInclude Include="..\..\..\..\Source\Core\Input.h" />
     <ClInclude Include="..\..\..\..\Source\Core\Window.h" />
     <ClInclude Include="..\..\..\..\Source\Math\Matrix4.h" />
@@ -46,7 +45,9 @@
     <ClInclude Include="..\..\..\..\Source\Math\Vector2.h" />
     <ClInclude Include="..\..\..\..\Source\Math\Vector3.h" />
     <ClInclude Include="..\..\..\..\Source\Physics\SandboxPhysics.h" />
+    <ClInclude Include="..\..\..\..\Source\Platform\Windows\WindowsGraphicContext.h" />
     <ClInclude Include="..\..\..\..\Source\Renderer\CompiledShaders.h" />
+    <ClInclude Include="..\..\..\..\Source\Renderer\IGraphicContext.h" />
     <ClInclude Include="..\..\..\..\Source\Renderer\Renderer.h" />
     <ClInclude Include="..\..\..\..\Source\Renderer\Shader.h" />
     <ClInclude Include="..\..\..\..\Source\Renderer\SpriteRenderer.h" />
