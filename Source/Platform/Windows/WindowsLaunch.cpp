@@ -11,6 +11,20 @@ namespace GameEngine {
 	}
 }
 
+bool IsUniqueInstance(LPCSTR WindowClassName)
+{
+	HWND Window = FindWindow(WindowClassName, NULL);
+	if (Window)
+	{
+		ShowWindow(Window, SW_SHOWNORMAL);
+		SetFocus(Window);
+		SetForegroundWindow(Window);
+		SetActiveWindow(Window);
+	}
+
+	return !Window;
+}
+
 static bool Running = true;
 
 LRESULT CALLBACK WinMessageCallback(HWND Window, UINT Message, WPARAM WParam, LPARAM LParam)
@@ -76,7 +90,6 @@ LRESULT CALLBACK WinMessageCallback(HWND Window, UINT Message, WPARAM WParam, LP
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	//GameEngine::Engine::GetInstance().Run();
 	WNDCLASS WindowClass = {};
 
 	WindowClass.style = CS_HREDRAW | CS_VREDRAW;
@@ -84,6 +97,12 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	WindowClass.hInstance = hInstance;
 
 	WindowClass.lpszClassName = "Engine";
+
+	if (!IsUniqueInstance(WindowClass.lpszClassName))
+		return 0;
+
+	//GameEngine::Engine::GetInstance().Run();
+
 
 	if (RegisterClass(&WindowClass))
 	{
