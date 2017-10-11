@@ -11,18 +11,22 @@ namespace GameEngine {
 	}
 }
 
-bool IsUniqueInstance(LPCSTR WindowClassName)
+bool IsUniqueInstance(HANDLE Mutex, LPCSTR WindowClassName)
 {
-	HWND Window = FindWindow(WindowClassName, NULL);
-	if (Window)
+	if (GetLastError() == ERROR_ALREADY_EXISTS)
 	{
-		ShowWindow(Window, SW_SHOWNORMAL);
-		SetFocus(Window);
-		SetForegroundWindow(Window);
-		SetActiveWindow(Window);
+		HWND Window = FindWindow(WindowClassName, NULL);
+		if (Window)
+		{
+			ShowWindow(Window, SW_SHOWNORMAL);
+			SetFocus(Window);
+			SetForegroundWindow(Window);
+			SetActiveWindow(Window);
+		}
+		return false;
 	}
 
-	return !Window;
+	return true;
 }
 
 static bool Running = true;
@@ -98,8 +102,16 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 	WindowClass.lpszClassName = "Engine";
 
-	if (!IsUniqueInstance(WindowClass.lpszClassName))
+	HANDLE  Mutex = CreateMutex(NULL, true, "SingleInstanceMutex");
+
+
+	if (!IsUniqueInstance(Mutex, WindowClass.lpszClassName))
+	{
+		ReleaseMutex(Mutex);
+		Mutex = NULL;
 		return 0;
+	}
+
 
 	//GameEngine::Engine::GetInstance().Run();
 
@@ -154,6 +166,9 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	{
 		//Handle
 	}
+
+	ReleaseMutex(Mutex);
+	Mutex = NULL;
 
 	return 0;
 }
