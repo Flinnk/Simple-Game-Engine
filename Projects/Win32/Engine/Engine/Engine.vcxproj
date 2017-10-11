@@ -15,7 +15,6 @@
     <ClCompile Include="..\..\..\..\Source\Core\Application.cpp" />
     <ClCompile Include="..\..\..\..\Source\Core\Engine.cpp" />
     <ClCompile Include="..\..\..\..\Source\Core\Input.cpp" />
-    <ClCompile Include="..\..\..\..\Source\Core\Window.cpp" />
     <ClCompile Include="..\..\..\..\Source\Math\Matrix4.cpp" />
     <ClCompile Include="..\..\..\..\Source\Math\Vector2.cpp" />
     <ClCompile Include="..\..\..\..\Source\Math\Vector3.cpp" />
@@ -38,7 +37,6 @@
     <ClInclude Include="..\..\..\..\Source\Core\Application.h" />
     <ClInclude Include="..\..\..\..\Source\Core\Engine.h" />
     <ClInclude Include="..\..\..\..\Source\Core\Input.h" />
-    <ClInclude Include="..\..\..\..\Source\Core\Window.h" />
     <ClInclude Include="..\..\..\..\Source\Math\Matrix4.h" />
     <ClInclude Include="..\..\..\..\Source\Math\Math.h" />
     <ClInclude Include="..\..\..\..\Source\Math\Utils.h" />

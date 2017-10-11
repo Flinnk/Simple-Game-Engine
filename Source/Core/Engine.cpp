@@ -53,11 +53,11 @@ namespace GameEngine {
 			DeltaSeconds = CurrentTime - LastTime;
 
 			FrameTime += DeltaSeconds;
-			if (DeltaSeconds < TargetTimePerFrame) {
+			/*if (DeltaSeconds < TargetTimePerFrame) {
 				double SleepTime = TargetTimePerFrame - DeltaSeconds;
 				Wait((TargetTimePerFrame - DeltaSeconds)*1000.0f);
 				FrameTime += SleepTime;
-			}
+			}*/
 
 			CurrentTime = Time::GetElapsedSeconds();
 			DeltaSeconds += CurrentTime - LastTime;

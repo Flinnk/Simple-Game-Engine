@@ -33,9 +33,6 @@
     <ClCompile Include="..\..\..\..\Source\Core\Application.cpp">
       <Filter>Source\Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Source\Core\Window.cpp">
-      <Filter>Source\Core</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\Source\Core\Input.cpp">
       <Filter>Source\Core</Filter>
     </ClCompile>
@@ -99,9 +96,6 @@
       <Filter>Source\Core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\Source\Core\Application.h">
-      <Filter>Source\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Source\Core\Window.h">
       <Filter>Source\Core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\Source\Core\Input.h">

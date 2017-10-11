@@ -3,6 +3,7 @@
 #define WINDOWS_GRAPHIC_CONTEXT_H
 
 #include "..\..\Renderer\IGraphicContext.h"
+#include <Windows.h>
 
 namespace GameEngine {
 
@@ -25,8 +26,11 @@ namespace GameEngine {
 		const Renderer* GetRenderer() override;
 
 	private:
-
-		class Window* WindowInstance;
+		int Width = 0;
+		int Height = 0;
+		HWND WindowHandle;
+		HDC DeviceContext;
+		HGLRC OpenGLContext;
 	};
 }
 
