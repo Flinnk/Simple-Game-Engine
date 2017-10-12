@@ -4,6 +4,7 @@
 #include "WindowsGraphicContext.h"
 #include <GL/GL.h>
 
+extern void InitializeSystemTime();
 namespace GameEngine {
 
 	IGraphicContext* CreateGraphicContext()
@@ -33,7 +34,7 @@ bool IsUniqueInstance(HANDLE Mutex, LPCSTR WindowClassName)
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	
+	InitializeSystemTime();
 	HANDLE  Mutex = CreateMutex(NULL, true, "SingleInstanceMutex");
 
 

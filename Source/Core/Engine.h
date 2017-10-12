@@ -33,10 +33,10 @@ namespace GameEngine {
 	private:
 		Engine();
 
-		float TargetTimePerFrame = (1.0f/60.0f);
+		double TargetTimePerFrame = (1.0f/60.0f);
 		int CurrentFPS=0;
-		double FrameTime = 0;
-		void Wait(double Milliseconds);
+		double FrameTime = 1;
+		void Wait(double Seconds);
 		IGraphicContext* GraphicContext;
 		Application* CurrentApplication;
 	};

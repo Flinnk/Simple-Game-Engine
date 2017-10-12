@@ -30,7 +30,7 @@ namespace GameEngine {
 
 		CurrentApplication->OnBegin();
 
-		double LastTime = Time::GetElapsedSeconds();
+		double LastTime = Time::GetCurrentSeconds();
 		double DeltaSeconds = 0;
 
 		const Renderer* Renderer = GraphicContext->GetRenderer();
@@ -49,19 +49,19 @@ namespace GameEngine {
 
 			CurrentApplication->OnEndFrame();
 
-			double CurrentTime = Time::GetElapsedSeconds();
+			double CurrentTime = Time::GetCurrentSeconds();
 			DeltaSeconds = CurrentTime - LastTime;
 
 			FrameTime += DeltaSeconds;
-			/*if (DeltaSeconds < TargetTimePerFrame) {
+			if (DeltaSeconds < TargetTimePerFrame) {
 				double SleepTime = TargetTimePerFrame - DeltaSeconds;
-				Wait((TargetTimePerFrame - DeltaSeconds)*1000.0f);
+				Wait((SleepTime));
 				FrameTime += SleepTime;
-			}*/
+			}
 
-			CurrentTime = Time::GetElapsedSeconds();
+			CurrentTime = Time::GetCurrentSeconds();
 			DeltaSeconds += CurrentTime - LastTime;
-			LastTime = Time::GetElapsedSeconds();
+			LastTime = Time::GetCurrentSeconds();
 
 		}
 
@@ -74,17 +74,17 @@ namespace GameEngine {
 		delete CurrentApplication;
 	}
 
-	void Engine::Wait(double Milliseconds)
+	void Engine::Wait(double Seconds)
 	{
-		double prevTime = Time::GetElapsedSeconds();
+		double prevTime = Time::GetCurrentSeconds();
 		double nextTime = 0.0;
 
-		while ((nextTime - prevTime) < Milliseconds / 1000.0f) nextTime = Time::GetElapsedSeconds();
+		while ((nextTime - prevTime) < Seconds) nextTime = Time::GetCurrentSeconds();
 	}
 
 	int Engine::GetFpsStat()
 	{
-		return static_cast<int>(1.0 / FrameTime);
+		return static_cast<int>(ceil(1.0 / FrameTime));
 	}
 
 

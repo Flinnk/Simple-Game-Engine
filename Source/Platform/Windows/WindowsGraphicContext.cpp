@@ -8,6 +8,7 @@
 #include "..\..\Utils\File.h"
 #include "..\..\Renderer\CompiledShaders.h"
 #include <GL\glew.h>
+#include <GL\wglew.h>
 
 
 bool Running = true;
@@ -89,6 +90,7 @@ namespace GameEngine {
 		WindowClass.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
 		WindowClass.lpfnWndProc = WinMessageCallback;
 		WindowClass.hInstance = Instance;
+		WindowClass.hbrBackground = CreateSolidBrush(RGB(0,0,0));
 
 		WindowClass.lpszClassName = "Engine";
 		if (RegisterClass(&WindowClass))
@@ -131,17 +133,32 @@ namespace GameEngine {
 				};
 
 				DeviceContext = GetDC(WindowHandle);
-
 				int  ChosenPixelFormat;
 				ChosenPixelFormat = ChoosePixelFormat(DeviceContext, &pfd);
 				SetPixelFormat(DeviceContext, ChosenPixelFormat, &pfd);
 
-				OpenGLContext = wglCreateContext(DeviceContext);
-				wglMakeCurrent(DeviceContext, OpenGLContext);
+				HGLRC TempContext = wglCreateContext(DeviceContext);
+				wglMakeCurrent(DeviceContext, TempContext);
 
 				glewExperimental = true;
 				if (glewInit() != GLEW_OK)
 					return false;
+
+				int attribs[] =
+				{
+					WGL_CONTEXT_MAJOR_VERSION_ARB, 3,
+					WGL_CONTEXT_MINOR_VERSION_ARB, 3,
+					WGL_CONTEXT_FLAGS_ARB, 0,
+					0
+				};
+
+				if (wglewIsSupported("WGL_ARB_create_context") == 1)
+				{
+					OpenGLContext = wglCreateContextAttribsARB(DeviceContext, 0, attribs);
+					wglMakeCurrent(NULL, NULL);
+					wglDeleteContext(TempContext);
+					wglMakeCurrent(DeviceContext, OpenGLContext);
+				}
 
 				//MessageBoxA(0, (char*)glGetString(GL_VERSION), "OPENGL VERSION", 0);
 				glViewport(0, 0, Width, Height);
