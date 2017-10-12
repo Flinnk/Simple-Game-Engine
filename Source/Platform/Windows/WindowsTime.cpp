@@ -5,10 +5,13 @@ bool Initialized = false;
 LARGE_INTEGER Frequency = {};
 LARGE_INTEGER BaseCounter = {};
 
-void InitializeSystemTime() {
-	Initialized = true;
-	QueryPerformanceFrequency(&Frequency);
-	QueryPerformanceCounter(&BaseCounter);
+void InitializeSystemTime()
+{
+	if (!Initialized) {
+		Initialized = true;
+		QueryPerformanceFrequency(&Frequency);
+		QueryPerformanceCounter(&BaseCounter);
+	}
 }
 
 namespace GameEngine {
@@ -18,6 +21,6 @@ namespace GameEngine {
 		LARGE_INTEGER Counter;
 		QueryPerformanceCounter(&Counter);
 		LONGLONG Diff = Counter.QuadPart - BaseCounter.QuadPart;
-		return (double)Diff/(double)Frequency.QuadPart;
+		return (double)Diff / (double)Frequency.QuadPart;
 	}
 }
