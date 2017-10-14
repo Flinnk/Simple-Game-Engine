@@ -9,7 +9,13 @@
 #include "..\..\Renderer\CompiledShaders.h"
 #include <GL\glew.h>
 #include <GL\wglew.h>
+#include "..\..\Core\Input.h"
 
+namespace GameEngine {
+	extern void CursorPositionCallback(double xpos, double ypos);
+	extern void MouseButtonCallback(int button, bool pressed);
+	extern void KeyCallback(int key, bool pressed);
+}
 
 bool Running = true;
 
@@ -27,32 +33,34 @@ LRESULT CALLBACK WinMessageCallback(HWND Window, UINT Message, WPARAM WParam, LP
 		break;
 	}
 	case WM_DESTROY:
-	{
-		Running = false;
-		break;
-	}
 	case WM_QUIT:
 	case WM_CLOSE:
 	{
 		Running = false;
 		break;
 	}
+	case WM_LBUTTONDOWN:
+	case WM_LBUTTONUP:
+		GameEngine::MouseButtonCallback(MOUSE_BUTTON_LEFT, Message == WM_LBUTTONDOWN);
+		break;
+	case WM_MBUTTONDOWN:
+	case WM_MBUTTONUP:
+		GameEngine::MouseButtonCallback(MOUSE_BUTTON_MIDDLE, Message == WM_MBUTTONDOWN);
+		break;
+	case WM_RBUTTONDOWN:
+	case WM_RBUTTONUP:
+		GameEngine::MouseButtonCallback(MOUSE_BUTTON_RIGHT, Message == WM_RBUTTONDOWN);
+		break;
 	case WM_SYSKEYDOWN:
 	case WM_KEYDOWN:
 	case WM_SYSKEYUP:
 	case WM_KEYUP:
 	{
 		unsigned int VKCode = WParam;
-		/*bool WasDown = ((LParam & (1 << 30)) != 0);
-		bool IsDown = ((LParam & (1 << 31)) == 0);
+		GameEngine::KeyCallback(VKCode, ((LParam & (1 << 31)) == 0));
+		GameEngine::KeyCallback(KEY_ALT, ((LParam & (1 << 31)) == 0));
 
-		if (VKCode == 'W')
-		{
-		if (IsDown)
-		OutputDebugStringA("W\n");
-		}*/
-
-		if (VKCode == VK_F4 && (LParam & (1 << 29)))//Lcon 1<<29 comprobamos si se ha presionado ALT o no
+		if (VKCode == VK_F4 && (LParam & (1 << 29)))//With 1<<29 we can check if ALT is pressed
 		{
 			Running = false;
 		}
@@ -90,7 +98,7 @@ namespace GameEngine {
 		WindowClass.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
 		WindowClass.lpfnWndProc = WinMessageCallback;
 		WindowClass.hInstance = Instance;
-		WindowClass.hbrBackground = CreateSolidBrush(RGB(0,0,0));
+		WindowClass.hbrBackground = CreateSolidBrush(RGB(0, 0, 0));
 
 		WindowClass.lpszClassName = "Engine";
 		if (RegisterClass(&WindowClass))
@@ -193,6 +201,12 @@ namespace GameEngine {
 			TranslateMessage(&Message);
 			DispatchMessage(&Message);
 		}
+
+		//TODO: Move to a diferent class when implementing XINPUT 
+		POINT CursorPosition = {};
+		if (GetCursorPos(&CursorPosition)) {
+			CursorPositionCallback(CursorPosition.x, CursorPosition.y);
+		}
 	}
 
 	void WindowsGraphicContext::Begin()
@@ -207,7 +221,7 @@ namespace GameEngine {
 	}
 
 	void WindowsGraphicContext::Release() {
-		ReleaseDC(WindowHandle,DeviceContext);
+		ReleaseDC(WindowHandle, DeviceContext);
 		DestroyWindow(WindowHandle);
 		wglDeleteContext(OpenGLContext);
 
