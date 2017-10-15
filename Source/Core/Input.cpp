@@ -11,14 +11,14 @@ namespace GameEngine {
 
 #define TRIGGER_BUTTON_AXIS_OFFSET 10 //In GLFW trigger buttons are in axis array //https://github.com/glfw/glfw/issues/700
 
-	double mouseX = 0;
-	double mouseY = 0;
+	int mouseX = 0;
+	int mouseY = 0;
 
 	bool keyStates[MAX_KEYS];
 	bool mouseButtons[MAX_MOUSE_BUTTONS];
 
 
-	extern void CursorPositionCallback(double xpos, double ypos) {
+	extern void CursorPositionCallback(int xpos, int ypos) {
 		mouseX = xpos;
 		mouseY = ypos;
 	}
@@ -43,7 +43,7 @@ namespace GameEngine {
 		return keyStates[key];
 	}
 
-	void Input::GetMousePosition(double &XPos, double &YPos)
+	void Input::GetMousePosition(int &XPos, int &YPos)
 	{
 		XPos = mouseX;
 		YPos = mouseY;

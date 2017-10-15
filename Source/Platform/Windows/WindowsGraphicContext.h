@@ -5,6 +5,7 @@
 #include "..\..\Renderer\IGraphicContext.h"
 #include <Windows.h>
 
+
 namespace GameEngine {
 
 	class WindowsGraphicContext : public IGraphicContext

@@ -10,9 +10,11 @@
 #include <GL\glew.h>
 #include <GL\wglew.h>
 #include "..\..\Core\Input.h"
+#include <Windowsx.h>
+
 
 namespace GameEngine {
-	extern void CursorPositionCallback(double xpos, double ypos);
+	extern void CursorPositionCallback(int xpos, int ypos);
 	extern void MouseButtonCallback(int button, bool pressed);
 	extern void KeyCallback(int key, bool pressed);
 }
@@ -67,6 +69,13 @@ LRESULT CALLBACK WinMessageCallback(HWND Window, UINT Message, WPARAM WParam, LP
 
 		break;
 	}
+
+	case WM_MOUSEMOVE:
+	{
+		GameEngine::CursorPositionCallback(GET_X_LPARAM(LParam), GET_Y_LPARAM(LParam));
+		break;
+	}
+	
 
 	default:
 		Result = DefWindowProc(Window, Message, WParam, LParam);
@@ -200,12 +209,6 @@ namespace GameEngine {
 		{
 			TranslateMessage(&Message);
 			DispatchMessage(&Message);
-		}
-
-		//TODO: Move to a diferent class when implementing XINPUT 
-		POINT CursorPosition = {};
-		if (GetCursorPos(&CursorPosition)) {
-			CursorPositionCallback(CursorPosition.x, CursorPosition.y);
 		}
 	}
 
