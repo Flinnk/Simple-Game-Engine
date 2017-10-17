@@ -20,6 +20,7 @@
     <ClCompile Include="..\..\..\..\Source\Math\Vector3.cpp" />
     <ClCompile Include="..\..\..\..\Source\Physics\SandboxPhysics.cpp" />
     <ClCompile Include="..\..\..\..\Source\Platform\Windows\WindowsGraphicContext.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="..\..\..\..\Source\Platform\Windows\WindowsLaunch.cpp" />
     <ClCompile Include="..\..\..\..\Source\Platform\Windows\WindowsTime.cpp" />
     <ClCompile Include="..\..\..\..\Source\Renderer\Renderer.cpp" />
@@ -98,14 +99,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\..\..\..\Build\Win32\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)\..\..\..\Intermediate\Win32\$(Configuration)\</IntDir>
-    <IncludePath>..\..\..\..\Dependencies\stb_image;..\..\..\..\Dependencies\glfw-3.2.1.bin.WIN32\include;..\..\..\..\Dependencies\irrKlang-1.5.0\include;..\..\..\..\Dependencies\glew-2.1.0-win32\glew-2.1.0\include;..\..\..\..\Dependencies\freetype-2.3.5-1-bin\include\freetype2;..\..\..\..\Dependencies\freetype-2.3.5-1-bin\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\..\..\Dependencies\freetype-2.3.5-1-bin\lib;..\..\..\..\Dependencies\glew-2.1.0-win32\glew-2.1.0\lib\Release\Win32;..\..\..\..\Dependencies\irrKlang-1.5.0\lib\Win32-visualStudio;..\..\..\..\Dependencies\glfw-3.2.1.bin.WIN32\lib-vc2015;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\..\..\Dependencies\stb_image;..\..\..\..\Dependencies\irrKlang-1.5.0\include;..\..\..\..\Dependencies\glew-2.1.0-win32\glew-2.1.0\include;..\..\..\..\Dependencies\freetype-2.3.5-1-bin\include\freetype2;..\..\..\..\Dependencies\freetype-2.3.5-1-bin\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\..\..\Dependencies\freetype-2.3.5-1-bin\lib;..\..\..\..\Dependencies\glew-2.1.0-win32\glew-2.1.0\lib\Release\Win32;..\..\..\..\Dependencies\irrKlang-1.5.0\lib\Win32-visualStudio;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)\..\..\..\Build\Win32\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)\..\..\..\Intermediate\Win32\$(Configuration)\</IntDir>
-    <IncludePath>..\..\..\..\Dependencies\stb_image;..\..\..\..\Dependencies\glfw-3.2.1.bin.WIN32\include;..\..\..\..\Dependencies\irrKlang-1.5.0\include;..\..\..\..\Dependencies\glew-2.1.0-win32\glew-2.1.0\include;..\..\..\..\Dependencies\freetype-2.3.5-1-bin\include\freetype2;..\..\..\..\Dependencies\freetype-2.3.5-1-bin\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\..\..\Dependencies\freetype-2.3.5-1-bin\lib;..\..\..\..\Dependencies\glew-2.1.0-win32\glew-2.1.0\lib\Release\Win32;..\..\..\..\Dependencies\irrKlang-1.5.0\lib\Win32-visualStudio;..\..\..\..\Dependencies\glfw-3.2.1.bin.WIN32\lib-vc2015;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\..\..\Dependencies\stb_image;..\..\..\..\Dependencies\irrKlang-1.5.0\include;..\..\..\..\Dependencies\glew-2.1.0-win32\glew-2.1.0\include;..\..\..\..\Dependencies\freetype-2.3.5-1-bin\include\freetype2;..\..\..\..\Dependencies\freetype-2.3.5-1-bin\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\..\..\Dependencies\freetype-2.3.5-1-bin\lib;..\..\..\..\Dependencies\glew-2.1.0-win32\glew-2.1.0\lib\Release\Win32;..\..\..\..\Dependencies\irrKlang-1.5.0\lib\Win32-visualStudio;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -115,7 +116,7 @@
       <PreprocessorDefinitions>ASSERT_ENABLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Lib>
-      <AdditionalDependencies>glfw3.lib;glew32s.lib;irrKlang.lib;opengl32.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32s.lib;irrKlang.lib;opengl32.lib;freetype.lib;XInput.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -138,7 +139,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>glfw3.lib;glew32s.lib;irrKlang.lib;opengl32.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32s.lib;irrKlang.lib;opengl32.lib;freetype.lib;XInput.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

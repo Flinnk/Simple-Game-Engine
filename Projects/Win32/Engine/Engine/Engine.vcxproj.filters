@@ -90,6 +90,9 @@
     <ClCompile Include="..\..\..\..\Source\Platform\Windows\WindowsTime.cpp">
       <Filter>Source\Platform\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\Source\Platform\Windows\WindowsInput.cpp">
+      <Filter>Source\Platform\Windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Source\Core\Engine.h">

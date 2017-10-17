@@ -1,22 +1,19 @@
 #include "Input.h"
-#include <GLFW\glfw3.h>
 
 namespace GameEngine {
 
 #define MAX_KEYS 1024
 #define MAX_MOUSE_BUTTONS 7
-#define MAX_CONTROLLERS 3
+#define MAX_CONTROLLERS 4
 #define MAX_CONTROLLER_BUTTON 16
 #define MAX_AXIS 4
-
-#define TRIGGER_BUTTON_AXIS_OFFSET 10 //In GLFW trigger buttons are in axis array //https://github.com/glfw/glfw/issues/700
 
 	int mouseX = 0;
 	int mouseY = 0;
 
 	bool keyStates[MAX_KEYS];
 	bool mouseButtons[MAX_MOUSE_BUTTONS];
-
+	Controller controllers[MAX_CONTROLLERS];
 
 	extern void CursorPositionCallback(int xpos, int ypos) {
 		mouseX = xpos;
@@ -32,6 +29,11 @@ namespace GameEngine {
 	extern void KeyCallback(int key, bool pressed)
 	{
 		keyStates[key] = pressed;
+	}
+
+	void GamePadCallback(int ControllerIndex, Controller ControllerInfo)
+	{
+		controllers[ControllerIndex] = ControllerInfo;
 	}
 
 	bool Input::IsKeyPressed(int key)
@@ -66,44 +68,23 @@ namespace GameEngine {
 			return false;
 		}
 
-		int present = glfwJoystickPresent(ControllerNumber);
-		return present != 0;
+		return controllers[ControllerNumber].Conected;
 	}
 
 	bool Input::IsControllerButtonPressed(int ControllerNumber, int ControllerButton)
 	{
-		if (!IsControllerConnected(ControllerNumber))
+		if (!IsControllerConnected(ControllerNumber) || ControllerButton >= MAX_CONTROLLER_BUTTON)
 			return false;
 
-		int count;
-		const unsigned char* buttons = glfwGetJoystickButtons(ControllerNumber, &count);
-
-		int countAxis;
-		const float* axes = glfwGetJoystickAxes(ControllerNumber, &countAxis);
-		if (ControllerButton >= count && ControllerButton - TRIGGER_BUTTON_AXIS_OFFSET < countAxis)
-		{
-			return axes[ControllerButton - TRIGGER_BUTTON_AXIS_OFFSET] == 1;
-		}
-		else if (ControllerButton >= count)
-		{
-			return false;
-		}
-
-		return buttons[ControllerButton] != 0;
+		return controllers[ControllerNumber].Buttons[ControllerButton] != 0;
 	}
 
 	float Input::GetControllerAxis(int ControllerNumber, int ControllerAxis)
 	{
-		if (!IsControllerConnected(ControllerNumber))
+		if (!IsControllerConnected(ControllerNumber)|| ControllerAxis >= MAX_AXIS)
 			return 0.0f;
 
-		int count;
-		const float* axes = glfwGetJoystickAxes(ControllerNumber, &count);
-
-		if (ControllerAxis >= MAX_AXIS)
-			return 0.0f;
-
-		return axes[ControllerAxis];
+		return  controllers[ControllerNumber].Axes[ControllerAxis];
 	}
 
 }

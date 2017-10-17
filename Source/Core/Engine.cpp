@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include "..\Audio\SoundManager.h"
 
+extern void UpdatePlatformInput(); //TODO: Maybe create an IPlatform class to handle platofrm specific events
+
 namespace GameEngine {
 
 	extern Application* GetApplicationInstance();
@@ -35,6 +37,7 @@ namespace GameEngine {
 
 		const Renderer* Renderer = GraphicContext->GetRenderer();
 		while (!GraphicContext->HasToCLose()) {
+			UpdatePlatformInput();
 			GraphicContext->Begin();
 			GraphicContext->Update();
 

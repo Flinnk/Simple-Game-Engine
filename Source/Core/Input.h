@@ -152,6 +152,16 @@ namespace GameEngine {
 #define CONTROLLER_AXIS_RIGHT_STICK_HORIZONTAL 2
 #define CONTROLLER_AXIS_RIGHT_STICK_VERTICAL 3
 
+#define CONTROLLER_DEADZONE_X 0.02f
+#define CONTROLLER_DEADZONE_Y 0.02f
+
+	struct Controller
+	{
+		bool Conected = false;
+		bool Buttons[16];
+		float Axes[4];
+	};
+
 	class Input {
 
 	public:
