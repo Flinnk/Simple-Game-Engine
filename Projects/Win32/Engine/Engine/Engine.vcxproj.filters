@@ -164,5 +164,8 @@
     <ClInclude Include="..\..\..\..\Source\Platform\Windows\WindowsGraphicContext.h">
       <Filter>Source\Platform\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\Source\Engine.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
