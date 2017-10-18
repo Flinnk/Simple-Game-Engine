@@ -1,6 +1,8 @@
 #ifndef SIMPLE_GAME_ENGINE
 #define SIMPLE_GAME_ENGINE
 
+#include "EngineMacros.h"
+
 #include "Core\Application.h"
 #include "Core\Engine.h"
 #include "Core\Input.h"
