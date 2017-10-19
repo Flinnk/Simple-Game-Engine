@@ -36,7 +36,7 @@ namespace GameEngine {
 		double DeltaSeconds = 0;
 
 		const Renderer* Renderer = GraphicContext->GetRenderer();
-		while (!GraphicContext->HasToCLose()) {
+		while (!GraphicContext->HasToCLose() && !CloseEngine) {
 			UpdatePlatformInput();
 			GraphicContext->Begin();
 			GraphicContext->Update();
@@ -106,9 +106,14 @@ namespace GameEngine {
 		TargetTimePerFrame = 1.0f / FPS;
 	}
 
-	Application* Engine::GetRunningApplicationInstance() 
+	Application* Engine::GetRunningApplicationInstance()
 	{
 		return CurrentApplication;
+	}
+
+	void Engine::Exit()
+	{
+		CloseEngine = true;
 	}
 
 }

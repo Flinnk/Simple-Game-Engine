@@ -29,6 +29,7 @@ namespace GameEngine {
 
 		Application* GetRunningApplicationInstance();
 
+		void Exit();
 
 	private:
 		Engine();
@@ -39,6 +40,7 @@ namespace GameEngine {
 		void Wait(double Seconds);
 		IGraphicContext* GraphicContext;
 		Application* CurrentApplication;
+		bool CloseEngine = false;
 	};
 
 }
