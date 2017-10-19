@@ -75,7 +75,7 @@ LRESULT CALLBACK WinMessageCallback(HWND Window, UINT Message, WPARAM WParam, LP
 		GameEngine::CursorPositionCallback(GET_X_LPARAM(LParam), GET_Y_LPARAM(LParam));
 		break;
 	}
-	
+
 
 	default:
 		Result = DefWindowProc(Window, Message, WParam, LParam);
@@ -112,42 +112,29 @@ namespace GameEngine {
 		WindowClass.lpszClassName = "Engine";
 		if (RegisterClass(&WindowClass))
 		{
-			WindowHandle = CreateWindowEx(
-				0,
-				WindowClass.lpszClassName,
-				Title,
-				WS_OVERLAPPEDWINDOW ^ WS_THICKFRAME | WS_VISIBLE,
-				0,
-				0,
-				Width,
-				Height,
-				0,
-				0,
-				Instance,
-				0);
+			RECT size = { 0, 0, Width, (LONG)Height };
+			AdjustWindowRect(&size, WS_OVERLAPPEDWINDOW | WS_CLIPSIBLINGS | WS_CLIPCHILDREN, false);
+
+			WindowHandle = CreateWindow(
+				WindowClass.lpszClassName, Title,
+				WS_OVERLAPPEDWINDOW | WS_CLIPSIBLINGS | WS_CLIPCHILDREN |WS_VISIBLE,
+				GetSystemMetrics(SM_CXSCREEN) / 2 - Width / 2,
+				GetSystemMetrics(SM_CYSCREEN) / 2 - Height / 2,
+				size.right + (-size.left), size.bottom + (-size.top), NULL, NULL, Instance, NULL);
 
 			if (WindowHandle)
 			{
 
-				PIXELFORMATDESCRIPTOR pfd =
-				{
-					sizeof(PIXELFORMATDESCRIPTOR),
-					1,
-					PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER,    //Flags
-					PFD_TYPE_RGBA,            //The kind of framebuffer. RGBA or palette.
-					32,                        //Colordepth of the framebuffer.
-					0, 0, 0, 0, 0, 0,
-					0,
-					0,
-					0,
-					0, 0, 0, 0,
-					24,                        //Number of bits for the depthbuffer
-					8,                        //Number of bits for the stencilbuffer
-					0,                        //Number of Aux buffers in the framebuffer.
-					PFD_MAIN_PLANE,
-					0,
-					0, 0, 0
-				};
+				PIXELFORMATDESCRIPTOR pfd = {};
+				pfd.nSize = sizeof(PIXELFORMATDESCRIPTOR);
+				pfd.nVersion = 1;
+				pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
+				pfd.iPixelType = PFD_TYPE_RGBA;
+				pfd.cColorBits = 32;
+				pfd.cDepthBits = 24;
+				pfd.cStencilBits = 8;
+				pfd.cAuxBuffers = 0;
+				pfd.iLayerType = PFD_MAIN_PLANE;
 
 				DeviceContext = GetDC(WindowHandle);
 				int  ChosenPixelFormat;
@@ -247,8 +234,12 @@ namespace GameEngine {
 
 	Vector2 WindowsGraphicContext::GetDisplaySize()
 	{
-		if (WindowHandle)
-			return Vector2(Width, Height);
+		if (WindowHandle) {
+			RECT size = { 0, 0, Width, (LONG)Height };
+			AdjustWindowRect(&size, WS_OVERLAPPEDWINDOW | WS_CLIPSIBLINGS | WS_CLIPCHILDREN, false);
+			
+			return Vector2(size.right + (-size.left), size.bottom + (-size.top));
+		}
 
 		return Vector2();
 	}
