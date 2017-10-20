@@ -6,11 +6,16 @@ namespace GameEngine {
 	class Renderer;
 	struct Vector2;
 
+	enum DisplayMode {
+		WINDOWED, FULLSCREEN
+	};
+
+
 	class IGraphicContext {
 
 	public:
 
-		virtual bool Init(int Width, int Height, const char *Title) = 0;
+		virtual bool Init(const char *Title, DisplayMode Mode = DisplayMode::WINDOWED, int Width = 0, int Height = 0) = 0;
 		virtual void Update() = 0;
 		virtual void Begin() = 0;
 		virtual void End() = 0;

@@ -96,7 +96,7 @@ namespace GameEngine {
 	}
 
 
-	bool WindowsGraphicContext::Init(int _Width, int _Height, const char *Title)
+	bool WindowsGraphicContext::Init( const char *Title, DisplayMode Mode, int _Width, int _Height)
 	{
 		Width = _Width;
 		Height = _Height;
@@ -112,12 +112,23 @@ namespace GameEngine {
 		WindowClass.lpszClassName = "Engine";
 		if (RegisterClass(&WindowClass))
 		{
+			DWORD style = 0;
+			if (Mode == GameEngine::DisplayMode::FULLSCREEN)
+			{
+				style = WS_POPUP | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_VISIBLE;
+				Width = GetSystemMetrics(SM_CXSCREEN);
+				Height = GetSystemMetrics(SM_CYSCREEN);
+			}
+			else
+			{
+				style = WS_OVERLAPPEDWINDOW | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_VISIBLE;
+			}
 			RECT size = { 0, 0, Width, (LONG)Height };
-			AdjustWindowRect(&size, WS_OVERLAPPEDWINDOW | WS_CLIPSIBLINGS | WS_CLIPCHILDREN, false);
+			AdjustWindowRect(&size, style, false);
 
 			WindowHandle = CreateWindow(
 				WindowClass.lpszClassName, Title,
-				WS_OVERLAPPEDWINDOW | WS_CLIPSIBLINGS | WS_CLIPCHILDREN |WS_VISIBLE,
+				style,
 				GetSystemMetrics(SM_CXSCREEN) / 2 - Width / 2,
 				GetSystemMetrics(SM_CYSCREEN) / 2 - Height / 2,
 				size.right + (-size.left), size.bottom + (-size.top), NULL, NULL, Instance, NULL);

@@ -16,7 +16,7 @@ namespace GameEngine {
 		WindowsGraphicContext();
 		~WindowsGraphicContext();
 
-		bool Init(int Width, int Height, const char *Title) override;
+		bool Init(const char *Title, DisplayMode Mode, int Width, int Height) override;
 		void Update() override;
 		void Begin() override;
 		void End() override;
