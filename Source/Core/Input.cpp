@@ -2,7 +2,7 @@
 
 namespace GameEngine {
 
-#define MAX_KEYS 1024
+#define MAX_KEYS 256
 #define MAX_MOUSE_BUTTONS 7
 #define MAX_CONTROLLERS 4
 #define MAX_CONTROLLER_BUTTON 16
@@ -14,6 +14,9 @@ namespace GameEngine {
 	bool keyStates[MAX_KEYS];
 	bool mouseButtons[MAX_MOUSE_BUTTONS];
 	Controller controllers[MAX_CONTROLLERS];
+
+
+	/* Callback functions called from the Platform Layer */
 
 	extern void CursorPositionCallback(int xpos, int ypos) {
 		mouseX = xpos;
@@ -35,6 +38,9 @@ namespace GameEngine {
 	{
 		controllers[ControllerIndex] = ControllerInfo;
 	}
+
+
+	/* Input class implementation */
 
 	bool Input::IsKeyPressed(int key)
 	{

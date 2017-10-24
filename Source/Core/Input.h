@@ -3,10 +3,9 @@
 
 namespace GameEngine {
 
-	/* The unknown key */
 #define KEY_UNKNOWN            -1
 
-/* Printable keys */
+/* Keys */
 #define KEY_SPACE              32
 #define KEY_APOSTROPHE         39  /* ' */
 #define KEY_COMMA              44  /* , */
@@ -58,7 +57,6 @@ namespace GameEngine {
 #define KEY_WORLD_1            161 /* non-US #1 */
 #define KEY_WORLD_2            162 /* non-US #2 */
 
-/* Function keys */
 #define KEY_ESCAPE         0x1B
 #define KEY_ENTER              0x0D
 #define KEY_TAB                0x09
@@ -120,11 +118,12 @@ namespace GameEngine {
 #define KEY_CONTROL       0x11
 #define KEY_ALT           0
 
-
+/* Mouse */
 #define MOUSE_BUTTON_LEFT  0
 #define MOUSE_BUTTON_RIGHT   1
 #define MOUSE_BUTTON_MIDDLE   2
 
+/* Gamepad */
 #define CONTROLLER_1   0
 #define CONTROLLER_2   1
 #define CONTROLLER_3   2
@@ -155,6 +154,9 @@ namespace GameEngine {
 #define CONTROLLER_DEADZONE_X 0.02f
 #define CONTROLLER_DEADZONE_Y 0.02f
 
+	/*
+	* Structure to hold gamepad state
+	*/
 	struct Controller
 	{
 		bool Conected = false;
@@ -162,15 +164,57 @@ namespace GameEngine {
 		float Axes[4];
 	};
 
+	/*
+	* Class to retrieve input devices state. The input devices are keyboard, mouse and gamepads
+	*/
 	class Input {
 
 	public:
+
+		/*
+		* Retrieves the 2D coordinates of the mouse position relative to the window frame
+		* @param XPos Returns the X coordinate mouse position on the window
+		* @param YPos Returns the Y coordinate mouse position on the window
+		*/
 		static void GetMousePosition(int &XPos, int &YPos);
+
+		/*
+		* Returns the state of a keyboard key
+		* @param Key Key symbol to check
+		* @return Whether the key is currently being pressed
+		*/
 		static bool IsKeyPressed(int Key);
+
+		/*
+		* Returns the state of a mouse button
+		* @param Button Button to check
+		* @return Whether the button is currently being pressed
+		*/
 		static bool IsMouseButtonPressed(int Button);
+
+		/*
+		* Returns a gamepad conection state
+		* @param ControllerNumber Controller index. Max=3
+		* @return Whether the specified gamepad is currently connected
+		*/
 		static bool IsControllerConnected(int ControllerNumber);
+
+		/*
+		* Returns the state of a specified gamepad button. In case the gamepad is not connected it will return false
+		* @param ControllerNumber Controller index. Max=3
+		* @param ControllerButton Button to check
+		* @return Whether the button is currently being pressed
+		*/
 		static bool IsControllerButtonPressed(int ControllerNumber, int ControllerButton);
+
+		/*
+		* Returns the state of a specified gamepad stick. In case the gamepad is not connected it will return 0.
+		* @param ControllerNumber Controller index. Max=3
+		* @param ControllerButton Axis to check
+		* @return Returns the input for a stick axis. Values range from [0.0f,1.0f] with a deadzone value of 0.02f
+		*/
 		static float GetControllerAxis(int ControllerNumber, int ControllerAxis);
+
 	};
 
 }
