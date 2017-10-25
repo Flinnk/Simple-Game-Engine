@@ -5,12 +5,13 @@
 #include "..\Math\Math.h"
 #include <stdio.h>
 #include "..\Audio\SoundManager.h"
+#include "..\Utils\ResourceManager.h"
 
 extern void UpdatePlatformInput(); //TODO: Maybe create an IPlatform class to handle platofrm specific events
 
 namespace GameEngine {
 
-	extern Application* GetApplicationInstance();
+	extern Application* GetApplicationInstance(); //Implemented in Game project
 	extern IGraphicContext* CreateGraphicContext();
 
 	Engine::Engine() {}
@@ -23,8 +24,10 @@ namespace GameEngine {
 		return Instance;
 	}
 
+	//Main Loop
 	void Engine::Run()
 	{
+		//Initialization
 		GraphicContext = CreateGraphicContext();
 		SoundManager::GetInstance().Init();
 		CurrentApplication = GetApplicationInstance();
@@ -36,17 +39,22 @@ namespace GameEngine {
 		double DeltaSeconds = 0;
 
 		const Renderer* Renderer = GraphicContext->GetRenderer();
+
+		//Execution Loop
 		while (!GraphicContext->HasToCLose() && !CloseEngine) {
+			
+			//Frame Begin
 			UpdatePlatformInput();
 			GraphicContext->Begin();
 			GraphicContext->Update();
 
 			CurrentApplication->OnBeginFrame();
 
+			//Frame Update
 			CurrentApplication->OnUpdate(static_cast<float>(DeltaSeconds));
-
 			CurrentApplication->OnRender(Renderer);
 
+			//Frame End
 			GraphicContext->End();
 			FrameTime = 0.0f;
 
@@ -68,8 +76,10 @@ namespace GameEngine {
 
 		}
 
+		//Resource release
 		GraphicContext->Release();
 		SoundManager::GetInstance().Release();
+		ResourceManager::GetInstance().Clear();
 
 		CurrentApplication->OnEnd();
 
@@ -103,6 +113,8 @@ namespace GameEngine {
 
 	void Engine::SetTargetFPS(unsigned int FPS)
 	{
+		if (FPS == 0)
+			FPS = 1;
 		TargetTimePerFrame = 1.0f / FPS;
 	}
 

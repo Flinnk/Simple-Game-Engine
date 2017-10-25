@@ -25,6 +25,8 @@ namespace GameEngine {
 
 		Vector2 GetDisplaySize() override;
 		const Renderer* GetRenderer() override;
+		LRESULT CALLBACK ContextMessageCallback(HWND Window, UINT Message, WPARAM WParam, LPARAM LParam);
+
 
 	private:
 		int Width = 0;
@@ -32,6 +34,7 @@ namespace GameEngine {
 		HWND WindowHandle;
 		HDC DeviceContext;
 		HGLRC OpenGLContext;
+		bool Running = true;
 	};
 }
 

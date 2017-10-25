@@ -19,70 +19,14 @@ namespace GameEngine {
 	extern void KeyCallback(int key, bool pressed);
 }
 
-bool Running = true;
 
 LRESULT CALLBACK WinMessageCallback(HWND Window, UINT Message, WPARAM WParam, LPARAM LParam)
 {
+	GameEngine::WindowsGraphicContext *Context = (GameEngine::WindowsGraphicContext *)GetWindowLong(Window, GWLP_USERDATA);
+	if (Context)
+		return Context->ContextMessageCallback(Window, Message, WParam, LParam);
 
-	LRESULT Result = 0;
-
-	switch (Message)
-	{
-
-	case WM_SIZE:
-	{
-		//TODO: Handle resize
-		break;
-	}
-	case WM_DESTROY:
-	case WM_QUIT:
-	case WM_CLOSE:
-	{
-		Running = false;
-		break;
-	}
-	case WM_LBUTTONDOWN:
-	case WM_LBUTTONUP:
-		GameEngine::MouseButtonCallback(MOUSE_BUTTON_LEFT, Message == WM_LBUTTONDOWN);
-		break;
-	case WM_MBUTTONDOWN:
-	case WM_MBUTTONUP:
-		GameEngine::MouseButtonCallback(MOUSE_BUTTON_MIDDLE, Message == WM_MBUTTONDOWN);
-		break;
-	case WM_RBUTTONDOWN:
-	case WM_RBUTTONUP:
-		GameEngine::MouseButtonCallback(MOUSE_BUTTON_RIGHT, Message == WM_RBUTTONDOWN);
-		break;
-	case WM_SYSKEYDOWN:
-	case WM_KEYDOWN:
-	case WM_SYSKEYUP:
-	case WM_KEYUP:
-	{
-		unsigned int VKCode = WParam;
-		GameEngine::KeyCallback(VKCode, ((LParam & (1 << 31)) == 0));
-		GameEngine::KeyCallback(KEY_ALT, ((LParam & (1 << 31)) == 0));
-
-		if (VKCode == VK_F4 && (LParam & (1 << 29)))//With 1<<29 we can check if ALT is pressed
-		{
-			Running = false;
-		}
-
-		break;
-	}
-
-	case WM_MOUSEMOVE:
-	{
-		GameEngine::CursorPositionCallback(GET_X_LPARAM(LParam), GET_Y_LPARAM(LParam));
-		break;
-	}
-
-
-	default:
-		Result = DefWindowProc(Window, Message, WParam, LParam);
-		break;
-	}
-
-	return Result;
+	return DefWindowProc(Window, Message, WParam, LParam);
 }
 
 
@@ -95,8 +39,74 @@ namespace GameEngine {
 		Release();
 	}
 
+	LRESULT CALLBACK WindowsGraphicContext::ContextMessageCallback(HWND Window, UINT Message, WPARAM WParam, LPARAM LParam)
+	{
 
-	bool WindowsGraphicContext::Init( const char *Title, DisplayMode Mode, int _Width, int _Height)
+		LRESULT Result = 0;
+
+		switch (Message)
+		{
+
+		case WM_SIZE:
+		{
+			Width = LOWORD(LParam);
+			Height = HIWORD(LParam);
+			glViewport(0, 0, Width, Height);
+			break;
+		}
+		case WM_DESTROY:
+		case WM_QUIT:
+		case WM_CLOSE:
+		{
+			Running = false;
+			break;
+		}
+		case WM_LBUTTONDOWN:
+		case WM_LBUTTONUP:
+			GameEngine::MouseButtonCallback(MOUSE_BUTTON_LEFT, Message == WM_LBUTTONDOWN);
+			break;
+		case WM_MBUTTONDOWN:
+		case WM_MBUTTONUP:
+			GameEngine::MouseButtonCallback(MOUSE_BUTTON_MIDDLE, Message == WM_MBUTTONDOWN);
+			break;
+		case WM_RBUTTONDOWN:
+		case WM_RBUTTONUP:
+			GameEngine::MouseButtonCallback(MOUSE_BUTTON_RIGHT, Message == WM_RBUTTONDOWN);
+			break;
+		case WM_SYSKEYDOWN:
+		case WM_KEYDOWN:
+		case WM_SYSKEYUP:
+		case WM_KEYUP:
+		{
+			unsigned int VKCode = WParam;
+			GameEngine::KeyCallback(VKCode, ((LParam & (1 << 31)) == 0));
+			GameEngine::KeyCallback(KEY_ALT, ((LParam & (1 << 31)) == 0));
+
+			if (VKCode == VK_F4 && (LParam & (1 << 29)))//With 1<<29 we can check if ALT is pressed
+			{
+				Running = false;
+			}
+
+			break;
+		}
+
+		case WM_MOUSEMOVE:
+		{
+			GameEngine::CursorPositionCallback(GET_X_LPARAM(LParam), GET_Y_LPARAM(LParam));
+			break;
+		}
+
+
+		default:
+			Result = DefWindowProc(Window, Message, WParam, LParam);
+			break;
+		}
+
+		return Result;
+	}
+
+
+	bool WindowsGraphicContext::Init(const char *Title, DisplayMode Mode, int _Width, int _Height)
 	{
 		Width = _Width;
 		Height = _Height;
@@ -121,7 +131,8 @@ namespace GameEngine {
 			}
 			else
 			{
-				style = WS_OVERLAPPEDWINDOW | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_VISIBLE;
+				//WS_THICKFRAME Controls resizing
+				style = (WS_OVERLAPPEDWINDOW^ WS_THICKFRAME) | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_VISIBLE;
 			}
 			RECT size = { 0, 0, Width, (LONG)Height };
 			AdjustWindowRect(&size, style, false);
@@ -135,6 +146,7 @@ namespace GameEngine {
 
 			if (WindowHandle)
 			{
+				SetWindowLong(WindowHandle, GWLP_USERDATA, (long)this);
 
 				PIXELFORMATDESCRIPTOR pfd = {};
 				pfd.nSize = sizeof(PIXELFORMATDESCRIPTOR);
@@ -246,9 +258,9 @@ namespace GameEngine {
 	Vector2 WindowsGraphicContext::GetDisplaySize()
 	{
 		if (WindowHandle) {
-			RECT size = { 0, 0, Width, (LONG)Height };
+			RECT size = { 0, 0, Width, Height };
 			AdjustWindowRect(&size, WS_OVERLAPPEDWINDOW | WS_CLIPSIBLINGS | WS_CLIPCHILDREN, false);
-			
+
 			return Vector2(size.right + (-size.left), size.bottom + (-size.top));
 		}
 

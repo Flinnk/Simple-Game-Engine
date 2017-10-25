@@ -94,7 +94,7 @@ namespace GameEngine
 			iter.second = nullptr;
 		}
 
-		for (auto iter : Shaders) {
+		for (auto iter : Textures) {
 			const GLuint* ID = (GLuint*)iter.second->GetID();
 			glDeleteTextures(1, ID);
 			delete iter.second;

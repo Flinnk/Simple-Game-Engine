@@ -154,7 +154,7 @@ namespace GameEngine {
 #define CONTROLLER_DEADZONE_X 0.02f
 #define CONTROLLER_DEADZONE_Y 0.02f
 
-	/*
+	/**
 	* Structure to hold gamepad state
 	*/
 	struct Controller
@@ -164,42 +164,42 @@ namespace GameEngine {
 		float Axes[4];
 	};
 
-	/*
+	/**
 	* Class to retrieve input devices state. The input devices are keyboard, mouse and gamepads
 	*/
 	class Input {
 
 	public:
 
-		/*
+		/**
 		* Retrieves the 2D coordinates of the mouse position relative to the window frame
 		* @param XPos Returns the X coordinate mouse position on the window
 		* @param YPos Returns the Y coordinate mouse position on the window
 		*/
 		static void GetMousePosition(int &XPos, int &YPos);
 
-		/*
+		/**
 		* Returns the state of a keyboard key
 		* @param Key Key symbol to check
 		* @return Whether the key is currently being pressed
 		*/
 		static bool IsKeyPressed(int Key);
 
-		/*
+		/**
 		* Returns the state of a mouse button
 		* @param Button Button to check
 		* @return Whether the button is currently being pressed
 		*/
 		static bool IsMouseButtonPressed(int Button);
 
-		/*
+		/**
 		* Returns a gamepad conection state
 		* @param ControllerNumber Controller index. Max=3
 		* @return Whether the specified gamepad is currently connected
 		*/
 		static bool IsControllerConnected(int ControllerNumber);
 
-		/*
+		/**
 		* Returns the state of a specified gamepad button. In case the gamepad is not connected it will return false
 		* @param ControllerNumber Controller index. Max=3
 		* @param ControllerButton Button to check
@@ -207,7 +207,7 @@ namespace GameEngine {
 		*/
 		static bool IsControllerButtonPressed(int ControllerNumber, int ControllerButton);
 
-		/*
+		/**
 		* Returns the state of a specified gamepad stick. In case the gamepad is not connected it will return 0.
 		* @param ControllerNumber Controller index. Max=3
 		* @param ControllerButton Axis to check
