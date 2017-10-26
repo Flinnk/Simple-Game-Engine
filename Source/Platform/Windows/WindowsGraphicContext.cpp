@@ -12,6 +12,9 @@
 #include "..\..\Core\Input.h"
 #include <Windowsx.h>
 
+//WS_THICKFRAME Controls resizing
+#define WINDOWED_STYLE  ((WS_OVERLAPPEDWINDOW^ WS_THICKFRAME) | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_VISIBLE)
+#define FULLSCREEN_STYLE (WS_POPUP | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_VISIBLE)
 
 namespace GameEngine {
 	extern void CursorPositionCallback(int xpos, int ypos);
@@ -125,14 +128,13 @@ namespace GameEngine {
 			DWORD style = 0;
 			if (Mode == GameEngine::DisplayMode::FULLSCREEN)
 			{
-				style = WS_POPUP | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_VISIBLE;
+				style = FULLSCREEN_STYLE;
 				Width = GetSystemMetrics(SM_CXSCREEN);
 				Height = GetSystemMetrics(SM_CYSCREEN);
 			}
 			else
 			{
-				//WS_THICKFRAME Controls resizing
-				style = (WS_OVERLAPPEDWINDOW^ WS_THICKFRAME) | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_VISIBLE;
+				style = WINDOWED_STYLE;
 			}
 			RECT size = { 0, 0, Width, (LONG)Height };
 			AdjustWindowRect(&size, style, false);
@@ -140,8 +142,8 @@ namespace GameEngine {
 			WindowHandle = CreateWindow(
 				WindowClass.lpszClassName, Title,
 				style,
-				GetSystemMetrics(SM_CXSCREEN) / 2 - Width / 2,
-				GetSystemMetrics(SM_CYSCREEN) / 2 - Height / 2,
+				0,
+				0,
 				size.right + (-size.left), size.bottom + (-size.top), NULL, NULL, Instance, NULL);
 
 			if (WindowHandle)
@@ -270,6 +272,26 @@ namespace GameEngine {
 	const Renderer* WindowsGraphicContext::GetRenderer()
 	{
 		return Render;
+	}
+
+	void WindowsGraphicContext::SetFullscreen()
+	{
+		if (WindowHandle != nullptr) {
+			SetWindowLong(WindowHandle, GWL_STYLE, FULLSCREEN_STYLE);
+			SetWindowPos(WindowHandle, NULL, 0, 0,
+				GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN),
+				SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED);
+		}
+	}
+
+	void WindowsGraphicContext::SetWindowed(int NewWidth, int NewHeight)
+	{
+		if (WindowHandle != nullptr) {
+			SetWindowLong(WindowHandle, GWL_STYLE, WINDOWED_STYLE);
+			SetWindowPos(WindowHandle, NULL, 0, 0,
+				NewWidth > 0 ? NewWidth : Width, NewHeight > 0 ? NewHeight : Height,
+				SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED);
+		}
 	}
 }
 

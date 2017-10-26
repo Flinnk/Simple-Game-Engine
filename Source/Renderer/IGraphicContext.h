@@ -22,6 +22,9 @@ namespace GameEngine {
 		virtual void Release() = 0;
 		virtual bool HasToCLose() = 0;
 
+		virtual void SetFullscreen()=0;
+		virtual void SetWindowed(int Width = 0, int Height = 0)=0;
+
 		virtual Vector2 GetDisplaySize() = 0;
 		virtual const Renderer* GetRenderer() = 0;
 

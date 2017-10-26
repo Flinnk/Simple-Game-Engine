@@ -9,6 +9,9 @@ namespace GameEngine {
 	struct Vector2;
 	class Application;
 
+	/**
+	* Class which controls the game application execution and the components
+	*/
 	class Engine {
 
 	public:
