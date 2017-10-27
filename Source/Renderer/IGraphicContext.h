@@ -26,7 +26,7 @@ namespace GameEngine {
 		virtual void SetWindowed(int Width = 0, int Height = 0)=0;
 
 		virtual Vector2 GetDisplaySize() = 0;
-		virtual const Renderer* GetRenderer() = 0;
+		virtual Renderer* GetRenderer() = 0;
 
 	protected:
 

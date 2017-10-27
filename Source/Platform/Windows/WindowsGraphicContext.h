@@ -27,7 +27,7 @@ namespace GameEngine {
 		void SetWindowed(int Width = 0, int Height = 0)override;
 
 		Vector2 GetDisplaySize() override;
-		const Renderer* GetRenderer() override;
+		Renderer* GetRenderer() override;
 		LRESULT CALLBACK ContextMessageCallback(HWND Window, UINT Message, WPARAM WParam, LPARAM LParam);
 
 

@@ -16,10 +16,15 @@ namespace GameEngine {
 
 		void DrawTexture(const Texture *texture, Vector2 position,
 			Vector2 size, float rotate,
-			Vector3 color) const;
+			Vector3 color);
+
+		unsigned int GetDrawCallStats();
+		void ResetStats();
+
 	private:
 		Shader* shader;
 		unsigned int VAO;
+		unsigned int DrawCalls=0;
 
 		void InitRenderData();
 	};

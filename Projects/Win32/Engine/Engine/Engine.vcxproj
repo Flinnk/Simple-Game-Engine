@@ -19,6 +19,7 @@
     <ClCompile Include="..\..\..\..\Source\Math\Vector2.cpp" />
     <ClCompile Include="..\..\..\..\Source\Math\Vector3.cpp" />
     <ClCompile Include="..\..\..\..\Source\Physics\SandboxPhysics.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Platform\Windows\WindowsFile.cpp" />
     <ClCompile Include="..\..\..\..\Source\Platform\Windows\WindowsGraphicContext.cpp" />
     <ClCompile Include="..\..\..\..\Source\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="..\..\..\..\Source\Platform\Windows\WindowsLaunch.cpp" />

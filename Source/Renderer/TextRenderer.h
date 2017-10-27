@@ -23,8 +23,14 @@ namespace GameEngine {
 		TextRenderer(Shader* shader);
 		void Load(const std::string& font, unsigned int fontSize);
 		void DrawText(const std::string& text, float x, float y, float scale,const Vector3& color);
+		unsigned int GetDrawCallStats();
+		void ResetStats();
+
+
 	private:
 		unsigned int VAO, VBO;
+		unsigned int DrawCalls = 0;
+
 	};
 }
 #endif 

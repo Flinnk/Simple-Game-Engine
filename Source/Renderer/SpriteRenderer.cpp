@@ -20,7 +20,7 @@ namespace GameEngine {
 
 	void SpriteRenderer::DrawTexture(const Texture *texture, Vector2 position,
 		Vector2 size = Vector2(10, 10), float rotate = 0.0f,
-		Vector3 color = Vector3(1.0f, 1.0f, 1.0f)) const {
+		Vector3 color = Vector3(1.0f, 1.0f, 1.0f)) {
 
 		shader->Use();
 		Matrix4 model = Matrix4::Identity();
@@ -50,6 +50,7 @@ namespace GameEngine {
 		glBindVertexArray(VAO);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 		glBindVertexArray(0);
+		++DrawCalls;
 	}
 
 	void SpriteRenderer::InitRenderData()
@@ -82,4 +83,15 @@ namespace GameEngine {
 		glDisable(GL_DEPTH_TEST);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
+
+	unsigned int SpriteRenderer::GetDrawCallStats()
+	{
+		return DrawCalls;
+	}
+
+	void SpriteRenderer::ResetStats()
+	{
+		DrawCalls = 0;
+	}
+
 }

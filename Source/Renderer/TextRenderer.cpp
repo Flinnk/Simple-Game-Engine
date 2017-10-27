@@ -124,8 +124,20 @@ namespace GameEngine {
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 			glDrawArrays(GL_TRIANGLES, 0, 6);
 			x += (ch.NextCharacterHOffset >> 6) * scale;
+			++DrawCalls;
 		}
 		glBindVertexArray(0);
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
+
+	unsigned int TextRenderer::GetDrawCallStats()
+	{
+		return DrawCalls;
+	}
+
+	void TextRenderer::ResetStats() 
+	{
+		DrawCalls = 0;
+	}
+
 }

@@ -50,7 +50,7 @@ namespace GameEngine {
 		* Method called from the Engine to start any rendering call
 		* @param Renderer Pointer to the Renderer 
 		*/
-		virtual void OnRender(const Renderer* Renderer) = 0;
+		virtual void OnRender(Renderer* Renderer) = 0;
 
 		/**
 		* Method called from the Engine at the end of each Update cycle

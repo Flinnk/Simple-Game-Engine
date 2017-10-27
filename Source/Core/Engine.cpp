@@ -38,7 +38,7 @@ namespace GameEngine {
 		double LastTime = Time::GetCurrentSeconds();
 		double DeltaSeconds = 0;
 
-		const Renderer* Renderer = GraphicContext->GetRenderer();
+		Renderer* Renderer = GraphicContext->GetRenderer();
 
 		//Execution Loop
 		while (!GraphicContext->HasToCLose() && !CloseEngine) {

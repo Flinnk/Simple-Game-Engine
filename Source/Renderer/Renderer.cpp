@@ -7,7 +7,7 @@ namespace GameEngine {
 	{
 		SpriteRender = new SpriteRenderer(SpriteShader);
 		TextRender = new TextRenderer(TextShader);
-		TextRender->Load("C:\\Windows\\Fonts\\Arial.ttf",96);
+		TextRender->Load("C:\\Windows\\Fonts\\Arial.ttf", 96);
 	}
 
 	Renderer::~Renderer()
@@ -26,7 +26,7 @@ namespace GameEngine {
 	void Renderer::DrawText(const std::string& text, float x, float y, float scale, const Vector3& color) const
 	{
 		if (TextRender)
-			TextRender->DrawText(text,x,y,scale,color);
+			TextRender->DrawText(text, x, y, scale, color);
 	}
 
 	void Renderer::Release()
@@ -41,4 +41,17 @@ namespace GameEngine {
 
 		TextRender = nullptr;
 	}
+
+	unsigned int Renderer::GetDrawCallStats()
+	{
+		return SpriteRender->GetDrawCallStats() + TextRender->GetDrawCallStats();
+	}
+
+	void Renderer::ClearDebugStats()
+	{
+		SpriteRender->ResetStats();
+		TextRender->ResetStats();
+	}
+
+
 }

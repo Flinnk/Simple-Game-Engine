@@ -233,6 +233,7 @@ namespace GameEngine {
 	void WindowsGraphicContext::End()
 	{
 		SwapBuffers(DeviceContext);
+		Render->ClearDebugStats();
 	}
 
 	void WindowsGraphicContext::Release() {
@@ -269,7 +270,7 @@ namespace GameEngine {
 		return Vector2();
 	}
 
-	const Renderer* WindowsGraphicContext::GetRenderer()
+	Renderer* WindowsGraphicContext::GetRenderer()
 	{
 		return Render;
 	}

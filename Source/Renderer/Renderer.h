@@ -24,6 +24,9 @@ namespace GameEngine {
 		void DrawText(const std::string& text, float x, float y, float scale, const Vector3& color) const;
 
 		void Release();
+
+		unsigned int GetDrawCallStats();
+		void ClearDebugStats();
 	private:
 		SpriteRenderer* SpriteRender = nullptr;
 		TextRenderer* TextRender = nullptr;
