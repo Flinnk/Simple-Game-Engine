@@ -23,6 +23,7 @@
     <ClCompile Include="..\..\..\..\Source\Platform\Windows\WindowsGraphicContext.cpp" />
     <ClCompile Include="..\..\..\..\Source\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="..\..\..\..\Source\Platform\Windows\WindowsLaunch.cpp" />
+    <ClCompile Include="..\..\..\..\Source\Platform\Windows\WindowsLog.cpp" />
     <ClCompile Include="..\..\..\..\Source\Platform\Windows\WindowsTime.cpp" />
     <ClCompile Include="..\..\..\..\Source\Renderer\Renderer.cpp" />
     <ClCompile Include="..\..\..\..\Source\Renderer\Shader.cpp" />

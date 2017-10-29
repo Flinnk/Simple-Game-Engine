@@ -96,6 +96,9 @@
     <ClCompile Include="..\..\..\..\Source\Platform\Windows\WindowsFile.cpp">
       <Filter>Source\Platform\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\Source\Platform\Windows\WindowsLog.cpp">
+      <Filter>Source\Platform\Windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Source\Core\Engine.h">

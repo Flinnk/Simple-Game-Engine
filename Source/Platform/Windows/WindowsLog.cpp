@@ -1,7 +1,10 @@
-#include "Log.h"
+#include "..\..\Utils\Log.h"
 #include <ctime>
 #include <cstdio>
 #include <cstdarg>
+#include <Windows.h>
+
+//Currently needs the debugger to be attached to be seen in the debug output
 
 namespace GameEngine
 {
@@ -12,10 +15,10 @@ namespace GameEngine
 		localtime_s(&Now, &CurrentTime);
 		char TimeBuffer[1024];
 		sprintf_s(TimeBuffer, "%d-%d-%d %d:%d:%d", Now.tm_mday, Now.tm_mon + 1, Now.tm_year + 1900, Now.tm_hour, Now.tm_min, Now.tm_sec);
-		printf(TimeBuffer);
-		printf(" ");
-		printf(Text);
-		printf("\n");
+		OutputDebugStringA(TimeBuffer);
+		OutputDebugStringA(" ");
+		OutputDebugStringA(Text);
+		OutputDebugStringA("\n");
 	}
 
 	void LogFormat(const char* Text, ...)
