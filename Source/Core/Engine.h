@@ -102,7 +102,7 @@ namespace GameEngine {
 		/** Pointer to the current graphic context provided from the platform layer */
 		IGraphicContext* GraphicContext;
 
-		/** Pointer to the current running game application*/
+		/** Pointer to the current running game application */
 		Application* CurrentApplication;
 
 		/** Flag for ending the engine execution */

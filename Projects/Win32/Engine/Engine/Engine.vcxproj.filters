@@ -36,9 +36,6 @@
     <ClCompile Include="..\..\..\..\Source\Core\Input.cpp">
       <Filter>Source\Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Source\Utils\Log.cpp">
-      <Filter>Source\Utils</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\Source\Renderer\Shader.cpp">
       <Filter>Source\Renderer</Filter>
     </ClCompile>
