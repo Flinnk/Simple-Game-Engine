@@ -4,11 +4,18 @@
 #include <cmath>
 
 namespace GameEngine {
+	/**
+	* Function implemented on the Input class to receive input for each controller
+	*/
 	extern void GamePadCallback(int ControllerIndex,Controller ControllerInfo);
 }
 
+/**
+* Retrives Gamepad Input when asked from Engine side calling the GamePadCallback function
+*/
 void UpdatePlatformInput()
 {
+	//Loop max controllers
 	DWORD dwResult;
 	for (DWORD i = 0; i< XUSER_MAX_COUNT; ++i)
 	{
@@ -23,6 +30,8 @@ void UpdatePlatformInput()
 		{
 			// Controller is connected 
 			Controller.Conected = true;
+
+			//Initialize Controller values
 			for (int i = 0; i<16; ++i)
 			{
 				Controller.Buttons[i] = false;
@@ -31,6 +40,8 @@ void UpdatePlatformInput()
 			{
 				Controller.Axes[i] = 0.0f;
 			}
+
+			//Retrieve Button state
 			Controller.Buttons[CONTROLLER_BUTTON_A] = (state.Gamepad.wButtons & XINPUT_GAMEPAD_A) != 0;
 			Controller.Buttons[CONTROLLER_BUTTON_B] = (state.Gamepad.wButtons & XINPUT_GAMEPAD_B) != 0;
 			Controller.Buttons[CONTROLLER_BUTTON_X] = (state.Gamepad.wButtons & XINPUT_GAMEPAD_X) != 0;
@@ -48,6 +59,7 @@ void UpdatePlatformInput()
 			Controller.Buttons[CONTROLLER_BUTTON_DPAD_DOWN] = (state.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_DOWN) != 0; Controller.Buttons[CONTROLLER_BUTTON_LEFT_STICK] = (state.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_UP) != 0;
 			Controller.Buttons[CONTROLLER_BUTTON_DPAD_LEFT] = (state.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_LEFT) != 0; Controller.Buttons[CONTROLLER_BUTTON_LEFT_STICK] = (state.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_UP) != 0;
 		
+			//Retrieve axis input clamping its value to the range [-1,1] applying also a deadzone control
 			float normLX = fmaxf(-1, (float)state.Gamepad.sThumbLX / 32767);
 			float normLY = fmaxf(-1, (float)state.Gamepad.sThumbLY / 32767);
 			float normRX = fmaxf(-1, (float)state.Gamepad.sThumbRX / 32767);
@@ -63,6 +75,9 @@ void UpdatePlatformInput()
 		{
 			// Controller is not connected 
 			Controller.Conected = false;
+
+			//Initialize Controller values
+
 			for (int i=0;i<16;++i)
 			{
 				Controller.Buttons[i] = false;
