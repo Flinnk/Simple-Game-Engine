@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\include\Engine\Audio\SoundManager.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Core\Application.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Core\Engine.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Core\Input.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Engine.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\EngineMacros.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Math\Math.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Math\Matrix4.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Math\Utils.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Math\Vector2.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Math\Vector3.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Physics\SandboxPhysics.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Renderer\IGraphicContext.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Renderer\Renderer.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Renderer\Shader.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Renderer\SpriteRenderer.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Renderer\TextRenderer.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Renderer\Texture.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Utils\Assert.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Utils\File.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Utils\Log.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Utils\ResourceManager.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Utils\Time.h" />
+    <ClInclude Include="..\..\..\..\src\Engine\Platform\Windows\WindowsGraphicContext.h" />
+    <ClInclude Include="..\..\..\..\src\Engine\Renderer\CompiledShaders.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\src\Engine\Audio\SoundManager.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Core\Application.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Core\Engine.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Core\Input.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Math\Matrix4.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Math\Vector2.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Math\Vector3.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Physics\SandboxPhysics.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsFile.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsGraphicContext.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsInput.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsLaunch.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsLog.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsTime.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Renderer\Renderer.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Renderer\Shader.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Renderer\SpriteRenderer.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Renderer\TextRenderer.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Renderer\Texture.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Utils\File.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Utils\ResourceManager.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Utils\stb_image.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{A88F0073-C6A7-4B88-B8E8-E8BC99834823}</ProjectGuid>
+    <RootNamespace>Engine</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)\..\..\..\Build\Win32\$(Configuration)\</OutDir>
+    <IntDir>\..\..\..\Build\Win32\$(Configuration)\</IntDir>
+    <IncludePath>..\..\..\..\Dependencies\glfw-3.2.1.bin.WIN32\include;..\..\..\..\Dependencies\glew-2.1.0-win32\glew-2.1.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\..\..\Dependencies\glew-2.1.0-win32\glew-2.1.0\lib\Release\Win32;..\..\..\..\Dependencies\glfw-3.2.1.bin.WIN32\lib-vc2015;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)\..\..\..\build\Win32\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\..\..\..\intermediate\Win32\$(Configuration)\</IntDir>
+    <IncludePath>D:\Desarrollo\C-C++\Simple-Game-Engine\src;D:\Desarrollo\C-C++\Simple-Game-Engine\include;..\..\..\..\dependencies\stb_image;..\..\..\..\dependencies\irrKlang-1.5.0\include;..\..\..\..\dependencies\glew-2.1.0-win32\glew-2.1.0\include;..\..\..\..\dependencies\freetype-2.3.5-1-bin\include\freetype2;..\..\..\..\dependencies\freetype-2.3.5-1-bin\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\..\..\dependencies\freetype-2.3.5-1-bin\lib;..\..\..\..\dependencies\glew-2.1.0-win32\glew-2.1.0\lib\Release\Win32;..\..\..\..\dependencies\irrKlang-1.5.0\lib\Win32-visualStudio;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)\..\..\..\build\Win32\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\..\..\..\intermediate\Win32\$(Configuration)\</IntDir>
+    <IncludePath>D:\Desarrollo\C-C++\Simple-Game-Engine\src;D:\Desarrollo\C-C++\Simple-Game-Engine\include;..\..\..\..\dependencies\stb_image;..\..\..\..\dependencies\irrKlang-1.5.0\include;..\..\..\..\dependencies\glew-2.1.0-win32\glew-2.1.0\include;..\..\..\..\dependencies\freetype-2.3.5-1-bin\include\freetype2;..\..\..\..\dependencies\freetype-2.3.5-1-bin\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\..\..\dependencies\freetype-2.3.5-1-bin\lib;..\..\..\..\dependencies\glew-2.1.0-win32\glew-2.1.0\lib\Release\Win32;..\..\..\..\dependencies\irrKlang-1.5.0\lib\Win32-visualStudio;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>ASSERT_ENABLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>glew32s.lib;irrKlang.lib;opengl32.lib;freetype.lib;XInput.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>glew32s.lib;irrKlang.lib;opengl32.lib;freetype.lib;XInput.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

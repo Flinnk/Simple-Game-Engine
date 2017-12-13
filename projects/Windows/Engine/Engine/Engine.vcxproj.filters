@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Include">
+      <UniqueIdentifier>{2e075d24-2001-4ce9-993c-bf6ff30f84de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src">
+      <UniqueIdentifier>{be0e0d12-b349-485c-9485-185b89c23120}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Audio">
+      <UniqueIdentifier>{4a0c8bb9-0767-47d2-b3e6-5c1bad2a12b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Core">
+      <UniqueIdentifier>{c2ad3472-b789-4217-8377-e29a667c2b6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Math">
+      <UniqueIdentifier>{89093463-08c3-4b2a-b1f8-80c8000159e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Physics">
+      <UniqueIdentifier>{cc2eaaba-20ae-4872-ad2a-4bc847002d22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Renderer">
+      <UniqueIdentifier>{2dd295c9-7b83-4d06-a6ba-82aee14bf5a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Utils">
+      <UniqueIdentifier>{2d78085c-e1aa-400a-a377-a8f5bf9caac0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Audio">
+      <UniqueIdentifier>{6f8f1293-8119-422a-8d95-e6d156212d5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Core">
+      <UniqueIdentifier>{a772ac81-dd6a-4cf4-80d3-3435fe4ae8d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Math">
+      <UniqueIdentifier>{f9239914-8ef1-4bff-9c7b-ec3631644a43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Utils">
+      <UniqueIdentifier>{ec68c70e-babc-4492-826d-0f1d705131cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Renderer">
+      <UniqueIdentifier>{e101c766-6416-41a1-839b-f9cc1723b62e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Physics">
+      <UniqueIdentifier>{28eca8e2-0984-4cbd-b7e1-7ebe12a50d28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform">
+      <UniqueIdentifier>{325d23a7-9b0c-4ae6-862f-8232f7ab7982}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Windows">
+      <UniqueIdentifier>{bc6d89a8-ded1-4c92-916d-97369ce5225b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\include\Engine\Audio\SoundManager.h">
+      <Filter>Include\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Core\Application.h">
+      <Filter>Include\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Core\Engine.h">
+      <Filter>Include\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Core\Input.h">
+      <Filter>Include\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Math\Math.h">
+      <Filter>Include\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Math\Matrix4.h">
+      <Filter>Include\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Math\Utils.h">
+      <Filter>Include\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Math\Vector2.h">
+      <Filter>Include\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Math\Vector3.h">
+      <Filter>Include\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Utils\Assert.h">
+      <Filter>Include\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Utils\File.h">
+      <Filter>Include\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Utils\Log.h">
+      <Filter>Include\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Utils\ResourceManager.h">
+      <Filter>Include\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Utils\Time.h">
+      <Filter>Include\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Renderer\IGraphicContext.h">
+      <Filter>Include\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Renderer\Renderer.h">
+      <Filter>Include\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Renderer\Shader.h">
+      <Filter>Include\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Renderer\SpriteRenderer.h">
+      <Filter>Include\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Renderer\TextRenderer.h">
+      <Filter>Include\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Renderer\Texture.h">
+      <Filter>Include\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Physics\SandboxPhysics.h">
+      <Filter>Include\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Engine.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\EngineMacros.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\src\Engine\Platform\Windows\WindowsGraphicContext.h">
+      <Filter>Src\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\src\Engine\Renderer\CompiledShaders.h">
+      <Filter>Src\Renderer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\src\Engine\Audio\SoundManager.cpp">
+      <Filter>Src\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Core\Application.cpp">
+      <Filter>Src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Core\Engine.cpp">
+      <Filter>Src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Core\Input.cpp">
+      <Filter>Src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Math\Matrix4.cpp">
+      <Filter>Src\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Math\Vector2.cpp">
+      <Filter>Src\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Math\Vector3.cpp">
+      <Filter>Src\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsFile.cpp">
+      <Filter>Src\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsGraphicContext.cpp">
+      <Filter>Src\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsInput.cpp">
+      <Filter>Src\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsLaunch.cpp">
+      <Filter>Src\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsLog.cpp">
+      <Filter>Src\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsTime.cpp">
+      <Filter>Src\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Physics\SandboxPhysics.cpp">
+      <Filter>Src\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Renderer\Renderer.cpp">
+      <Filter>Src\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Renderer\Shader.cpp">
+      <Filter>Src\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Renderer\SpriteRenderer.cpp">
+      <Filter>Src\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Renderer\TextRenderer.cpp">
+      <Filter>Src\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Renderer\Texture.cpp">
+      <Filter>Src\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Utils\File.cpp">
+      <Filter>Src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Utils\ResourceManager.cpp">
+      <Filter>Src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Utils\stb_image.cpp">
+      <Filter>Src\Utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
