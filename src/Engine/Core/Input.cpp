@@ -2,12 +2,12 @@
 
 namespace GameEngine {
 
-	int mouseX = 0;
-	int mouseY = 0;
+	static int mouseX = 0;
+	static int mouseY = 0;
 
-	bool keyStates[static_cast<unsigned int>(Keyboard::KEYBOARD_TOTAL)];
-	bool mouseButtons[static_cast<unsigned int>(Mouse::MOUSE_TOTAL)];
-	Controller controllers[static_cast<unsigned int>(Controllers::CONTROLLER_TOTAL)];
+	static bool keyStates[static_cast<unsigned int>(Keyboard::KEYBOARD_TOTAL)];
+	static bool mouseButtons[static_cast<unsigned int>(Mouse::MOUSE_TOTAL)];
+	static Controller controllers[static_cast<unsigned int>(Controllers::CONTROLLER_TOTAL)];
 
 
 	/* Callback functions called from the Platform Layer */

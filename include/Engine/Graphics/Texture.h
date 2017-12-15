@@ -18,6 +18,8 @@ namespace GameEngine {
 		Texture& operator=(Texture const&) = delete;
 		Texture& operator=(Texture &&) = delete;
 
+		void Release();
+
 		unsigned int GetID() const;
 	protected:
 		unsigned int ID = -1;

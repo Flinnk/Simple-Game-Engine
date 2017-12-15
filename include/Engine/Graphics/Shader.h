@@ -23,6 +23,8 @@ namespace GameEngine {
 		void SetMatrix4(const char* UniformName, Matrix4 value) const;
 		void SetInteger(const char* UniformName, int value) const;
 
+		void Release();
+
 		unsigned int GetID()const;
 
 	protected:

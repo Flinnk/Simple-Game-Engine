@@ -49,4 +49,10 @@ namespace GameEngine {
 		return ID;
 	}
 
+	void Texture::Release()
+	{
+		glDeleteTextures(1, &ID);
+		ID = 0;
+	}
+
 }

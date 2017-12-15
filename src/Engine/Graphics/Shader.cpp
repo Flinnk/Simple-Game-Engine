@@ -112,4 +112,10 @@ namespace GameEngine {
 	unsigned int Shader::GetID() const {
 		return ID;
 	}
+
+	void Shader::Release()
+	{
+		glDeleteProgram(ID);
+		ID = 0;
+	}
 }

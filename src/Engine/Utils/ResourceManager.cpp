@@ -1,7 +1,6 @@
 
 
 #include <Engine\Utils\ResourceManager.h>
-#include <GL\glew.h>
 #include <map>
 #include <stb_image.h>
 #include <Engine\Utils\File.h>
@@ -89,14 +88,13 @@ namespace GameEngine
 	void ResourceManager::Clear()
 	{
 		for (auto iter : Shaders) {
-			glDeleteProgram(iter.second->GetID());
+			iter.second->Release();
 			delete iter.second;
 			iter.second = nullptr;
 		}
 
 		for (auto iter : Textures) {
-			const GLuint* ID = (GLuint*)iter.second->GetID();
-			glDeleteTextures(1, ID);
+			iter.second->Release();
 			delete iter.second;
 			iter.second = nullptr;
 		}
