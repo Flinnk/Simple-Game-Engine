@@ -6,5 +6,6 @@ Test/*
 
 vs/*
 
+**/obj/
 **/.vs/
 Projects/Win32/Engine/.vs/
