@@ -2,18 +2,12 @@
 
 namespace GameEngine {
 
-#define MAX_KEYS 256
-#define MAX_MOUSE_BUTTONS 7
-#define MAX_CONTROLLERS 4
-#define MAX_CONTROLLER_BUTTON 16
-#define MAX_AXIS 4
-
 	int mouseX = 0;
 	int mouseY = 0;
 
-	bool keyStates[MAX_KEYS];
-	bool mouseButtons[MAX_MOUSE_BUTTONS];
-	Controller controllers[MAX_CONTROLLERS];
+	bool keyStates[static_cast<unsigned int>(Keyboard::KEYBOARD_TOTAL)];
+	bool mouseButtons[static_cast<unsigned int>(Mouse::MOUSE_TOTAL)];
+	Controller controllers[static_cast<unsigned int>(Controllers::CONTROLLER_TOTAL)];
 
 
 	/* Callback functions called from the Platform Layer */
@@ -23,15 +17,15 @@ namespace GameEngine {
 		mouseY = ypos;
 	}
 
-	extern void MouseButtonCallback(int button, bool pressed)
+	extern void MouseButtonCallback(Mouse button, bool pressed)
 	{
-		mouseButtons[button] = pressed;
+		mouseButtons[static_cast<unsigned int>(button)] = pressed;
 	}
 
 
-	extern void KeyCallback(int key, bool pressed)
+	extern void KeyCallback(unsigned int key, bool pressed)
 	{
-		keyStates[key] = pressed;
+		keyStates[static_cast<unsigned int>(key)] = pressed;
 	}
 
 	void GamePadCallback(int ControllerIndex, Controller ControllerInfo)
@@ -42,13 +36,13 @@ namespace GameEngine {
 
 	/* Input class implementation */
 
-	bool Input::IsKeyPressed(int key)
+	bool Input::IsKeyPressed(Keyboard key)
 	{
-		if (key > MAX_KEYS) {
+		if (key >= Keyboard::KEYBOARD_TOTAL) {
 			return false;
 		}
 
-		return keyStates[key];
+		return keyStates[static_cast<unsigned int>(key)];
 	}
 
 	void Input::GetMousePosition(int &XPos, int &YPos)
@@ -57,40 +51,40 @@ namespace GameEngine {
 		YPos = mouseY;
 	}
 
-	bool Input::IsMouseButtonPressed(int Button)
+	bool Input::IsMouseButtonPressed(Mouse Button)
 	{
-		if (Button > MAX_MOUSE_BUTTONS)
+		if (Button >= Mouse::MOUSE_TOTAL)
 		{
 			return false;
 		}
 
-		return mouseButtons[Button];
+		return mouseButtons[static_cast<unsigned int>(Button)];
 	}
 
-	bool Input::IsControllerConnected(int ControllerNumber)
+	bool Input::IsControllerConnected(Controllers ControllerNumber)
 	{
-		if (ControllerNumber > MAX_CONTROLLERS)
+		if (ControllerNumber >= Controllers::CONTROLLER_TOTAL)
 		{
 			return false;
 		}
 
-		return controllers[ControllerNumber].Conected;
+		return controllers[static_cast<unsigned int>(ControllerNumber)].Conected;
 	}
 
-	bool Input::IsControllerButtonPressed(int ControllerNumber, int ControllerButton)
+	bool Input::IsControllerButtonPressed(Controllers ControllerNumber, GamepadButtons ControllerButton)
 	{
-		if (!IsControllerConnected(ControllerNumber) || ControllerButton >= MAX_CONTROLLER_BUTTON)
+		if (!IsControllerConnected(ControllerNumber) || ControllerButton >= GamepadButtons::CONTROLLER_BUTTON_TOTAL)
 			return false;
 
-		return controllers[ControllerNumber].Buttons[ControllerButton] != 0;
+		return controllers[static_cast<unsigned int>(ControllerNumber)].Buttons[static_cast<unsigned int>(ControllerButton)] != 0;
 	}
 
-	float Input::GetControllerAxis(int ControllerNumber, int ControllerAxis)
+	float Input::GetControllerAxis(Controllers ControllerNumber, GamepadAxis ControllerAxis)
 	{
-		if (!IsControllerConnected(ControllerNumber)|| ControllerAxis >= MAX_AXIS)
+		if (!IsControllerConnected(ControllerNumber)|| ControllerAxis >= GamepadAxis::CONTROLLER_AXIS_TOTAL)
 			return 0.0f;
 
-		return  controllers[ControllerNumber].Axes[ControllerAxis];
+		return  controllers[static_cast<unsigned int>(ControllerNumber)].Axes[static_cast<unsigned int>(ControllerAxis)];
 	}
 
 }

@@ -6,7 +6,7 @@
 
 #include <Engine/Renderer/TextRenderer.h>
 
-#include <Engine/Renderer/Shader.h>
+#include <Engine/Graphics/Shader.h>
 
 #include <string>
 #include <Engine/Core/Engine.h>

@@ -17,6 +17,8 @@
     <ClInclude Include="..\..\..\..\include\Engine\Core\Input.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Engine.h" />
     <ClInclude Include="..\..\..\..\include\Engine\EngineMacros.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Graphics\Shader.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Graphics\Texture.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Math\Math.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Math\Matrix4.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Math\Utils.h" />
@@ -25,23 +27,26 @@
     <ClInclude Include="..\..\..\..\include\Engine\Physics\SandboxPhysics.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Renderer\IGraphicContext.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Renderer\Renderer.h" />
-    <ClInclude Include="..\..\..\..\include\Engine\Renderer\Shader.h" />
-    <ClInclude Include="..\..\..\..\include\Engine\Renderer\SpriteRenderer.h" />
-    <ClInclude Include="..\..\..\..\include\Engine\Renderer\TextRenderer.h" />
-    <ClInclude Include="..\..\..\..\include\Engine\Renderer\Texture.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Utils\Assert.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Utils\File.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Utils\Log.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Utils\ResourceManager.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Utils\Stopwatch.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Utils\Time.h" />
     <ClInclude Include="..\..\..\..\src\Engine\Platform\Windows\WindowsGraphicContext.h" />
+    <ClInclude Include="..\..\..\..\src\Engine\Platform\Windows\WindowsOpenGLContext.h" />
     <ClInclude Include="..\..\..\..\src\Engine\Renderer\CompiledShaders.h" />
+    <ClInclude Include="..\..\..\..\src\Engine\Renderer\IGraphicBackend.h" />
+    <ClInclude Include="..\..\..\..\src\Engine\Renderer\SpriteRenderer.h" />
+    <ClInclude Include="..\..\..\..\src\Engine\Renderer\TextRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\Engine\Audio\SoundManager.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Core\Application.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Core\Engine.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Core\Input.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Graphics\Shader.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Graphics\Texture.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Math\Matrix4.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Math\Vector2.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Math\Vector3.cpp" />
@@ -49,17 +54,17 @@
     <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsFile.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsGraphicContext.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsInput.cpp" />
-    <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsLaunch.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsLog.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsMain.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsOpenGLContext.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsTime.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Renderer\Renderer.cpp" />
-    <ClCompile Include="..\..\..\..\src\Engine\Renderer\Shader.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Renderer\SpriteRenderer.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Renderer\TextRenderer.cpp" />
-    <ClCompile Include="..\..\..\..\src\Engine\Renderer\Texture.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Utils\File.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Utils\ResourceManager.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Utils\stb_image.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Utils\Stopwatch.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

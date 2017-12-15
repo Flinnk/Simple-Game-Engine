@@ -1,8 +1,7 @@
 #include <Windows.h>
 #include <Engine\Core\Engine.h>
 #include <Engine\Renderer\IGraphicContext.h>
-#include "WindowsGraphicContext.h"
-#include <GL/GL.h>
+#include <Engine\Platform\Windows\WindowsGraphicContext.h>
 
 extern void InitializeSystemTime();
 namespace GameEngine {

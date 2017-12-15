@@ -1,14 +1,17 @@
 #include <Engine\Utils\Log.h>
-#include <cstdio>
-#include <cstdarg>
-#include <Windows.h>
-#include <iostream>
+#include <android/log.h>
+
+#define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "Engine", __VA_ARGS__))
+
+void Log::Output(const char* Content)
+{
+}
 
 namespace GameEngine
 {
 	void Log(const char* Text)
 	{
-		std::cout << Text << std::endl;
+		LOGI("%s", Content);
 	}
 
 	void LogFormat(const char* Text, ...)

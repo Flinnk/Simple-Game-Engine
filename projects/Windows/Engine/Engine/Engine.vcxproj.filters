@@ -49,6 +49,12 @@
     <Filter Include="Src\Platform\Windows">
       <UniqueIdentifier>{bc6d89a8-ded1-4c92-916d-97369ce5225b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Include\Graphics">
+      <UniqueIdentifier>{375cdc45-7bd4-42a6-99c1-33b06f847eea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Graphics">
+      <UniqueIdentifier>{71a862b7-b969-4529-918c-8f7091bb2320}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\include\Engine\Audio\SoundManager.h">
@@ -99,18 +105,6 @@
     <ClInclude Include="..\..\..\..\include\Engine\Renderer\Renderer.h">
       <Filter>Include\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\Engine\Renderer\Shader.h">
-      <Filter>Include\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\include\Engine\Renderer\SpriteRenderer.h">
-      <Filter>Include\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\include\Engine\Renderer\TextRenderer.h">
-      <Filter>Include\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\include\Engine\Renderer\Texture.h">
-      <Filter>Include\Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\include\Engine\Physics\SandboxPhysics.h">
       <Filter>Include\Physics</Filter>
     </ClInclude>
@@ -125,6 +119,27 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\src\Engine\Renderer\CompiledShaders.h">
       <Filter>Src\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Utils\Stopwatch.h">
+      <Filter>Include\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Graphics\Shader.h">
+      <Filter>Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Graphics\Texture.h">
+      <Filter>Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\src\Engine\Renderer\TextRenderer.h">
+      <Filter>Src\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\src\Engine\Renderer\SpriteRenderer.h">
+      <Filter>Src\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\src\Engine\Renderer\IGraphicBackend.h">
+      <Filter>Src\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\src\Engine\Platform\Windows\WindowsOpenGLContext.h">
+      <Filter>Src\Platform\Windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -158,9 +173,6 @@
     <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsInput.cpp">
       <Filter>Src\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsLaunch.cpp">
-      <Filter>Src\Platform\Windows</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsLog.cpp">
       <Filter>Src\Platform\Windows</Filter>
     </ClCompile>
@@ -173,16 +185,10 @@
     <ClCompile Include="..\..\..\..\src\Engine\Renderer\Renderer.cpp">
       <Filter>Src\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\src\Engine\Renderer\Shader.cpp">
-      <Filter>Src\Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\src\Engine\Renderer\SpriteRenderer.cpp">
       <Filter>Src\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\Engine\Renderer\TextRenderer.cpp">
-      <Filter>Src\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\src\Engine\Renderer\Texture.cpp">
       <Filter>Src\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\Engine\Utils\File.cpp">
@@ -193,6 +199,21 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\Engine\Utils\stb_image.cpp">
       <Filter>Src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsMain.cpp">
+      <Filter>Src\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Utils\Stopwatch.cpp">
+      <Filter>Src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Graphics\Shader.cpp">
+      <Filter>Src\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Graphics\Texture.cpp">
+      <Filter>Src\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsOpenGLContext.cpp">
+      <Filter>Src\Platform\Windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

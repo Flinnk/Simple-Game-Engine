@@ -4,8 +4,8 @@
 
 #include <map>
 #include <string>
-#include <Engine\Renderer\Shader.h>
-#include <Engine\Renderer\Texture.h>
+#include <Engine\Graphics\Shader.h>
+#include <Engine\Graphics\Texture.h>
 
 namespace GameEngine
 {

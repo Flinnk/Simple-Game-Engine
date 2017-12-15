@@ -3,8 +3,8 @@
 #define WINDOWS_GRAPHIC_CONTEXT_H
 
 #include <Engine\Renderer\IGraphicContext.h>
+#include <Engine\Renderer\IGraphicBackend.h>
 #include <Windows.h>
-
 
 namespace GameEngine {
 
@@ -30,14 +30,15 @@ namespace GameEngine {
 		Renderer* GetRenderer() override;
 		LRESULT CALLBACK ContextMessageCallback(HWND Window, UINT Message, WPARAM WParam, LPARAM LParam);
 
-
+		void CreateKeyMappingTable();
 	private:
 		int Width = 0;
 		int Height = 0;
 		HWND WindowHandle;
 		HDC DeviceContext;
-		HGLRC OpenGLContext;
 		bool Running = true;
+		unsigned int VirtualKeyMapping[512];
+		GraphicBackend* GraphicBackend=nullptr;
 	};
 }
 

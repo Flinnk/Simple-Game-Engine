@@ -1,5 +1,5 @@
 
-#include <Engine/Renderer/Texture.h>
+#include <Engine/Graphics/Texture.h>
 #include <GL\glew.h>
 
 namespace GameEngine {

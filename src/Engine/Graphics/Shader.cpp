@@ -1,4 +1,4 @@
-#include <Engine\Renderer\Shader.h>
+#include <Engine\Graphics\Shader.h>
 #include <GL\glew.h>
 #include <Engine\Math\Math.h>
 
