@@ -13,8 +13,12 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\..\include\Engine\Audio\SoundManager.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Core\Application.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Core\BaseApplication.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Core\Component.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Core\Engine.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Core\Entity.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Core\Input.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Core\Scene.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Engine.h" />
     <ClInclude Include="..\..\..\..\include\Engine\EngineMacros.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Graphics\Shader.h" />
@@ -43,8 +47,12 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\Engine\Audio\SoundManager.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Core\Application.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Core\BaseApplication.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Core\Component.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Core\Engine.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Core\Entity.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Core\Input.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Core\Scene.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Graphics\Shader.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Graphics\Texture.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Math\Matrix4.cpp" />

@@ -4,6 +4,8 @@
 #include <Engine\EngineMacros.h>
 
 #include <Engine\Core\Application.h>
+#include <Engine\Core\BaseApplication.h>
+#include <Engine\Core\Scene.h>
 #include <Engine\Core\Engine.h>
 #include <Engine\Core\Input.h>
 

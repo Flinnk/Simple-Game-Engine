@@ -55,6 +55,12 @@
     <Filter Include="Src\Graphics">
       <UniqueIdentifier>{71a862b7-b969-4529-918c-8f7091bb2320}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Include\Components">
+      <UniqueIdentifier>{1e53a260-b279-4460-98f5-4ec6be22bad2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Components">
+      <UniqueIdentifier>{e9f95d92-b5dd-49f0-9217-f8cebfc2530f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\include\Engine\Audio\SoundManager.h">
@@ -141,6 +147,18 @@
     <ClInclude Include="..\..\..\..\src\Engine\Platform\Windows\WindowsOpenGLContext.h">
       <Filter>Src\Platform\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Core\Scene.h">
+      <Filter>Include\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Core\Component.h">
+      <Filter>Include\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Core\Entity.h">
+      <Filter>Include\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Core\BaseApplication.h">
+      <Filter>Include\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\Engine\Audio\SoundManager.cpp">
@@ -214,6 +232,18 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\Engine\Platform\Windows\WindowsOpenGLContext.cpp">
       <Filter>Src\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Core\BaseApplication.cpp">
+      <Filter>Src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Core\Scene.cpp">
+      <Filter>Src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Core\Entity.cpp">
+      <Filter>Src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Core\Component.cpp">
+      <Filter>Src\Core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
