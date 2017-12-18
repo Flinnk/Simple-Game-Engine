@@ -8,6 +8,7 @@ namespace GameEngine
 {
 	void Log(const char* Text)
 	{
+		OutputDebugStringA(Text);
 		std::cout << Text << std::endl;
 	}
 

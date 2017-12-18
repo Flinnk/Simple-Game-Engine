@@ -4,15 +4,15 @@ namespace GameEngine
 {
 	Scene::~Scene()
 	{
-		while (Entities.size() > 0)
+		std::vector<Entity*> _Entities = Entities;
+		std::vector<Entity*>::iterator entityIterator = _Entities.begin();
+		while (entityIterator != _Entities.end())
 		{
-			Entity* Entity = Entities.back();
-			Entities.pop_back();
-
-			if (Entity)
-				delete Entity;
-			Entity = nullptr;
+			Entity* Entity = *entityIterator;
+			entityIterator = _Entities.erase(entityIterator);
+			delete Entity;
 		}
+		Entities.clear();
 	}
 
 	void Scene::OnEnter()
@@ -22,33 +22,20 @@ namespace GameEngine
 
 	void Scene::OnUpdate(float DeltaTime)
 	{
-		std::vector<Entity*>::iterator it = Entities.begin();
-		while (it != Entities.end())
+		std::vector<Entity*> _Entities = Entities;
+		std::vector<Entity*>::iterator entityIterator = _Entities.begin();
+		while (entityIterator != _Entities.end())
 		{
-			(*it)->Update(DeltaTime);
-			++it;
-		}
-
-		it = Entities.begin();
-		while (it != Entities.end())
-		{
-			if ((*it)->IsDestroyed())
-			{
-				Entity* Entity = *it;
-				it = Entities.erase(it);
-				delete Entity;
-			}
-			else 
-			{
-				++it;
-			}
+			(*entityIterator)->Update(DeltaTime);
+			++entityIterator;
 		}
 	}
 
 	void Scene::OnRender(Renderer* Renderer)
 	{
-		std::vector<Entity*>::iterator it = Entities.begin();
-		while (it != Entities.end())
+		std::vector<Entity*> _Entities = Entities;
+		std::vector<Entity*>::iterator it = _Entities.begin();
+		while (it != _Entities.end())
 		{
 			(*it)->Render(Renderer);
 			++it;
@@ -63,8 +50,30 @@ namespace GameEngine
 	void Scene::AddEntity(Entity* Entity)
 	{
 		Entities.push_back(Entity);
+		Entity->SetScene(this);
 	}
 
+	void Scene::RemoveEntity(Entity* EntityToRemove,bool DeleteEntity)
+	{
+		std::vector<Entity*>::iterator it = Entities.begin();
+		bool found = false;
+		while (it != Entities.end() && !found)
+		{
+
+			if ((*it) == EntityToRemove)
+			{
+				Entity* Entity = *it;
+				it = Entities.erase(it);
+				found = true;
+				if (DeleteEntity)
+					delete Entity;
+			}
+			else
+			{
+				++it;
+			}
+		}
+	}
 
 
 }

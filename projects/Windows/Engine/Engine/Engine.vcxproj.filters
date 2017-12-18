@@ -159,6 +159,12 @@
     <ClInclude Include="..\..\..\..\include\Engine\Core\BaseApplication.h">
       <Filter>Include\Core</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Core\Transform.h">
+      <Filter>Include\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Components\SceneComponent.h">
+      <Filter>Include\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\Engine\Audio\SoundManager.cpp">
@@ -244,6 +250,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\Engine\Core\Component.cpp">
       <Filter>Src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Components\SceneComponent.cpp">
+      <Filter>Src\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

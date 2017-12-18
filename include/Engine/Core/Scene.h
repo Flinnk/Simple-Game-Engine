@@ -19,6 +19,7 @@ namespace GameEngine
 		virtual void OnExit();
 
 		void AddEntity(Entity* Entity);
+		void RemoveEntity(Entity* Entity, bool DeleteEntity = false);
 	protected:
 		std::vector<Entity*> Entities;
 	};

@@ -1,4 +1,5 @@
 #include <Engine\Core\Component.h>
+#include <Engine\Core\Entity.h>
 
 namespace GameEngine
 {
@@ -9,7 +10,7 @@ namespace GameEngine
 
 	Component::~Component()
 	{
-
+		Owner = nullptr;
 	}
 
 	void Component::Update(float DeltaTime)
@@ -29,5 +30,17 @@ namespace GameEngine
 	void Component::SetOwner(Entity* Entity)
 	{
 		Owner = Entity;
+	}
+
+	void Component::Destroy()
+	{
+		Destroyed = true;
+		if (Owner)
+			Owner->RemoveComponent(this,true);
+	}
+
+	bool Component::IsDestroyed()
+	{
+		return Destroyed;
 	}
 }

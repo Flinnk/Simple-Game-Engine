@@ -19,8 +19,11 @@ namespace GameEngine
 		virtual void Render(Renderer* Renderer);
 		Entity* GetOwner();
 		void SetOwner(Entity* Entity);
+		void Destroy();
+		bool IsDestroyed();
 	private:
 		Entity* Owner;
+		bool Destroyed = false;
 	};
 }
 
