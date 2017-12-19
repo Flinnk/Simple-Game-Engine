@@ -32,6 +32,14 @@ namespace GameEngine {
 	{
 		if (NextScene != nullptr)
 		{
+			if (CurrentScene)
+			{
+				CurrentScene->OnExit();
+				delete CurrentScene;
+				CurrentScene = nullptr;
+			}
+			SoundManager::GetInstance().StopAll();//TODO: Revise when own implementation is done
+
 			CurrentScene = NextScene;
 			CurrentScene->OnEnter();
 			NextScene = nullptr;
@@ -50,13 +58,7 @@ namespace GameEngine {
 
 	void BaseApplication::OnEndFrame()
 	{
-		if (NextScene != nullptr)
-		{
-			CurrentScene->OnExit();
-			delete CurrentScene;
-			CurrentScene = nullptr;
-			SoundManager::GetInstance().StopAll();//TODO: Revise when own implementation is done
-		}
+
 	}
 
 	void BaseApplication::OnEnd()

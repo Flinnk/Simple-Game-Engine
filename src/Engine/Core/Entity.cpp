@@ -15,7 +15,25 @@ namespace GameEngine
 
 	Entity::~Entity()
 	{
+		std::vector<Component*> _Components = Components;
+		std::vector<Component*>::iterator componentIterator = _Components.begin();
+		while (componentIterator != _Components.end())
+		{
+			Component* Component = *componentIterator;
+			componentIterator = _Components.erase(componentIterator);
+			delete Component;
+		}
+		Components.clear();
 
+		std::vector<Entity*> _Childs = Childs;
+		std::vector<Entity*>::iterator entityIterator = _Childs.begin();
+		while (entityIterator != _Childs.end())
+		{
+			Entity* Entity = *entityIterator;
+			entityIterator = _Childs.erase(entityIterator);
+			delete Entity;
+		}
+		Childs.clear();
 	}
 
 	void Entity::Update(float DeltaTime)
@@ -138,10 +156,16 @@ namespace GameEngine
 			OwnerScene->RemoveEntity(this, true);
 	}
 
-	Transform& Entity::GetTransform()
+	Transform Entity::GetTransform()
 	{
 		return EntityTransform;
 	}
+
+	void Entity::SetTransform(const Transform& Value)
+	{
+		EntityTransform = Value;
+	}
+
 
 	Vector3 Entity::GetAbsolutePosition()
 	{
@@ -158,6 +182,57 @@ namespace GameEngine
 	Vector3 Entity::GetRelativePosition()
 	{
 		return EntityTransform.Position;
+	}
+
+
+
+	void Entity::SetRelativePosition(const Vector3& Value)
+	{
+		EntityTransform.Position = Value;
+	}
+
+	Vector3 Entity::GetAbsoluteRotation()
+	{
+		if (Parent)
+		{
+			return (Parent->GetAbsoluteRotation() + EntityTransform.Rotation);
+		}
+		else
+		{
+			return EntityTransform.Rotation;
+		}
+	}
+
+	Vector3 Entity::GetRelativeRotation()
+	{
+		return EntityTransform.Rotation;
+	}
+
+	void Entity::SetRelativeRotation(const Vector3& Value)
+	{
+		EntityTransform.Rotation = Value;
+	}
+
+	Vector3 Entity::GetAbsoluteScale()
+	{
+		if (Parent)
+		{
+			return (Parent->GetAbsoluteScale() + EntityTransform.Scale);
+		}
+		else
+		{
+			return EntityTransform.Scale;
+		}
+	}
+
+	Vector3 Entity::GetRelativeScale()
+	{
+		return EntityTransform.Scale;
+	}
+
+	void Entity::SetRelativeScale(const Vector3& Value)
+	{
+		EntityTransform.Scale = Value;
 	}
 
 	void Entity::SetScene(Scene* Scene)
