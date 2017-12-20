@@ -190,7 +190,7 @@ namespace GameEngine {
 			{
 				GameEngine::KeyCallback(VirtualKeyMapping[VKCode], ((LParam & (1 << 31)) == 0));
 			}
-
+			
 			break;
 		}
 

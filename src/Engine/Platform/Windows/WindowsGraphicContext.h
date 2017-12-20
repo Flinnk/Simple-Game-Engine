@@ -37,7 +37,7 @@ namespace GameEngine {
 		HWND WindowHandle;
 		HDC DeviceContext;
 		bool Running = true;
-		unsigned int VirtualKeyMapping[512];
+		unsigned int VirtualKeyMapping[256];
 		GraphicBackend* GraphicBackend=nullptr;
 	};
 }

@@ -3,7 +3,9 @@
 #include <XInput.h>
 #include <cmath>
 
-
+namespace GameEngine {
+	extern void UpdateInputStates();
+}
 namespace GameEngine {
 	/**
 	* Function implemented on the Input class to receive input for each controller
@@ -16,6 +18,9 @@ namespace GameEngine {
 */
 void UpdatePlatformInput()
 {
+
+	GameEngine::UpdateInputStates();
+
 	//Loop max controllers
 	DWORD dwResult;
 	for (DWORD i = 0; i< XUSER_MAX_COUNT; ++i)

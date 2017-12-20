@@ -174,18 +174,47 @@ namespace GameEngine {
 		static void GetMousePosition(int &XPos, int &YPos);
 
 		/**
-		* Returns the state of a keyboard key
+		* Checks if the key is pressed, include repeating
 		* @param Key Key symbol to check
 		* @return Whether the key is currently being pressed
 		*/
-		static bool IsKeyPressed(Keyboard Key);
+		static bool GetKey(Keyboard Key);
+
+		/**
+		* Checks for the first press of a key
+		* @param Key Key symbol to check
+		* @return Whether the key is pressed
+		*/
+		static bool GetKeyDown(Keyboard Key);
+
+		/**
+		* Checks for the release of a key previously pressed
+		* @param Key Key symbol to check
+		* @return Whether the key has been released
+		*/
+		static bool GetKeyUp(Keyboard Key);
 
 		/**
 		* Returns the state of a mouse button
 		* @param Button Button to check
 		* @return Whether the button is currently being pressed
 		*/
-		static bool IsMouseButtonPressed(Mouse Button);
+		static bool GetMouseButton(Mouse Button);
+
+		/**
+		* Checks for the first press of a button
+		* @param Button Button symbol to check
+		* @return Whether the button is pressed
+		*/
+		static bool GetMouseButtonDown(Mouse Button);
+
+		/**
+		* Checks for the release of a button previously pressed
+		* @param Button Button symbol to check
+		* @return Whether the button has been released
+		*/
+		static bool GetMouseButtonUp(Mouse Button);
+
 
 		/**
 		* Returns a gamepad conection state

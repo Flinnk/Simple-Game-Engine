@@ -118,13 +118,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\..\..\..\build\Win32\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)\..\..\..\intermediate\Win32\$(Configuration)\</IntDir>
-    <IncludePath>D:\Desarrollo\C-C++\Simple-Game-Engine\src;D:\Desarrollo\C-C++\Simple-Game-Engine\include;..\..\..\..\dependencies\stb_image;..\..\..\..\dependencies\irrKlang-1.5.0\include;..\..\..\..\dependencies\glew-2.1.0-win32\glew-2.1.0\include;..\..\..\..\dependencies\freetype-2.3.5-1-bin\include\freetype2;..\..\..\..\dependencies\freetype-2.3.5-1-bin\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\..\..\src;..\..\..\..\include;..\..\..\..\dependencies\stb_image;..\..\..\..\dependencies\irrKlang-1.5.0\include;..\..\..\..\dependencies\glew-2.1.0-win32\glew-2.1.0\include;..\..\..\..\dependencies\freetype-2.3.5-1-bin\include\freetype2;..\..\..\..\dependencies\freetype-2.3.5-1-bin\include;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\..\..\dependencies\freetype-2.3.5-1-bin\lib;..\..\..\..\dependencies\glew-2.1.0-win32\glew-2.1.0\lib\Release\Win32;..\..\..\..\dependencies\irrKlang-1.5.0\lib\Win32-visualStudio;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)\..\..\..\build\Win32\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)\..\..\..\intermediate\Win32\$(Configuration)\</IntDir>
-    <IncludePath>D:\Desarrollo\C-C++\Simple-Game-Engine\src;D:\Desarrollo\C-C++\Simple-Game-Engine\include;..\..\..\..\dependencies\stb_image;..\..\..\..\dependencies\irrKlang-1.5.0\include;..\..\..\..\dependencies\glew-2.1.0-win32\glew-2.1.0\include;..\..\..\..\dependencies\freetype-2.3.5-1-bin\include\freetype2;..\..\..\..\dependencies\freetype-2.3.5-1-bin\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\..\..\src;..\..\..\..\include;..\..\..\..\dependencies\stb_image;..\..\..\..\dependencies\irrKlang-1.5.0\include;..\..\..\..\dependencies\glew-2.1.0-win32\glew-2.1.0\include;..\..\..\..\dependencies\freetype-2.3.5-1-bin\include\freetype2;..\..\..\..\dependencies\freetype-2.3.5-1-bin\include;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\..\..\dependencies\freetype-2.3.5-1-bin\lib;..\..\..\..\dependencies\glew-2.1.0-win32\glew-2.1.0\lib\Release\Win32;..\..\..\..\dependencies\irrKlang-1.5.0\lib\Win32-visualStudio;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
