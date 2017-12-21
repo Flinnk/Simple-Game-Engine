@@ -12,7 +12,10 @@ namespace GameEngine
 		std::string ExecutionDirectory = File::GetExecutionDirectory();
 		ResourceDirectory = ExecutionDirectory.substr(0,ExecutionDirectory.find_last_of("\\")) + "\\Resources\\";
 	}
-	ResourceManager::~ResourceManager() {}
+	ResourceManager::~ResourceManager() 
+	{
+		Clear();
+	}
 
 
 	ResourceManager& ResourceManager::GetInstance()
@@ -98,6 +101,10 @@ namespace GameEngine
 			delete iter.second;
 			iter.second = nullptr;
 		}
+
+		Shaders.clear();
+
+		Textures.clear();
 	}
 
 	std::string ResourceManager::GetResourceDirectory() 
