@@ -21,7 +21,6 @@ namespace GameEngine
 
 		//3D
 		float FieldOfView=90.0f;
-		float AspectRatio;
 
 		//BOTH
 		float NearPlane = -1.0f;
