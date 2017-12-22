@@ -21,13 +21,13 @@ namespace GameEngine {
 		const Vector3& color) const
 	{
 		if (SpriteRender)
-			SpriteRender->DrawTexture(texture, position, size, rotate, color);
+			SpriteRender->DrawTexture(CameraTransform, CameraData, texture, position, size, rotate, color);
 	}
 
 	void Renderer::DrawText(const std::string& text, float x, float y, float scale, const Vector3& color) const
 	{
 		if (TextRender)
-			TextRender->DrawText(text, x, y, scale, color);
+			TextRender->DrawText(CameraTransform, CameraData, text, x, y, scale, color);
 	}
 
 	void Renderer::Release()
@@ -52,6 +52,22 @@ namespace GameEngine {
 	{
 		SpriteRender->ResetStats();
 		TextRender->ResetStats();
+	}
+
+	void Renderer::ClearCameraData()
+	{
+		CameraTransform = nullptr;
+		CameraData = nullptr;
+	}
+
+	void Renderer::SetCameraTransform(Transform* Transform)
+	{
+		CameraTransform = Transform;
+	}
+
+	void Renderer::SetCameraData(Camera* Data)
+	{
+		CameraData = Data;
 	}
 
 

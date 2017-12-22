@@ -300,6 +300,7 @@ namespace GameEngine {
 		if (GraphicBackend)
 			GraphicBackend->Display();
 		Render->ClearDebugStats();
+		Render->ClearCameraData();
 	}
 
 	void WindowsGraphicContext::Release() {

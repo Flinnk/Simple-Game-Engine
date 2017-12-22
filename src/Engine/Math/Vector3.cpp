@@ -2,12 +2,12 @@
 
 namespace GameEngine
 {
-	Vector3 Vector3::operator*(float scalar)
+	Vector3 Vector3::operator*(float scalar) const
 	{
 		return Vector3(x*scalar, y*scalar, z*scalar);
 	}
 
-	Vector3 Vector3::operator+(const Vector3& rhs)
+	Vector3 Vector3::operator+(const Vector3& rhs) const
 	{
 		return Vector3(x + rhs.x, y + rhs.y, z + rhs.z);
 	}

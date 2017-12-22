@@ -1,4 +1,8 @@
 #include <Engine\Core\Scene.h>
+#include <Engine\Core\Engine.h>
+#include <Engine\Math\Vector2.h>
+#include <Engine\Components\CameraComponent.h>
+#include <Engine\Renderer\Renderer.h>
 
 namespace GameEngine
 {
@@ -33,12 +37,29 @@ namespace GameEngine
 
 	void Scene::OnRender(Renderer* Renderer)
 	{
-		std::vector<Entity*> _Entities = Entities;
-		std::vector<Entity*>::iterator it = _Entities.begin();
-		while (it != _Entities.end())
+		if (SceneCamera)
 		{
-			(*it)->Render(Renderer);
-			++it;
+			Vector2 Size = Engine::GetInstance().GetDisplaySize();
+
+			Transform CameraTransform;
+			CameraTransform.Position = SceneCamera->GetAbsolutePosition();
+			CameraTransform.Rotation = SceneCamera->GetAbsoluteRotation();
+
+			Camera CameraData = SceneCamera->GetCameraData();
+			
+			CameraData.NearPlane += abs(CameraTransform.Position.z);
+			CameraData.FarPlane += abs(CameraTransform.Position.z);
+
+			Renderer->SetCameraData(&CameraData);
+			Renderer->SetCameraTransform(&CameraTransform);
+
+			std::vector<Entity*> _Entities = Entities;
+			std::vector<Entity*>::iterator it = _Entities.begin();
+			while (it != _Entities.end())
+			{
+				(*it)->Render(Renderer);
+				++it;
+			}
 		}
 	}
 
@@ -73,6 +94,11 @@ namespace GameEngine
 				++it;
 			}
 		}
+	}
+
+	CameraComponent* Scene::GetCamera() const
+	{
+		return SceneCamera;
 	}
 
 

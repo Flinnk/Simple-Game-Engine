@@ -7,14 +7,15 @@ namespace GameEngine {
 	class Texture;
 	struct Vector2;
 	struct Vector3;
-
+	struct Transform;
+	struct Camera;
 
 	class SpriteRenderer {
 	public:
 		SpriteRenderer(Shader *renderShader);
 		~SpriteRenderer();
 
-		void DrawTexture(const Texture *texture, Vector2 position,
+		void DrawTexture(const Transform* CameraTransform, const Camera* CameraData, const Texture *texture, Vector2 position,
 			Vector2 size, float rotate,
 			Vector3 color);
 

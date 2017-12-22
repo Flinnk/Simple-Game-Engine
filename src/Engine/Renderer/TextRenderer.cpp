@@ -11,6 +11,9 @@
 #include <string>
 #include <Engine/Core/Engine.h>
 #include <Engine/Utils/Log.h>
+#include <Engine\Renderer\Camera.h>
+#include <Engine\Core\Transform.h>
+#include <Engine\Math\Vector3.h>
 
 namespace GameEngine {
 
@@ -88,13 +91,32 @@ namespace GameEngine {
 		FT_Done_FreeType(ft);
 	}
 
-	void TextRenderer::DrawText(const std::string& text, float x, float y, float scale,const Vector3& color)
+	void TextRenderer::DrawText(const Transform* CameraTransform, const Camera* CameraData, const std::string& text, float x, float y, float scale,const Vector3& color)
 	{
 		Vector2 Size = Engine::GetInstance().GetDisplaySize();//TODO: Callback with Graphic context to be notified of resizing to adjust the viewport parameters
-		Matrix4  projection = Matrix4::Ortho(0.0f, Size.x, Size.y, 0.0, -1.0f, 1.0f);
+		Matrix4 ViewMatrix = Matrix4::Identity();
+		ViewMatrix *= Matrix4::Translation((CameraTransform->Position*-1.0f));
+
+		//Rotation base on the center pivot point
+		//ViewMatrix *= Matrix4::Translation(Vector3(0.5f * size.x, 0.5f * size.y, 0.0f));
+		//ViewMatrix *= Matrix4::Rotation(rotate, Vector3(0.0f, 0.0f, 1.0f));
+		//ViewMatrix *= Matrix4::Translation(Vector3(-0.5f * size.x, -0.5f * size.y, 0.0f));
+
+
+		Matrix4 PerspectiveMatrix;
+
+		if (CameraData->Mode == CameraMode::ORTHOGRAPHIC)
+		{
+			PerspectiveMatrix = Matrix4::Orthographic(0.0f,Size.x,Size.y,0.0f,CameraData->NearPlane,CameraData->FarPlane);
+		}
+		else
+		{
+			PerspectiveMatrix = Matrix4::Perspective(CameraData->FieldOfView,Size.x/Size.y,CameraData->NearPlane,CameraData->FarPlane);
+		}
 
 		TextShader->Use();
-		TextShader->SetMatrix4("projection", projection);
+		TextShader->SetMatrix4("view", ViewMatrix);
+		TextShader->SetMatrix4("projection", PerspectiveMatrix);
 		TextShader->SetVector3("textColor", color);
 		glActiveTexture(GL_TEXTURE0);
 		glBindVertexArray(VAO);

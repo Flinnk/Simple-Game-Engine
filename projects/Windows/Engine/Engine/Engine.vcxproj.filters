@@ -61,6 +61,12 @@
     <Filter Include="Src\Components">
       <UniqueIdentifier>{e9f95d92-b5dd-49f0-9217-f8cebfc2530f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Include\Entities">
+      <UniqueIdentifier>{f1434623-353e-410e-9146-81ad03890b3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Entities">
+      <UniqueIdentifier>{0b7fbe18-63b6-4772-b3f1-c582898f8c7d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\include\Engine\Audio\SoundManager.h">
@@ -165,6 +171,15 @@
     <ClInclude Include="..\..\..\..\include\Engine\Components\SceneComponent.h">
       <Filter>Include\Components</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Components\CameraComponent.h">
+      <Filter>Include\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Entities\CameraEntity.h">
+      <Filter>Include\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Renderer\Camera.h">
+      <Filter>Include\Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\Engine\Audio\SoundManager.cpp">
@@ -252,6 +267,12 @@
       <Filter>Src\Core</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\Engine\Components\SceneComponent.cpp">
+      <Filter>Src\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Entities\CameraEntity.cpp">
+      <Filter>Src\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Components\CameraComponent.cpp">
       <Filter>Src\Components</Filter>
     </ClCompile>
   </ItemGroup>

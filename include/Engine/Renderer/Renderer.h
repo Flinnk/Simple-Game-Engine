@@ -11,6 +11,8 @@ namespace GameEngine {
 	struct Vector2;
 	struct Vector3;
 	class Texture;
+	struct Camera;
+	struct Transform;
 
 	class Renderer {
 	public:
@@ -27,9 +29,16 @@ namespace GameEngine {
 
 		unsigned int GetDrawCallStats();
 		void ClearDebugStats();
+
+		void ClearCameraData();
+
+		void SetCameraTransform(Transform* CameraTransform);
+		void SetCameraData(Camera* CameraData);
 	private:
 		SpriteRenderer* SpriteRender = nullptr;
 		TextRenderer* TextRender = nullptr;
+		Transform* CameraTransform = nullptr;
+		Camera* CameraData = nullptr;
 	};
 
 }

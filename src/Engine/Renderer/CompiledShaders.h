@@ -11,11 +11,12 @@ const char* DefaultVertexShader =
 "out vec2 UV;\n"
 
 "uniform mat4 model;\n"
+"uniform mat4 view;\n"
 "uniform mat4 projection;\n"
 
 "void main()\n"
 "{\n"
-"	gl_Position = projection * model * vec4(data.xy, 0.0, 1.0);\n"
+"	gl_Position = projection * view * model * vec4(data.xy, 0.0, 1.0);\n"
 "	UV = data.zw;\n"
 "}";
 
@@ -40,11 +41,12 @@ const char* TextVertexShader =
 "layout(location = 0) in vec4 vertex;\n"
 "out vec2 TexCoords;\n"
 
+"uniform mat4 view;\n"
 "uniform mat4 projection;\n"
 
 "void main()\n"
 "{\n"
-"	gl_Position = projection * vec4(vertex.xy, 0.0, 1.0);\n"
+"	gl_Position = projection * view * vec4(vertex.xy, 0.0, 1.0);\n"
 "	TexCoords = vertex.zw;\n"
 "} ";
 

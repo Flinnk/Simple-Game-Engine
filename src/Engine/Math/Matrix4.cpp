@@ -128,7 +128,7 @@ namespace GameEngine
 		return Result;
 	}
 
-	Matrix4 Matrix4::Ortho(float Left, float Right, float Bottom, float Top, float NearPlane, float FarPlane)
+	Matrix4 Matrix4::Orthographic(float Left, float Right, float Bottom, float Top, float NearPlane, float FarPlane)
 	{
 		Matrix4 Result(1.0f);
 
@@ -139,6 +139,26 @@ namespace GameEngine
 		Result.elements[12] = -(Right + Left) / (Right - Left);
 		Result.elements[13] = -(Top + Bottom) / (Top - Bottom);
 		Result.elements[14] = -(FarPlane + NearPlane) / (FarPlane - NearPlane);
+		return Result;
+	}
+
+	Matrix4 Matrix4::Perspective(float FieldOfView, float AspectRatio, float NearPlane, float FarPlane)
+	{	
+		//https://i.stack.imgur.com/oesw9.jpg
+		Matrix4 Result(1.0f);
+
+		float q = 1.0f / tan(ToRadians(0.5f * FieldOfView));
+		float a = q / AspectRatio;
+
+		float b = (NearPlane + FarPlane) / (NearPlane - FarPlane);
+		float c = (2.0f * NearPlane * FarPlane) / (NearPlane - FarPlane);
+
+		Result.elements[0 + 0 * 4] = a;
+		Result.elements[1 + 1 * 4] = q;
+		Result.elements[2 + 2 * 4] = b;
+		Result.elements[2 + 3 * 4] = -1.0f;
+		Result.elements[3 + 2 * 4] = c;
+
 		return Result;
 	}
 

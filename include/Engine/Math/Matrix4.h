@@ -23,7 +23,8 @@ namespace GameEngine
 		static Matrix4 Multiply(const Matrix4& Left, const Matrix4& Right);
 		static Matrix4 Identity();
 
-		static Matrix4 Ortho(float Left, float Right, float Bottom, float Top, float NearPlane, float FarPlane);
+		static Matrix4 Orthographic(float Left, float Right, float Bottom, float Top, float NearPlane, float FarPlane);
+		static Matrix4 Perspective(float FieldOfView, float AspectRatio, float NearPlane, float FarPlane);
 
 		static Matrix4 Translation(const Vector3& TranslationVector);
 		static Matrix4 Translation(const Vector2& TranslationVector);

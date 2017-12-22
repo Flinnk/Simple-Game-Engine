@@ -4,6 +4,8 @@
 #include <Engine\Graphics\Texture.h>
 #include <Engine\Math\Math.h>
 #include <Engine\Core\Engine.h>
+#include <Engine\Renderer\Camera.h>
+#include <Engine\Core\Transform.h>
 
 namespace GameEngine {
 
@@ -18,7 +20,7 @@ namespace GameEngine {
 		glDeleteVertexArrays(1, &VAO);
 	}
 
-	void SpriteRenderer::DrawTexture(const Texture *texture, Vector2 position,
+	void SpriteRenderer::DrawTexture(const Transform* CameraTransform, const Camera* CameraData, const Texture *texture, Vector2 position,
 		Vector2 size = Vector2(10, 10), float rotate = 0.0f,
 		Vector3 color = Vector3(1.0f, 1.0f, 1.0f)) {
 
@@ -35,10 +37,30 @@ namespace GameEngine {
 		model *= Matrix4::Scale(size);
 
 		Vector2 Size = Engine::GetInstance().GetDisplaySize();//TODO: Callback with Graphic context to be notified of resizing to adjust the viewport parameters
-		Matrix4  projection = Matrix4::Ortho(0.0f, Size.x, Size.y, 0.0, -1.0f, 1.0f);
 
 		shader->SetInteger("image", 0);
-		shader->SetMatrix4("projection", projection);
+
+		Matrix4 ViewMatrix = Matrix4::Identity();
+		ViewMatrix *= Matrix4::Translation(CameraTransform->Position);
+
+		//Rotation base on the center pivot point
+		//ViewMatrix *= Matrix4::Translation(Vector3(0.5f * size.x, 0.5f * size.y, 0.0f));
+		//ViewMatrix *= Matrix4::Rotation(rotate, Vector3(0.0f, 0.0f, 1.0f));
+		//ViewMatrix *= Matrix4::Translation(Vector3(-0.5f * size.x, -0.5f * size.y, 0.0f));
+
+		Matrix4 PerspectiveMatrix;
+
+		if (CameraData->Mode == CameraMode::ORTHOGRAPHIC)
+		{
+			PerspectiveMatrix = Matrix4::Orthographic(0.0f, Size.x, Size.y, 0.0f, CameraData->NearPlane, CameraData->FarPlane);
+		}
+		else
+		{
+			PerspectiveMatrix = Matrix4::Perspective(CameraData->FieldOfView, Size.x / Size.y, CameraData->NearPlane, CameraData->FarPlane);
+		}
+
+		shader->SetMatrix4("view", ViewMatrix);
+		shader->SetMatrix4("projection", PerspectiveMatrix);
 
 		shader->SetMatrix4("model", model);
 

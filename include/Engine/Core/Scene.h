@@ -7,6 +7,7 @@
 namespace GameEngine
 {
 	class Renderer;
+	class CameraComponent;
 
 	class Scene {
 
@@ -20,7 +21,11 @@ namespace GameEngine
 
 		void AddEntity(Entity* Entity);
 		void RemoveEntity(Entity* Entity, bool DeleteEntity = false);
+
+		CameraComponent* GetCamera() const;
+
 	protected:
+		CameraComponent* SceneCamera;
 		std::vector<Entity*> Entities;
 	};
 }

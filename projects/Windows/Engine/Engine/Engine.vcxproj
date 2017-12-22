@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\include\Engine\Audio\SoundManager.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Components\CameraComponent.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Components\SceneComponent.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Core\Application.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Core\BaseApplication.h" />
@@ -23,6 +24,7 @@
     <ClInclude Include="..\..\..\..\include\Engine\Core\Transform.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Engine.h" />
     <ClInclude Include="..\..\..\..\include\Engine\EngineMacros.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Entities\CameraEntity.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Graphics\Shader.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Graphics\Texture.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Math\Math.h" />
@@ -31,6 +33,7 @@
     <ClInclude Include="..\..\..\..\include\Engine\Math\Vector2.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Math\Vector3.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Physics\SandboxPhysics.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Renderer\Camera.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Renderer\IGraphicContext.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Renderer\Renderer.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Utils\Assert.h" />
@@ -48,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\Engine\Audio\SoundManager.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Components\CameraComponent.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Components\SceneComponent.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Core\Application.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Core\BaseApplication.cpp" />
@@ -56,6 +60,7 @@
     <ClCompile Include="..\..\..\..\src\Engine\Core\Entity.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Core\Input.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Core\Scene.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Entities\CameraEntity.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Graphics\Shader.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Graphics\Texture.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Math\Matrix4.cpp" />
