@@ -1,7 +1,4 @@
-#ifndef COMPILED_SHADER_H
-#define COMPILED_SHADER_H
-
-
+#pragma once 
 
 const char* DefaultVertexShader =
 "#version 330 core\n"
@@ -65,4 +62,3 @@ const char* TextFragmentShader =
 "	color = vec4(textColor, 1.0) * sampled; \n"
 "}";
 
-#endif // !COMPILED_SHADER_H

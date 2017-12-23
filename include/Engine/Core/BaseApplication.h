@@ -1,5 +1,4 @@
-#ifndef BASE_APPLICATION_H
-#define BASE_APPLICATION_H
+#pragma once
 
 #include <Engine\Core\Application.h>
 
@@ -30,4 +29,3 @@ namespace GameEngine {
 		Scene* NextScene = nullptr;
 	};
 }
-#endif // !BASE_APPLICATION_H

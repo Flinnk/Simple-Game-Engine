@@ -1,6 +1,4 @@
-
-#ifndef RESOURCE_MANAGER
-#define RESOURCE_MANAGER
+#pragma once 
 
 #include <map>
 #include <string>
@@ -43,6 +41,5 @@ namespace GameEngine
 
 	};
 }
-#endif // !RESOURCE_MANAGER
 
 

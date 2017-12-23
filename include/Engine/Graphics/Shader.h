@@ -1,5 +1,5 @@
-#ifndef SHADER_H
-#define SHADER_H
+#pragma once 
+
 namespace GameEngine {
 
 	struct Vector3;
@@ -37,4 +37,3 @@ namespace GameEngine {
 	};
 }
 
-#endif // !SHADER_H

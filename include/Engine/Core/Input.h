@@ -1,5 +1,4 @@
-#ifndef INPUT_H
-#define INPUT_H
+#pragma once
 
 namespace GameEngine {
 
@@ -242,5 +241,4 @@ namespace GameEngine {
 	};
 
 }
-#endif // !INPUT_H
 

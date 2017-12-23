@@ -1,5 +1,5 @@
-#ifndef RENDERER_H
-#define RENDERER_H
+#pragma once 
+
 #include <string>
 
 namespace GameEngine {
@@ -42,5 +42,3 @@ namespace GameEngine {
 	};
 
 }
-
-#endif // !RENDERER_H

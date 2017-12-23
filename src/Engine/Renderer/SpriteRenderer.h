@@ -1,5 +1,4 @@
-#ifndef SPRITE_RENDERER_H
-#define SPRITE_RENDERER_H
+#pragma once 
 
 namespace GameEngine {
 
@@ -30,6 +29,5 @@ namespace GameEngine {
 		void InitRenderData();
 	};
 }
-#endif // !SPRITE_RENDERER_H
 
 

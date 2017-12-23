@@ -1,5 +1,4 @@
-#ifndef SCENE_H
-#define SCENE_H
+#pragma once 
 
 #include <vector>
 #include <Engine\Core\Entity.h>
@@ -30,5 +29,3 @@ namespace GameEngine
 	};
 }
 
-
-#endif// !SCENE_H

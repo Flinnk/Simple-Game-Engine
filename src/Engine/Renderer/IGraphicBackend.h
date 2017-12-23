@@ -1,5 +1,4 @@
-#ifndef IGRAPHIC_BACKEND_H
-#define IGRAPHIC_BACKEND_H
+#pragma once 
 
 namespace GameEngine 
 {
@@ -16,4 +15,3 @@ namespace GameEngine
 	};
 }
 
-#endif // !IGRAPHIC_BACKEND_H

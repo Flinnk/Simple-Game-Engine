@@ -1,5 +1,4 @@
-#ifndef ENGINE_MACROS_H
-#define ENGINE_MACROS_H
+#pragma once
 
 #define IMPLEMENT_GAME_MODULE(ApplicationClass) namespace GameEngine {\
 															Application* GetApplicationInstance() {\
@@ -7,4 +6,3 @@
 															}\
 												}\
 
-#endif // !ENGINE_MACROS_H

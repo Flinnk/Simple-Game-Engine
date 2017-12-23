@@ -1,5 +1,4 @@
-#ifndef STOPWATCH_H
-#define STOPWATCH_H
+#pragma once 
 
 namespace GameEngine {
 
@@ -15,4 +14,3 @@ namespace GameEngine {
 		double StartTime = 0;
 	};
 }
-#endif

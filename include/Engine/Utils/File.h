@@ -1,5 +1,4 @@
-#ifndef FILE_H
-#define FILE_H
+#pragma once 
 
 #include <string>
 
@@ -28,4 +27,3 @@ namespace GameEngine {
 	};
 }
 
-#endif // !FILE_H

@@ -1,6 +1,4 @@
-#ifndef APPLICATION_H
-#define APPLICATION_H
-
+#pragma once
 
 namespace GameEngine {
 
@@ -64,4 +62,3 @@ namespace GameEngine {
 	};
 }
 
-#endif // !APPLICATION_H

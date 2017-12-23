@@ -1,5 +1,4 @@
-#ifndef TRANSFORM_H
-#define TRANSFORM_H
+#pragma once 
 
 #include <Engine\Math\Vector3.h>
 
@@ -15,4 +14,3 @@ namespace GameEngine
 	};
 
 }
-#endif // !TRANSFORM_H

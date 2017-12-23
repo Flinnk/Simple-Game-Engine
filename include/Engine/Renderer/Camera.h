@@ -1,5 +1,4 @@
-#ifndef CAMERA_H
-#define CAMERA_H
+#pragma once 
 
 #include <Engine\Math\Matrix4.h>
 
@@ -21,6 +20,7 @@ namespace GameEngine
 
 		//3D
 		float FieldOfView=90.0f;
+		float AspectRatio;
 
 		//BOTH
 		float NearPlane = -1.0f;
@@ -28,4 +28,3 @@ namespace GameEngine
 	};
 
 }
-#endif // !CAMERA_H

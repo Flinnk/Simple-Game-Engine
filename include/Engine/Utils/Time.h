@@ -1,6 +1,4 @@
-#ifndef TIME_H
-#define TIME_H
-
+#pragma once 
 namespace GameEngine {
 	
 	/**
@@ -19,4 +17,3 @@ namespace GameEngine {
 	};
 }
 
-#endif // !TIME_H

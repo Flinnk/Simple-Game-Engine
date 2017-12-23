@@ -1,5 +1,4 @@
-#ifndef WINDOWS_OPENGL_CONTEXT_H
-#define WINDOWS_OPENGL_CONTEXT_H
+#pragma once 
 
 #include <Engine\Renderer\IGraphicBackend.h>
 #include <Windows.h>
@@ -23,4 +22,3 @@ namespace GameEngine
 	};
 
 }
-#endif // !WINDOWS_OPENGL_CONTEXT_H

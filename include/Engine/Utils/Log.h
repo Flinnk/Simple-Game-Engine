@@ -1,5 +1,4 @@
-#ifndef LOG_H
-#define LOG_H
+#pragma once 
 
 //TODO: Add different output displays: File, InEngine...
 
@@ -18,4 +17,3 @@ namespace GameEngine
 	void LogFormat(const char* Text, ...);
 }
 
-#endif // !LOG_H

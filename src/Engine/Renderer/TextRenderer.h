@@ -1,5 +1,4 @@
-#ifndef TEXT_RENDERER_H
-#define TEXT_RENDERER_H
+#pragma once 
 
 #include <map>
 #include <Engine\Math\Math.h>
@@ -35,4 +34,3 @@ namespace GameEngine {
 
 	};
 }
-#endif 

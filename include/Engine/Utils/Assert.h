@@ -1,5 +1,4 @@
-#ifndef ASSERT_H
-#define ASSERT_H
+#pragma once 
 
 #include <Engine\Utils\Log.h>
 
@@ -24,4 +23,3 @@ namespace GameEngine
 	#endif
 }
 
-#endif // !ASSERT_H

@@ -1,5 +1,4 @@
-#ifndef SCENE_COMPONENT_H
-#define SCENE_COMPONENT_H
+#pragma once 
 
 #include <Engine\Core\Component.h>
 #include <Engine\Core\Transform.h>
@@ -30,4 +29,3 @@ namespace GameEngine
 }
 
 
-#endif // !SCENE_COMPONENT_H

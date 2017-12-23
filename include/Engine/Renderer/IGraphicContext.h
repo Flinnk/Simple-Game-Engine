@@ -1,5 +1,4 @@
-#ifndef IGRAPHIC_CONTEXT_H
-#define IGRAPHIC_CONTEXT_H
+#pragma once 
 
 namespace GameEngine {
 
@@ -34,4 +33,3 @@ namespace GameEngine {
 	};
 
 }
-#endif // !IGRAPHIC_CONTEXT_H

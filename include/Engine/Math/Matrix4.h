@@ -1,5 +1,4 @@
-#ifndef MAT4_H
-#define MAT4_H
+#pragma once
 
 namespace GameEngine
 {
@@ -36,5 +35,3 @@ namespace GameEngine
 
 	};
 }
-
-#endif // !MAT4_H

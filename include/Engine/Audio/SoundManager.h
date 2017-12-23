@@ -1,5 +1,4 @@
-#ifndef SOUND_MANAGER_H
-#define SOUND_MANAGER_H
+#pragma once
 
 namespace GameEngine {
 	class SoundManager {
@@ -21,4 +20,3 @@ namespace GameEngine {
 	};
 }
 
-#endif // !SOUND_MANAGER_H

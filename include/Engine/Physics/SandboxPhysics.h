@@ -1,5 +1,4 @@
-#ifndef PHYSICS_H
-#define PHYSICS_H
+#pragma once
 
 #include <Engine\Math\Math.h>
 
@@ -32,6 +31,5 @@ namespace GameEngine {
 	CollisionData CheckCollision(const Circle &one, const Rect &two);
 
 }
-#endif // !PHYSICS_H
 
 

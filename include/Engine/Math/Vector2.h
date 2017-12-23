@@ -1,5 +1,4 @@
-#ifndef VECTOR2_H
-#define VECTOR2_H
+#pragma once
 
 namespace GameEngine 
 {
@@ -23,8 +22,6 @@ namespace GameEngine
 		static Vector2 Clamp(Vector2 value, Vector2 min, Vector2 max);
 	};
 }
-
-#endif // !VECTOR2_H
 
 
 

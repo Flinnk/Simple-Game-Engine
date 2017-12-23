@@ -1,5 +1,4 @@
-#ifndef ENTITY_H
-#define ENTITY_H
+#pragma once
 
 #include <vector>
 #include <Engine\Core\Component.h>
@@ -58,5 +57,3 @@ namespace GameEngine
 
 	};
 }
-
-#endif // !ENTITY_H

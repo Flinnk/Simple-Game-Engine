@@ -1,5 +1,4 @@
-#ifndef TEXTURE_H
-#define TEXTURE_H
+#pragma once
 
 namespace GameEngine {
 
@@ -34,5 +33,3 @@ namespace GameEngine {
 	};
 
 }
-
-#endif // !TEXTURE_H

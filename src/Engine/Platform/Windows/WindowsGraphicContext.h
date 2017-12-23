@@ -1,6 +1,4 @@
-
-#ifndef WINDOWS_GRAPHIC_CONTEXT_H
-#define WINDOWS_GRAPHIC_CONTEXT_H
+#pragma once 
 
 #include <Engine\Renderer\IGraphicContext.h>
 #include <Engine\Renderer\IGraphicBackend.h>
@@ -42,4 +40,3 @@ namespace GameEngine {
 	};
 }
 
-#endif // !WINDOWS_GRAPHIC_CONTEXT_H

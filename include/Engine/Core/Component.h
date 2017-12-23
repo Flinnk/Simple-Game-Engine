@@ -1,6 +1,4 @@
-#ifndef COMPONENT_H
-#define COMPONENT_H
-
+#pragma once 
 
 namespace GameEngine
 {
@@ -27,4 +25,3 @@ namespace GameEngine
 	};
 }
 
-#endif // !COMPONENT_H

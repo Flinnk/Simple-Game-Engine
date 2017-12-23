@@ -1,5 +1,4 @@
-#ifndef VECTOR3_H
-#define VECTOR3_H
+#pragma once
 
 namespace GameEngine {
 
@@ -13,6 +12,5 @@ namespace GameEngine {
 	};
 }
 
-#endif // !VECTOR3_H
 
 

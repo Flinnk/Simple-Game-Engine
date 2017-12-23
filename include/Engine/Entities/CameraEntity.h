@@ -1,5 +1,4 @@
-#ifndef CAMERA_ENTITY_H
-#define CAMERA_ENTITY_H
+#pragma once
 
 #include <Engine\Core\Entity.h>
 #include <Engine\Components\CameraComponent.h>
@@ -15,4 +14,3 @@ namespace GameEngine
 		CameraComponent* Camera;
 	};
 }
-#endif // !CAMERA_ENTITY_H

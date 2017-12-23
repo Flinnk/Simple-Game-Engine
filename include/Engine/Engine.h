@@ -1,5 +1,4 @@
-#ifndef SIMPLE_GAME_ENGINE
-#define SIMPLE_GAME_ENGINE
+#pragma once
 
 #include <Engine\EngineMacros.h>
 
@@ -29,5 +28,3 @@
 #include <Engine\Utils\Stopwatch.h>
 #include <Engine\Utils\ResourceManager.h>
 
-
-#endif // !SIMPLE_GAME_ENGINE
