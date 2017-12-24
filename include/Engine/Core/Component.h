@@ -15,7 +15,7 @@ namespace GameEngine
 
 		virtual void Update(float DeltaTime);
 		virtual void Render(Renderer* Renderer);
-		Entity* GetOwner();
+		Entity* GetOwner() const;
 		void SetOwner(Entity* Entity);
 		void Destroy();
 		bool IsDestroyed();

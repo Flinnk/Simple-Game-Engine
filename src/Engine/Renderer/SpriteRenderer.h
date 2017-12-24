@@ -6,15 +6,16 @@ namespace GameEngine {
 	class Texture;
 	struct Vector2;
 	struct Vector3;
-	struct Transform;
-	struct Camera;
+	class CameraComponent;
+	class VertexArray;
+	class VertexBuffer;
 
 	class SpriteRenderer {
 	public:
 		SpriteRenderer(Shader *renderShader);
 		~SpriteRenderer();
 
-		void DrawTexture(const Transform* CameraTransform, const Camera* CameraData, const Texture *texture, Vector2 position,
+		void DrawTexture(const CameraComponent* Camera, const Texture *texture, Vector2 position,
 			Vector2 size, float rotate,
 			Vector3 color);
 
@@ -23,7 +24,8 @@ namespace GameEngine {
 
 	private:
 		Shader* shader;
-		unsigned int VAO;
+		VertexArray* VAO;
+		VertexBuffer* VBO;
 		unsigned int DrawCalls=0;
 
 		void InitRenderData();

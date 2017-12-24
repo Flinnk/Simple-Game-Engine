@@ -22,7 +22,7 @@ namespace GameEngine
 
 	}
 
-	Entity* Component::GetOwner()
+	Entity* Component::GetOwner() const
 	{
 		return Owner;
 	}

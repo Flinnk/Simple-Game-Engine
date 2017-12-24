@@ -7,7 +7,7 @@ namespace GameEngine
 		CameraData = Data;
 	}
 
-	Camera CameraComponent::GetCameraData()
+	Camera CameraComponent::GetCameraData() const
 	{
 		return CameraData;
 	}

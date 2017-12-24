@@ -180,6 +180,18 @@
     <ClInclude Include="..\..\..\..\include\Engine\Renderer\Camera.h">
       <Filter>Include\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Graphics\VertexBuffer.h">
+      <Filter>Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Graphics\IndexBuffer.h">
+      <Filter>Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Graphics\VertexArray.h">
+      <Filter>Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Graphics\VertexBufferLayout.h">
+      <Filter>Include\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\Engine\Audio\SoundManager.cpp">
@@ -274,6 +286,15 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\Engine\Components\CameraComponent.cpp">
       <Filter>Src\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Graphics\VertexBuffer.cpp">
+      <Filter>Src\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Graphics\IndexBuffer.cpp">
+      <Filter>Src\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Graphics\VertexArray.cpp">
+      <Filter>Src\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

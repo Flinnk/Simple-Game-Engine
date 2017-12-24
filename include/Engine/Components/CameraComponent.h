@@ -9,7 +9,7 @@ namespace GameEngine
 	{
 	public:
 		void SetCameraData(const Camera& Data);
-		Camera GetCameraData();
+		Camera GetCameraData() const;
 	private:
 		Camera CameraData;
 	};

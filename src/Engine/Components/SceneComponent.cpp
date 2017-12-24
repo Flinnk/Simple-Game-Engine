@@ -3,7 +3,7 @@
 namespace GameEngine
 {
 
-	Transform SceneComponent::GetTransform()
+	Transform SceneComponent::GetTransform() const
 	{
 		return ComponentTransform;
 	}
@@ -14,7 +14,7 @@ namespace GameEngine
 	}
 
 
-	Vector3 SceneComponent::GetAbsolutePosition()
+	Vector3 SceneComponent::GetAbsolutePosition() const
 	{
 		Entity* ComponentOwner = GetOwner();
 		if (ComponentOwner)
@@ -27,7 +27,7 @@ namespace GameEngine
 		}
 	}
 
-	Vector3 SceneComponent::GetRelativePosition()
+	Vector3 SceneComponent::GetRelativePosition() const
 	{
 		return ComponentTransform.Position;
 	}
@@ -38,7 +38,7 @@ namespace GameEngine
 		ComponentTransform.Position = Value;
 	}
 
-	Vector3 SceneComponent::GetAbsoluteRotation()
+	Vector3 SceneComponent::GetAbsoluteRotation() const
 	{
 		Entity* ComponentOwner = GetOwner();
 		if (ComponentOwner)
@@ -51,7 +51,7 @@ namespace GameEngine
 		}
 	}
 
-	Vector3 SceneComponent::GetRelativeRotation()
+	Vector3 SceneComponent::GetRelativeRotation() const
 	{
 		return ComponentTransform.Rotation;
 	}
@@ -61,7 +61,7 @@ namespace GameEngine
 		ComponentTransform.Rotation = Value;
 	}
 
-	Vector3 SceneComponent::GetAbsoluteScale()
+	Vector3 SceneComponent::GetAbsoluteScale() const
 	{
 		Entity* ComponentOwner = GetOwner();
 		if (ComponentOwner)
@@ -74,7 +74,7 @@ namespace GameEngine
 		}
 	}
 
-	Vector3 SceneComponent::GetRelativeScale()
+	Vector3 SceneComponent::GetRelativeScale() const 
 	{
 		return ComponentTransform.Scale;
 	}

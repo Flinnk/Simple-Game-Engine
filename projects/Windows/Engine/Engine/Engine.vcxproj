@@ -25,8 +25,12 @@
     <ClInclude Include="..\..\..\..\include\Engine\Engine.h" />
     <ClInclude Include="..\..\..\..\include\Engine\EngineMacros.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Entities\CameraEntity.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Graphics\IndexBuffer.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Graphics\Shader.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Graphics\Texture.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Graphics\VertexArray.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Graphics\VertexBuffer.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Graphics\VertexBufferLayout.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Math\Math.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Math\Matrix4.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Math\Utils.h" />
@@ -61,8 +65,11 @@
     <ClCompile Include="..\..\..\..\src\Engine\Core\Input.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Core\Scene.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Entities\CameraEntity.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Graphics\IndexBuffer.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Graphics\Shader.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Graphics\Texture.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Graphics\VertexArray.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Graphics\VertexBuffer.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Math\Matrix4.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Math\Vector2.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Math\Vector3.cpp" />

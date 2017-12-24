@@ -9,19 +9,19 @@ namespace GameEngine
 	{
 	public:
 
-		Transform GetTransform();
+		Transform GetTransform() const;
 		void SetTransform(const Transform& Value);
 
-		Vector3 GetAbsolutePosition();
-		Vector3 GetRelativePosition();
+		Vector3 GetAbsolutePosition() const;
+		Vector3 GetRelativePosition() const;
 		void SetRelativePosition(const Vector3& Value);
 
-		Vector3 GetAbsoluteRotation();
-		Vector3 GetRelativeRotation();
+		Vector3 GetAbsoluteRotation() const;
+		Vector3 GetRelativeRotation() const;
 		void SetRelativeRotation(const Vector3& Value);
 
-		Vector3 GetAbsoluteScale();
-		Vector3 GetRelativeScale();
+		Vector3 GetAbsoluteScale() const;
+		Vector3 GetRelativeScale() const;
 		void SetRelativeScale(const Vector3& Value);
 	private:
 		Transform ComponentTransform;

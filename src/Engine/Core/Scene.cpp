@@ -41,18 +41,8 @@ namespace GameEngine
 		{
 			Vector2 Size = Engine::GetInstance().GetDisplaySize();
 
-			Transform CameraTransform;
-			CameraTransform.Position = SceneCamera->GetAbsolutePosition();
-			CameraTransform.Rotation = SceneCamera->GetAbsoluteRotation();
-
-			Camera CameraData = SceneCamera->GetCameraData();
-			
-			CameraData.NearPlane += abs(CameraTransform.Position.z);
-			CameraData.FarPlane += abs(CameraTransform.Position.z);
-
-			Renderer->SetCameraData(&CameraData);
-			Renderer->SetCameraTransform(&CameraTransform);
-
+			Renderer->SetCamera(SceneCamera);
+		
 			std::vector<Entity*> _Entities = Entities;
 			std::vector<Entity*>::iterator it = _Entities.begin();
 			while (it != _Entities.end())

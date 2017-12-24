@@ -6,8 +6,7 @@
 namespace GameEngine {
 
 	class Shader;
-	struct Camera;
-	struct Transform;
+	class CameraComponent;
 
 	struct Character {
 		unsigned int TextureID;   
@@ -23,7 +22,7 @@ namespace GameEngine {
 		const Shader* TextShader;
 		TextRenderer(Shader* shader);
 		void Load(const std::string& font, unsigned int fontSize);
-		void DrawText(const Transform* CameraTransform, const Camera* CameraData,const std::string& text, float x, float y, float scale,const Vector3& color);
+		void DrawText(const CameraComponent* Camera,const std::string& text, float x, float y, float scale,const Vector3& color);
 		unsigned int GetDrawCallStats();
 		void ResetStats();
 
