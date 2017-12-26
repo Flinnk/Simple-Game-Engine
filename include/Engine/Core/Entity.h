@@ -3,20 +3,36 @@
 #include <vector>
 #include <Engine\Core\Component.h>
 #include <Engine\Core\Transform.h>
+#include <Engine\Utils\JSON\JSON.h>
 
 namespace GameEngine
 {
+
+	typedef Entity*(*Instantiator)();
+
+#define RegisterFactory(Class) \
+	static Entity* Instantiate()\
+	{\
+		return new Class();\
+	}\
+	\
+	static bool Result = EntityFactory::GetInstance().Register(std::string(#Class),&Instantiate);
+
 	class Renderer;
 	class Scene;
 
 	class Entity {
 		friend class Scene;
+		friend class EntityFactory;
 
 	public:
 		Entity();
 		virtual ~Entity();
+		
+		virtual void Deserialize(JSONObject& Data);//TODO:: Use own parser to be able to pass a const reference
 		virtual void Update(float DeltaTime);
 		virtual void Render(Renderer* Renderer);
+
 
 		void Destroy();
 		bool IsDestroyed();
@@ -41,11 +57,12 @@ namespace GameEngine
 		Vector3 GetAbsoluteScale();
 		Vector3 GetRelativeScale();
 		void SetRelativeScale(const Vector3& Value);
-		
+
 
 		void DetachFromParent();
 	private:
 		Scene* OwnerScene = nullptr;
+		unsigned int ID = 0;
 
 		void SetScene(Scene* Scene);
 		Transform EntityTransform;
@@ -56,4 +73,6 @@ namespace GameEngine
 		bool Destroyed = false;
 
 	};
+
+
 }

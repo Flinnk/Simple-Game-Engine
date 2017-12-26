@@ -12,6 +12,7 @@ namespace GameEngine
 
 	public:
 
+		static Scene* CreateFromFile(const char* Path);
 		virtual ~Scene();
 		virtual void OnEnter();
 		virtual void OnUpdate(float DeltaTime);

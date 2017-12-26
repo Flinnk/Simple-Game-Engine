@@ -1,9 +1,12 @@
 #include <Engine\Core\Entity.h>
 #include <Engine\Core\Scene.h>
+#include <Engine\Entities\EntityFactory.h>
 
 namespace GameEngine
 {
-	bool Entity::IsDestroyed()
+	RegisterFactory(Entity)
+
+		bool Entity::IsDestroyed()
 	{
 		return Destroyed;
 	}
@@ -107,6 +110,7 @@ namespace GameEngine
 		Childs.push_back(Entity);
 		Entity->Parent = this;
 		Entity->EntityTransform.Position = this->GetAbsolutePosition()*-1;
+		Entity->OwnerScene = OwnerScene;//Added for deserialization 
 
 		if (OwnerScene)
 			OwnerScene->RemoveEntity(Entity);
@@ -239,5 +243,22 @@ namespace GameEngine
 	{
 		OwnerScene = Scene;
 	}
+
+	void Entity::Deserialize(JSONObject& Data)
+	{
+		if (Data.find(L"Transform") != Data.end() && Data[L"Transform"]->IsObject()) {
+			JSONObject transform = Data[L"Transform"]->AsObject();
+			if (transform.find(L"Position") != transform.end() && transform[L"Position"]->IsObject())
+			{
+				JSONObject position = transform[L"Position"]->AsObject();
+				if (position.find(L"x") != position.end() && position[L"x"]->IsNumber() && position.find(L"y") != position.end() && position[L"y"]->IsNumber() && position.find(L"z") != position.end() && position[L"z"]->IsNumber())
+				{
+					SetRelativePosition(Vector3(position[L"x"]->AsNumber(), position[L"y"]->AsNumber(), position[L"z"]->AsNumber()));
+				}
+			}
+
+		}
+	}
+
 
 }

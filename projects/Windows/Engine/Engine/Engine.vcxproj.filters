@@ -67,6 +67,12 @@
     <Filter Include="Src\Entities">
       <UniqueIdentifier>{0b7fbe18-63b6-4772-b3f1-c582898f8c7d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Utils\JSON">
+      <UniqueIdentifier>{5aa40040-4b37-4b4f-87e0-ccd186fb0ede}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Utils\JSON">
+      <UniqueIdentifier>{783d9c74-bb0d-4d50-838b-62974ead8379}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\include\Engine\Audio\SoundManager.h">
@@ -192,6 +198,18 @@
     <ClInclude Include="..\..\..\..\include\Engine\Graphics\VertexBufferLayout.h">
       <Filter>Include\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\src\Engine\Entities\EntityFactory.h">
+      <Filter>Src\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\src\Engine\Utils\SceneParser.h">
+      <Filter>Src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Utils\JSON\JSON.h">
+      <Filter>Include\Utils\JSON</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Utils\JSON\JSONValue.h">
+      <Filter>Include\Utils\JSON</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\Engine\Audio\SoundManager.cpp">
@@ -295,6 +313,18 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\Engine\Graphics\VertexArray.cpp">
       <Filter>Src\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Entities\EntityFactory.cpp">
+      <Filter>Src\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Utils\JSON\JSON.cpp">
+      <Filter>Src\Utils\JSON</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Utils\JSON\JSONValue.cpp">
+      <Filter>Src\Utils\JSON</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Utils\SceneParser.cpp">
+      <Filter>Src\Utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

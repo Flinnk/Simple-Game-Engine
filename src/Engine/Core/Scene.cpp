@@ -3,9 +3,21 @@
 #include <Engine\Math\Vector2.h>
 #include <Engine\Components\CameraComponent.h>
 #include <Engine\Renderer\Renderer.h>
-
+#include <Engine\Entities\EntityFactory.h>
+#include <Engine\Utils\JSON\JSON.h>
+#include <Engine\Utils\File.h>
+#include <Engine\Utils\SceneParser.h>
 namespace GameEngine
 {
+
+	Scene* Scene::CreateFromFile(const char* Path)
+	{
+		Scene* FileScene = nullptr;
+		FileScene = SceneParser::Parse(Path);
+		return FileScene;
+	}
+
+
 	Scene::~Scene()
 	{
 		std::vector<Entity*> _Entities = Entities;
@@ -42,7 +54,7 @@ namespace GameEngine
 			Vector2 Size = Engine::GetInstance().GetDisplaySize();
 
 			Renderer->SetCamera(SceneCamera);
-		
+
 			std::vector<Entity*> _Entities = Entities;
 			std::vector<Entity*>::iterator it = _Entities.begin();
 			while (it != _Entities.end())
@@ -64,7 +76,7 @@ namespace GameEngine
 		Entity->SetScene(this);
 	}
 
-	void Scene::RemoveEntity(Entity* EntityToRemove,bool DeleteEntity)
+	void Scene::RemoveEntity(Entity* EntityToRemove, bool DeleteEntity)
 	{
 		std::vector<Entity*>::iterator it = Entities.begin();
 		bool found = false;
