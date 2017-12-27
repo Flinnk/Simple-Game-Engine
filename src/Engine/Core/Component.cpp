@@ -43,4 +43,9 @@ namespace GameEngine
 	{
 		return Destroyed;
 	}
+
+	void Component::Deserialize(JSONObject& Data)
+	{
+
+	}
 }

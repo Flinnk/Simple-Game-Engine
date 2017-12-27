@@ -8,9 +8,9 @@
 namespace GameEngine
 {
 
-	typedef Entity*(*Instantiator)();
+	typedef Entity*(*EntityInstantiator)();
 
-#define RegisterFactory(Class) \
+#define RegisterEntityFactory(Class) \
 	static Entity* Instantiate()\
 	{\
 		return new Class();\

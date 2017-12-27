@@ -48,6 +48,7 @@
     <ClInclude Include="..\..\..\..\include\Engine\Utils\ResourceManager.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Utils\Stopwatch.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Utils\Time.h" />
+    <ClInclude Include="..\..\..\..\src\Engine\Components\ComponentFactory.h" />
     <ClInclude Include="..\..\..\..\src\Engine\Entities\EntityFactory.h" />
     <ClInclude Include="..\..\..\..\src\Engine\Platform\Windows\WindowsGraphicContext.h" />
     <ClInclude Include="..\..\..\..\src\Engine\Platform\Windows\WindowsOpenGLContext.h" />
@@ -60,6 +61,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\Engine\Audio\SoundManager.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Components\CameraComponent.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Components\ComponentFactory.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Components\SceneComponent.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Core\Application.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Core\BaseApplication.cpp" />

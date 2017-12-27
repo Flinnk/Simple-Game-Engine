@@ -3,6 +3,7 @@
 #include <Engine\Utils\File.h>
 #include <Engine\Utils\JSON\JSON.h>
 #include <Engine\Entities\EntityFactory.h>
+#include <Engine\Components\ComponentFactory.h>
 
 namespace GameEngine
 {
@@ -50,9 +51,10 @@ namespace GameEngine
 		JSONArray objects = scene[L"Objects"]->AsArray();
 		for (int i = 0; i < objects.size(); ++i)
 		{
+			//Parse Entity
 			JSONValue* value = objects[i];
 			if (!value->IsObject())
-				continue;
+				return false;
 
 			JSONObject object = value->AsObject();
 
@@ -68,6 +70,34 @@ namespace GameEngine
 			newEntity->Deserialize(object);
 			WrittingScene->AddEntity(newEntity);
 
+			//Parse Components
+			if (object.find(L"Components") != object.end() && object[L"Components"]->IsArray())
+			{
+				JSONArray components = object[L"Components"]->AsArray();
+				for (int j = 0; j < components.size(); ++j)
+				{
+					JSONValue* componentValue = components[i];
+					if (!componentValue->IsObject())
+						break;
+
+					JSONObject componentObject = componentValue->AsObject();
+					if (componentObject.find(L"Class") == componentObject.end() || !componentObject[L"Class"]->IsString())
+						return false;
+
+
+					std::wstring componentClassName = componentObject[L"Class"]->AsString();
+					Component* newComponent = ComponentFactory::GetInstance().Create(std::string(componentClassName.begin(), componentClassName.end()));//TODO: Use wide strings in the future
+					if (!newComponent)
+						return false;
+
+					newComponent->Deserialize(componentObject);
+					newEntity->AddComponent(newComponent);
+				}
+
+			}
+
+
+			//Parse Childs
 			if (!ParseEntityChilds(newEntity, object))
 				return false;
 

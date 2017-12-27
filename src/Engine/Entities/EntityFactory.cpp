@@ -10,7 +10,7 @@ namespace GameEngine
 		return Instance;
 	}
 
-	bool EntityFactory::Register(const std::string& Class, Instantiator Function)
+	bool EntityFactory::Register(const std::string& Class, EntityInstantiator Function)
 	{
 		bool Result = false;
 
@@ -29,7 +29,7 @@ namespace GameEngine
 
 		if (FunctionPointers.find(Class) != FunctionPointers.end())
 		{
-			Instantiator Function = FunctionPointers[Class];
+			EntityInstantiator Function = FunctionPointers[Class];
 			NewEntity = Function();
 			NewEntity->ID = ID++;
 		}

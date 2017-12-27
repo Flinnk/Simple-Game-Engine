@@ -9,6 +9,7 @@ namespace GameEngine
 	{
 	public:
 
+		virtual void Deserialize(JSONObject& Data) override;
 		Transform GetTransform() const;
 		void SetTransform(const Transform& Value);
 

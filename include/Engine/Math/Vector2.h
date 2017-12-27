@@ -1,9 +1,13 @@
 #pragma once
 
-namespace GameEngine 
+namespace GameEngine
 {
 	struct Vector2 {
-		float x, y;
+		union
+		{
+			struct { float x, y; };
+			float elements[2];
+		};
 
 		Vector2();
 		Vector2(float _x, float _y);

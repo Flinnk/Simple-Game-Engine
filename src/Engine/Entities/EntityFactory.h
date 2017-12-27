@@ -9,10 +9,10 @@ namespace GameEngine
 	public:
 		static EntityFactory& GetInstance();
 		Entity* Create(const std::string& Class);
-		bool Register(const std::string& Class, Instantiator Function);
+		bool Register(const std::string& Class, EntityInstantiator Function);
 	private:
 
-		std::map<std::string, Instantiator> FunctionPointers;
+		std::map<std::string, EntityInstantiator> FunctionPointers;
 		unsigned int ID = 0;
 	};
 }

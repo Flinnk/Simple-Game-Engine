@@ -4,7 +4,7 @@
 
 namespace GameEngine
 {
-	RegisterFactory(Entity)
+	RegisterEntityFactory(Entity)
 
 		bool Entity::IsDestroyed()
 	{
@@ -248,15 +248,35 @@ namespace GameEngine
 	{
 		if (Data.find(L"Transform") != Data.end() && Data[L"Transform"]->IsObject()) {
 			JSONObject transform = Data[L"Transform"]->AsObject();
-			if (transform.find(L"Position") != transform.end() && transform[L"Position"]->IsObject())
+			if (transform.find(L"Position") != transform.end() && transform[L"Position"]->IsArray())
 			{
-				JSONObject position = transform[L"Position"]->AsObject();
-				if (position.find(L"x") != position.end() && position[L"x"]->IsNumber() && position.find(L"y") != position.end() && position[L"y"]->IsNumber() && position.find(L"z") != position.end() && position[L"z"]->IsNumber())
-				{
-					SetRelativePosition(Vector3(position[L"x"]->AsNumber(), position[L"y"]->AsNumber(), position[L"z"]->AsNumber()));
+				JSONArray position = transform[L"Position"]->AsArray();
+				Vector3 deserializePosition;
+				for (int i = 0; i < 3; ++i) {
+					deserializePosition.elements[i] = position[i]->AsNumber();
 				}
+				SetRelativePosition(deserializePosition);
 			}
 
+			if (transform.find(L"Rotation") != transform.end() && transform[L"Rotation"]->IsArray())
+			{
+				JSONArray rotation = transform[L"Rotation"]->AsArray();
+				Vector3 deserializeRotation;
+				for (int i = 0; i < 3; ++i) {
+					deserializeRotation.elements[i] = rotation[i]->AsNumber();
+				}
+				SetRelativeRotation(deserializeRotation);
+			}
+
+			if (transform.find(L"Scale") != transform.end() && transform[L"Scale"]->IsArray())
+			{
+				JSONArray scale = transform[L"Scale"]->AsArray();
+				Vector3 deserializeScale;
+				for (int i = 0; i < 3; ++i) {
+					deserializeScale.elements[i] = scale[i]->AsNumber();
+				}
+				SetRelativePosition(deserializeScale);
+			}
 		}
 	}
 

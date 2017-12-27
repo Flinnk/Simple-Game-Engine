@@ -1,7 +1,9 @@
 #include <Engine\Components\SceneComponent.h>
 #include <Engine\Core\Entity.h>
+#include <Engine\Components\ComponentFactory.h>
 namespace GameEngine
 {
+	RegisterComponentFactory(SceneComponent)
 
 	Transform SceneComponent::GetTransform() const
 	{
@@ -83,4 +85,41 @@ namespace GameEngine
 	{
 		ComponentTransform.Scale = Value;
 	}
+
+	void SceneComponent::Deserialize(JSONObject& Data)
+	{
+		if (Data.find(L"Transform") != Data.end() && Data[L"Transform"]->IsObject()) {
+			JSONObject transform = Data[L"Transform"]->AsObject();
+			if (transform.find(L"Position") != transform.end() && transform[L"Position"]->IsArray())
+			{
+				JSONArray position = transform[L"Position"]->AsArray();
+				Vector3 deserializePosition;
+				for (int i = 0; i < 3; ++i) {
+					deserializePosition.elements[i] = position[i]->AsNumber();
+				}
+				SetRelativePosition(deserializePosition);
+			}
+
+			if (transform.find(L"Rotation") != transform.end() && transform[L"Rotation"]->IsArray())
+			{
+				JSONArray rotation = transform[L"Rotation"]->AsArray();
+				Vector3 deserializeRotation;
+				for (int i = 0; i < 3; ++i) {
+					deserializeRotation.elements[i] = rotation[i]->AsNumber();
+				}
+				SetRelativeRotation(deserializeRotation);
+			}
+
+			if (transform.find(L"Scale") != transform.end() && transform[L"Scale"]->IsArray())
+			{
+				JSONArray scale = transform[L"Scale"]->AsArray();
+				Vector3 deserializeScale;
+				for (int i = 0; i < 3; ++i) {
+					deserializeScale.elements[i] = scale[i]->AsNumber();
+				}
+				SetRelativeScale(deserializeScale);
+			}
+		}
+	}
+
 }
