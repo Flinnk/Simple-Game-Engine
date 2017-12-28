@@ -8,9 +8,11 @@ namespace GameEngine
 	{
 
 	public:
+		virtual void Deserialize(JSONObject& Data)override;
+
 		CameraEntity();
 		CameraComponent* GetCamera();
 	private:
-		CameraComponent* Camera;
+		CameraComponent* CameraComp;
 	};
 }

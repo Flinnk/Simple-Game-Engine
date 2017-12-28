@@ -103,5 +103,9 @@ namespace GameEngine
 		return SceneCamera;
 	}
 
+	void Scene::SetCamera(CameraComponent* Camera)
+	{
+		SceneCamera = Camera;
+	}
 
 }

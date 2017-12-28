@@ -4,7 +4,7 @@
 
 namespace GameEngine
 {
-	enum class CameraMode
+	enum class CameraMode : unsigned char
 	{
 		PERSPECTIVE,
 		ORTHOGRAPHIC

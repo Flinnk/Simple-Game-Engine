@@ -4,6 +4,7 @@
 #include <map>
 #include <stb_image.h>
 #include <Engine\Utils\File.h>
+#include <Engine\Utils\MeshLoader.h>
 
 namespace GameEngine
 {
@@ -88,6 +89,34 @@ namespace GameEngine
 		return Textures[ResourceID];
 	}
 
+	const Mesh* ResourceManager::LoadMesh(std::string Path, std::string ResourceID)
+	{
+		if (Textures.find(ResourceID) == Textures.end())//Not found
+		{
+			Mesh* loadMesh = MeshLoader::ParseFile(Path);
+			if (loadMesh)
+			{
+				Meshes[ResourceID] = loadMesh;
+				return Meshes[ResourceID];
+			}
+			else 
+			{
+				return nullptr;
+			}
+		}
+		else
+		{
+			return GetMesh(ResourceID);
+		}
+	}
+
+	const Mesh* ResourceManager::GetMesh(std::string ResourceID)
+	{
+		if (Meshes.find(ResourceID) == Meshes.end())//Not found
+			return nullptr;
+		return Meshes[ResourceID];
+	}
+
 	void ResourceManager::Clear()
 	{
 		for (auto iter : Shaders) {
@@ -102,9 +131,15 @@ namespace GameEngine
 			iter.second = nullptr;
 		}
 
-		Shaders.clear();
+		for (auto iter : Meshes) {
+			iter.second->Release();
+			delete iter.second;
+			iter.second = nullptr;
+		}
 
+		Shaders.clear();
 		Textures.clear();
+		Meshes.clear();
 	}
 
 	std::string ResourceManager::GetResourceDirectory() 

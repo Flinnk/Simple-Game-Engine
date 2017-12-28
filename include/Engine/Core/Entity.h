@@ -28,7 +28,7 @@ namespace GameEngine
 	public:
 		Entity();
 		virtual ~Entity();
-		
+
 		virtual void Deserialize(JSONObject& Data);//TODO:: Use own parser to be able to pass a const reference
 		virtual void Update(float DeltaTime);
 		virtual void Render(Renderer* Renderer);
@@ -60,6 +60,9 @@ namespace GameEngine
 
 
 		void DetachFromParent();
+
+		Scene* GetScene() const;
+
 	private:
 		Scene* OwnerScene = nullptr;
 		unsigned int ID = 0;

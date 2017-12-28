@@ -8,8 +8,12 @@ namespace GameEngine
 	class CameraComponent : public SceneComponent
 	{
 	public:
+		virtual void OnInitialize()override;
+
 		void SetCameraData(const Camera& Data);
 		Camera GetCameraData() const;
+		virtual void Deserialize(JSONObject& Data) override;
+
 	private:
 		Camera CameraData;
 	};

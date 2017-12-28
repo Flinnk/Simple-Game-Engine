@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\..\include\Engine\Audio\SoundManager.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Components\CameraComponent.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Components\ComponentFactory.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Components\SceneComponent.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Core\Application.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Core\BaseApplication.h" />
@@ -25,7 +26,9 @@
     <ClInclude Include="..\..\..\..\include\Engine\Engine.h" />
     <ClInclude Include="..\..\..\..\include\Engine\EngineMacros.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Entities\CameraEntity.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Entities\EntityFactory.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Graphics\IndexBuffer.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Graphics\Mesh.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Graphics\Shader.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Graphics\Texture.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Graphics\VertexArray.h" />
@@ -48,14 +51,13 @@
     <ClInclude Include="..\..\..\..\include\Engine\Utils\ResourceManager.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Utils\Stopwatch.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Utils\Time.h" />
-    <ClInclude Include="..\..\..\..\src\Engine\Components\ComponentFactory.h" />
-    <ClInclude Include="..\..\..\..\src\Engine\Entities\EntityFactory.h" />
     <ClInclude Include="..\..\..\..\src\Engine\Platform\Windows\WindowsGraphicContext.h" />
     <ClInclude Include="..\..\..\..\src\Engine\Platform\Windows\WindowsOpenGLContext.h" />
     <ClInclude Include="..\..\..\..\src\Engine\Renderer\CompiledShaders.h" />
     <ClInclude Include="..\..\..\..\src\Engine\Renderer\IGraphicBackend.h" />
     <ClInclude Include="..\..\..\..\src\Engine\Renderer\SpriteRenderer.h" />
     <ClInclude Include="..\..\..\..\src\Engine\Renderer\TextRenderer.h" />
+    <ClInclude Include="..\..\..\..\src\Engine\Utils\MeshLoader.h" />
     <ClInclude Include="..\..\..\..\src\Engine\Utils\SceneParser.h" />
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +75,7 @@
     <ClCompile Include="..\..\..\..\src\Engine\Entities\CameraEntity.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Entities\EntityFactory.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Graphics\IndexBuffer.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Graphics\Mesh.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Graphics\Shader.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Graphics\Texture.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Graphics\VertexArray.cpp" />
@@ -94,6 +97,7 @@
     <ClCompile Include="..\..\..\..\src\Engine\Utils\File.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Utils\JSON\JSON.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Utils\JSON\JSONValue.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Utils\MeshLoader.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Utils\ResourceManager.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Utils\SceneParser.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Utils\stb_image.cpp" />

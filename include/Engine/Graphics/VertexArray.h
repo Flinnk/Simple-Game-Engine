@@ -1,8 +1,9 @@
 #pragma once
 #include <Engine\Graphics\VertexBuffer.h>
-#include <Engine\Graphics\VertexBufferLayout.h>
 namespace GameEngine
 {
+	class VertexBufferLayout;
+
 	class VertexArray
 	{
 	public:

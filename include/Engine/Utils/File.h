@@ -17,7 +17,7 @@ namespace GameEngine {
 		* @param Path Absolute path to the file
 		* @return Content of the file
 		*/
-		static std::string ReadFile(std::string Path);//Support only Absolute path
+		static std::string ReadFile(const std::string& Path);//Support only Absolute path
 
 		/**
 		* Returns the executable's absolute path

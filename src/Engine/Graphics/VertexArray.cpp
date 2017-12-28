@@ -1,5 +1,5 @@
 #include <Engine\Graphics\VertexArray.h>
-
+#include <Engine\Graphics\VertexBufferLayout.h>
 namespace GameEngine
 {
 

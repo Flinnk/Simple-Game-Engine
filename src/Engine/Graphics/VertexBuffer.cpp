@@ -4,7 +4,7 @@
 namespace GameEngine
 {
 
-	VertexBuffer::VertexBuffer(const void* Data, const unsigned int Size)
+	VertexBuffer::VertexBuffer(const void* Data, const unsigned int Size) :DataSize(Size)
 	{
 		glGenBuffers(1, &ID);
 		glBindBuffer(GL_ARRAY_BUFFER, ID);
@@ -24,6 +24,13 @@ namespace GameEngine
 	void VertexBuffer::Unbind() const
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	}
+
+	void VertexBuffer::Draw() const
+	{
+
+		glDrawArrays(GL_TRIANGLES, 0, DataSize/(sizeof(float)*3));
 
 	}
 }

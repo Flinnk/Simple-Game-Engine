@@ -76,7 +76,7 @@ namespace GameEngine
 				JSONArray components = object[L"Components"]->AsArray();
 				for (int j = 0; j < components.size(); ++j)
 				{
-					JSONValue* componentValue = components[i];
+					JSONValue* componentValue = components[j];
 					if (!componentValue->IsObject())
 						break;
 

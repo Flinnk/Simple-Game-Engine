@@ -102,10 +102,6 @@ namespace GameEngine {
 		VertexBufferLayout Layout;
 		Layout.Push<float>(4);
 		VAO->AddBuffer(*VBO, Layout);
-
-		glEnable(GL_BLEND);
-		glDisable(GL_DEPTH_TEST);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
 	unsigned int SpriteRenderer::GetDrawCallStats()

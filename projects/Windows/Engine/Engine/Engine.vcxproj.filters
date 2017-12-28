@@ -198,9 +198,6 @@
     <ClInclude Include="..\..\..\..\include\Engine\Graphics\VertexBufferLayout.h">
       <Filter>Include\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\src\Engine\Entities\EntityFactory.h">
-      <Filter>Src\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\src\Engine\Utils\SceneParser.h">
       <Filter>Src\Utils</Filter>
     </ClInclude>
@@ -210,8 +207,17 @@
     <ClInclude Include="..\..\..\..\include\Engine\Utils\JSON\JSONValue.h">
       <Filter>Include\Utils\JSON</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\src\Engine\Components\ComponentFactory.h">
-      <Filter>Src\Components</Filter>
+    <ClInclude Include="..\..\..\..\include\Engine\Graphics\Mesh.h">
+      <Filter>Include\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\src\Engine\Utils\MeshLoader.h">
+      <Filter>Src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Entities\EntityFactory.h">
+      <Filter>Include\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Components\ComponentFactory.h">
+      <Filter>Include\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -331,6 +337,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\Engine\Components\ComponentFactory.cpp">
       <Filter>Src\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Graphics\Mesh.cpp">
+      <Filter>Src\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Utils\MeshLoader.cpp">
+      <Filter>Src\Utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

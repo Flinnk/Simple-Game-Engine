@@ -5,7 +5,7 @@
 namespace GameEngine
 {
 
-	std::string File::ReadFile(std::string Path)
+	std::string File::ReadFile(const std::string& Path)
 	{
 		std::string Content;
 		std::ifstream File(Path);

@@ -48,4 +48,16 @@ namespace GameEngine
 	{
 
 	}
+
+	void Component::OnInitialize()
+	{
+		Initialized = true;
+	}
+
+	bool Component::IsInitialized()
+	{
+		return Initialized;
+	}
+
+
 }

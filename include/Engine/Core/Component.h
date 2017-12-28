@@ -16,6 +16,7 @@ namespace GameEngine
 
 		virtual ~Component();
 
+		virtual void OnInitialize();
 		virtual void Deserialize(JSONObject& Data);//TODO:: Use own parser to be able to pass a const reference
 		virtual void Update(float DeltaTime);
 		virtual void Render(Renderer* Renderer);
@@ -23,9 +24,11 @@ namespace GameEngine
 		void SetOwner(Entity* Entity);
 		void Destroy();
 		bool IsDestroyed();
+		bool IsInitialized();
 	private:
 		Entity* Owner;
 		bool Destroyed = false;
+		bool Initialized = false;
 	};
 
 	typedef Component* (*ComponentInstantiator)();

@@ -81,6 +81,8 @@ namespace GameEngine
 	{
 		Component->SetOwner(this);
 		Components.push_back(Component);
+		if (OwnerScene && !Component->IsInitialized())
+			Component->OnInitialize();
 	}
 
 	void Entity::RemoveComponent(Component* ComponentToRemove, bool DestroyComponent)
@@ -242,7 +244,18 @@ namespace GameEngine
 	void Entity::SetScene(Scene* Scene)
 	{
 		OwnerScene = Scene;
+		for (Component* component : Components)
+		{
+			if (!component->IsInitialized())
+				component->OnInitialize();
+		}
 	}
+
+	Scene* Entity::GetScene() const
+	{
+		return OwnerScene;
+	}
+
 
 	void Entity::Deserialize(JSONObject& Data)
 	{
@@ -279,6 +292,7 @@ namespace GameEngine
 			}
 		}
 	}
+
 
 
 }

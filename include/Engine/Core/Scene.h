@@ -23,6 +23,7 @@ namespace GameEngine
 		void RemoveEntity(Entity* Entity, bool DeleteEntity = false);
 
 		CameraComponent* GetCamera() const;
+		void SetCamera(CameraComponent* Camera);
 
 	protected:
 		CameraComponent* SceneCamera;

@@ -61,6 +61,9 @@ namespace GameEngine
 		Vector2 Size = Engine::GetInstance().GetDisplaySize();
 		glViewport(0, 0, Size.x, Size.y);
 
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_DEPTH_TEST);
 
 		return true;
 	}
@@ -75,6 +78,7 @@ namespace GameEngine
 	{
 		glClearColor(0.0, 0.0, 0.0, 1.0);
 		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_DEPTH_BUFFER_BIT);
 	}
 
 	void WindowsOpenGLContext::Display()
