@@ -121,7 +121,9 @@ namespace GameEngine
 
 						++dataPointer;
 
-						*dataPointer = textCoord.y;
+						// NOTE: Texture coordinates are Y flipped upside-down.Invert the V texture coordinates to left hand system.
+
+						*dataPointer = 1.0f-textCoord.y;
 
 						++dataPointer;
 
