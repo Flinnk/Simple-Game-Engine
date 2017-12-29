@@ -7,6 +7,8 @@ namespace GameEngine
 {
 	class CameraComponent : public SceneComponent
 	{
+
+		RegisterComponentFactory(CameraComponent)
 	public:
 		virtual void OnInitialize()override;
 

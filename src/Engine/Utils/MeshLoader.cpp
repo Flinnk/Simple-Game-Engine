@@ -14,7 +14,9 @@ namespace GameEngine
 		{
 			std::vector<Vector3> vertices;
 			std::vector<Vector3> normals;
-			std::vector<unsigned int> indices;
+			std::vector<Vector3> textCoords;
+
+			std::vector<unsigned int> vertexIndices, normalIndices, textCoordIndices;
 
 			std::string line;
 			std::ifstream stream(Path);
@@ -43,50 +45,93 @@ namespace GameEngine
 						}
 						normals.push_back(vertex);
 					}
+					else if (character == "vt")
+					{
+						Vector3 vertex;
+						for (int i = 0; i < 3; ++i)
+						{
+							stringStream >> vertex.elements[i];
+						}
+						textCoords.push_back(vertex);
+					}
 					else if (character == "f")
 					{
-						unsigned int index = 0;
-						while (stringStream >> index)
-							indices.push_back(index);
+						std::string indices;
+
+						unsigned int vertexIndex, uvIndex, normalIndex;
+
+						while (stringStream >> indices)
+						{
+							int matches = sscanf(indices.c_str(), "%d/%d/%d", &vertexIndex, &uvIndex, &normalIndex);
+							if (matches != 3) {
+								return false;
+							}
+
+							vertexIndices.push_back(vertexIndex);
+							textCoordIndices.push_back(uvIndex);
+							normalIndices.push_back(normalIndex);
+						}
+
+						
 					}
 
 
 				}
 
-				if (indices.size() > 0 && vertices.size() > 0)
+				if ((vertexIndices.size() == normalIndices.size() && vertexIndices.size() == textCoordIndices.size()) && (vertexIndices.size() > 0 && vertices.size() > 0) && (normalIndices.size() > 0 && normals.size() > 0) && (textCoordIndices.size() > 0 && textCoords.size() > 0))
 				{
-					float* data = new float[indices.size() * 3];
+					float* data = new float[vertexIndices.size() * 8];
 					float* dataPointer = data;
 					int i = 0;
-					LogFormat("Size: %d\n", indices.size() * 3);
-					while (i < indices.size())
+					while (i < vertexIndices.size())
 					{
-						unsigned int index = indices[i] - 1;
-						Vector3& vertex = vertices[index];
+						unsigned int vertexIndex = vertexIndices[i] - 1;
+						unsigned int normalIndex = normalIndices[i] - 1;
+						unsigned int textCordIndex = textCoordIndices[i] - 1;
+
+						Vector3& vertex = vertices[vertexIndex];
+						Vector3& normal = normals[normalIndex];
+						Vector3& textCoord = textCoords[textCordIndex];
 
 						*dataPointer = vertex.x;
-						LogFormat("x: %f\n", *dataPointer);
 
 						++dataPointer;
 
 						*dataPointer = vertex.y;
-						LogFormat("y: %f\n", *dataPointer);
 
 						++dataPointer;
 
 						*dataPointer = vertex.z;
-						LogFormat("z: %f\n", *dataPointer);
+
+						++dataPointer;
+
+						*dataPointer = normal.x;
+
+						++dataPointer;
+
+						*dataPointer = normal.y;
+
+						++dataPointer;
+
+						*dataPointer = normal.z;
+
+						++dataPointer;
+
+						*dataPointer = textCoord.x;
+
+						++dataPointer;
+
+						*dataPointer = textCoord.y;
 
 						++dataPointer;
 
 						++i;
-						Log("\n");
 
 					}
 
 					dataPointer = nullptr;
 
-					loadedMesh = new Mesh(data, sizeof(float)*3*indices.size());
+					loadedMesh = new Mesh(data, sizeof(float) * 8 * vertexIndices.size());
 					delete data;
 				}
 

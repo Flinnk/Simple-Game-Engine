@@ -4,9 +4,9 @@
 
 namespace GameEngine
 {
-	RegisterEntityFactory(Entity)
+	ImplementEntityFactory(Entity)
 
-		bool Entity::IsDestroyed()
+	bool Entity::IsDestroyed()
 	{
 		return Destroyed;
 	}

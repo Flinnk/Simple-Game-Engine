@@ -29,8 +29,6 @@ namespace GameEngine
 
 	void VertexBuffer::Draw() const
 	{
-
-		glDrawArrays(GL_TRIANGLES, 0, DataSize/(sizeof(float)*3));
-
+		glDrawArrays(GL_TRIANGLES, 0, DataSize/(sizeof(float)*8));
 	}
 }

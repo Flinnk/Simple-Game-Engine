@@ -4,7 +4,7 @@
 namespace GameEngine
 {
 
-	RegisterEntityFactory(CameraEntity)
+	ImplementEntityFactory(CameraEntity)
 
 	CameraEntity::CameraEntity() : Entity()
 	{

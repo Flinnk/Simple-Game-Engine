@@ -1,6 +1,7 @@
 #include <Engine\Graphics\Shader.h>
 #include <GL\glew.h>
 #include <Engine\Math\Math.h>
+#include <Engine\Utils\Log.h>
 
 namespace GameEngine {
 
@@ -74,7 +75,7 @@ namespace GameEngine {
 			if (!success)
 			{
 				glGetShaderInfoLog(Object, 1024, 0, log);
-				//TODO: Log compilation error
+				Log(log);
 			}
 		}
 		else
@@ -83,7 +84,7 @@ namespace GameEngine {
 			if (!success)
 			{
 				glGetProgramInfoLog(Object, 1024, 0, log);
-				//TODO: Log compilation error
+				Log(log);
 			}
 		}
 

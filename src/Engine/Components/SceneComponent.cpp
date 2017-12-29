@@ -3,7 +3,7 @@
 #include <Engine\Components\ComponentFactory.h>
 namespace GameEngine
 {
-	RegisterComponentFactory(SceneComponent)
+	ImplementComponentFactory(SceneComponent)
 
 	Transform SceneComponent::GetTransform() const
 	{

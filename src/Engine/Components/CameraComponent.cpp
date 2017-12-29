@@ -4,7 +4,7 @@
 #include <Engine\Core\Scene.h>
 namespace GameEngine
 {
-	RegisterComponentFactory(CameraComponent)
+	ImplementComponentFactory(CameraComponent)
 
 		void CameraComponent::SetCameraData(const Camera& Data)
 	{

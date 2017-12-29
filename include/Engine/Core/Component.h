@@ -5,6 +5,16 @@
 
 namespace GameEngine
 {
+#define RegisterComponentFactory(Class) \
+	public:\
+	static Component* Instantiate()\
+	{\
+		return new Class();\
+	}\
+
+#define ImplementComponentFactory(Class) \
+	static bool Result = ComponentFactory::GetInstance().Register(std::string(#Class),&Class::Instantiate);
+
 	class Entity;
 	class Renderer;
 
@@ -33,12 +43,6 @@ namespace GameEngine
 
 	typedef Component* (*ComponentInstantiator)();
 
-#define RegisterComponentFactory(Class) \
-	static Component* Instantiate()\
-	{\
-		return new Class();\
-	}\
-	\
-	static bool Result = ComponentFactory::GetInstance().Register(std::string(#Class),&Instantiate);
+
 }
 

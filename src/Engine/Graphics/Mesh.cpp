@@ -11,6 +11,8 @@ namespace GameEngine
 		VAO = new VertexArray();
 		VertexBufferLayout Layout;
 		Layout.Push<float>(3);
+		Layout.Push<float>(3);
+		Layout.Push<float>(2);
 		VAO->AddBuffer(*VBO, Layout);
 	}
 
