@@ -1,6 +1,6 @@
 
 #include <Engine/Graphics/Texture.h>
-#include <GL\glew.h>
+#include <Engine/Graphics/OpenGL.h>
 
 namespace GameEngine {
 
@@ -16,7 +16,7 @@ namespace GameEngine {
 
 	void Texture::Generate(unsigned int width, unsigned int height, unsigned int channels, unsigned char* data)
 	{
-		glGenTextures(1, &ID);
+		GLCall(glGenTextures(1, &ID));
 
 		Width = width;
 		Height = height;
@@ -28,20 +28,20 @@ namespace GameEngine {
 		else if (channels == 4)
 			InternalFormat = ImageFormat = GL_RGBA;
 
-		glBindTexture(GL_TEXTURE_2D, ID);
-		glTexImage2D(GL_TEXTURE_2D, 0, InternalFormat, width, height, 0, ImageFormat, GL_UNSIGNED_BYTE, data);
+		GLCall(glBindTexture(GL_TEXTURE_2D, ID));
+		GLCall(glTexImage2D(GL_TEXTURE_2D, 0, InternalFormat, width, height, 0, ImageFormat, GL_UNSIGNED_BYTE, data));
 
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, WrapS);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, WrapT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, FilterMin);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, FilterMax);
+		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, WrapS));
+		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, WrapT));
+		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, FilterMin));
+		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, FilterMax));
 
-		glBindTexture(GL_TEXTURE_2D, 0);
+		GLCall(glBindTexture(GL_TEXTURE_2D, 0));
 	}
 
 	void Texture::Use() const
 	{
-		glBindTexture(GL_TEXTURE_2D, ID);
+		GLCall(glBindTexture(GL_TEXTURE_2D, ID));
 	}
 
 	unsigned int Texture::GetID() const
@@ -51,7 +51,7 @@ namespace GameEngine {
 
 	void Texture::Release()
 	{
-		glDeleteTextures(1, &ID);
+		GLCall(glDeleteTextures(1, &ID));
 		ID = 0;
 	}
 

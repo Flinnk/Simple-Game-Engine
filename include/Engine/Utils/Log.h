@@ -12,6 +12,7 @@ namespace GameEngine
 
 	/**
 	* Sends a text with a variable list of parameters to display in the debug output
+	* Example LogFormat("Some text with token %d", 123);
 	* @param Text to log
 	*/
 	void LogFormat(const char* Text, ...);

@@ -219,6 +219,9 @@
     <ClInclude Include="..\..\..\..\include\Engine\Components\ComponentFactory.h">
       <Filter>Include\Components</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\src\Engine\Graphics\OpenGL.h">
+      <Filter>Src\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\Engine\Audio\SoundManager.cpp">
@@ -343,6 +346,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\Engine\Utils\MeshLoader.cpp">
       <Filter>Src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Graphics\VertexBufferLayout.cpp">
+      <Filter>Src\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Graphics\OpenGL.cpp">
+      <Filter>Src\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,5 +1,4 @@
 #include <Engine\Renderer\SpriteRenderer.h>
-#include <GL\glew.h>
 #include <Engine\Graphics\Shader.h>
 #include <Engine\Graphics\Texture.h>
 #include <Engine\Math\Math.h>
@@ -10,6 +9,7 @@
 #include <Engine\Graphics\VertexBuffer.h>
 #include <Engine\Graphics\VertexBufferLayout.h>
 #include <Engine\Components\CameraComponent.h>
+#include <Engine\Graphics\OpenGL.h>
 
 namespace GameEngine {
 
@@ -100,7 +100,7 @@ namespace GameEngine {
 		VAO = new VertexArray();
 		VBO = new VertexBuffer(&vertices, 24 * sizeof(float));
 		VertexBufferLayout Layout;
-		Layout.Push<float>(4);
+		Layout.PushFloat(4);
 		VAO->AddBuffer(*VBO, Layout);
 	}
 

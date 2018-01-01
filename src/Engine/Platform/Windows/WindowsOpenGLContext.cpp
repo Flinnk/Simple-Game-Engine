@@ -40,7 +40,7 @@ namespace GameEngine
 		glewExperimental = true;
 		if (glewInit() != GLEW_OK)
 			return false;
-
+		glGetError();
 		int attribs[] =
 		{
 			WGL_CONTEXT_MAJOR_VERSION_ARB, 3,

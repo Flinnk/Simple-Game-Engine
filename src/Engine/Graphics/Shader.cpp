@@ -1,5 +1,5 @@
 #include <Engine\Graphics\Shader.h>
-#include <GL\glew.h>
+#include <Engine\Graphics\OpenGL.h>
 #include <Engine\Math\Math.h>
 #include <Engine\Utils\Log.h>
 
@@ -18,7 +18,7 @@ namespace GameEngine {
 
 	void Shader::Use() const
 	{
-		glUseProgram(ID);
+		GLCall(glUseProgram(ID));
 	}
 
 	bool Shader::Compile(const char* VertexShaderCode, const char* FragmentShaderCode)
@@ -26,40 +26,40 @@ namespace GameEngine {
 		int VertexShader, FragmentShader;
 		if (!CompileShader(GL_VERTEX_SHADER, VertexShaderCode, VertexShader))
 		{
-			glDeleteShader(VertexShader);
+			GLCall(glDeleteShader(VertexShader));
 			return false;
 		}
 
 		if (!CompileShader(GL_FRAGMENT_SHADER, FragmentShaderCode, FragmentShader))
 		{
-			glDeleteShader(VertexShader);
-			glDeleteShader(FragmentShader);
+			GLCall(glDeleteShader(VertexShader));
+			GLCall(glDeleteShader(FragmentShader));
 			return false;
 		}
 
-		ID = glCreateProgram();
-		glAttachShader(ID, VertexShader);
-		glAttachShader(ID, FragmentShader);
+		ID = GLCall(glCreateProgram());
+		GLCall(glAttachShader(ID, VertexShader));
+		GLCall(glAttachShader(ID, FragmentShader));
 
-		glLinkProgram(ID);
+		GLCall(glLinkProgram(ID));
 		if (!CheckCompilationErrors(GL_PROGRAM, ID)) {
-			glDeleteShader(VertexShader);
-			glDeleteShader(FragmentShader);
+			GLCall(glDeleteShader(VertexShader));
+			GLCall(glDeleteShader(FragmentShader));
 			return false;
 		}
 
-		glDeleteShader(VertexShader);
-		glDeleteShader(FragmentShader);
+		GLCall(glDeleteShader(VertexShader));
+		GLCall(glDeleteShader(FragmentShader));
 
 		return true;
 	}
 
 	bool Shader::CompileShader(int ShaderType, const char* ShaderSource, int &ShaderID)
 	{
-		int CreatedShader = glCreateShader(ShaderType);
+		int CreatedShader = GLCall(glCreateShader(ShaderType));
 		const GLchar* Source = ShaderSource;
-		glShaderSource(CreatedShader, 1, &Source, 0);
-		glCompileShader(CreatedShader);
+		GLCall(glShaderSource(CreatedShader, 1, &Source, 0));
+		GLCall(glCompileShader(CreatedShader));
 		bool Result = CheckCompilationErrors(ShaderType, CreatedShader);
 		ShaderID = Result ? CreatedShader : -1;
 		return Result;
@@ -71,19 +71,19 @@ namespace GameEngine {
 		char log[1024];
 		if (ShaderType != GL_PROGRAM)
 		{
-			glGetShaderiv(Object, GL_COMPILE_STATUS, &success);
+			GLCall(glGetShaderiv(Object, GL_COMPILE_STATUS, &success));
 			if (!success)
 			{
-				glGetShaderInfoLog(Object, 1024, 0, log);
+				GLCall(glGetShaderInfoLog(Object, 1024, 0, log));
 				Log(log);
 			}
 		}
 		else
 		{
-			glGetProgramiv(Object, GL_LINK_STATUS, &success);
+			GLCall(glGetProgramiv(Object, GL_LINK_STATUS, &success));
 			if (!success)
 			{
-				glGetProgramInfoLog(Object, 1024, 0, log);
+				GLCall(glGetProgramInfoLog(Object, 1024, 0, log));
 				Log(log);
 			}
 		}
@@ -95,19 +95,19 @@ namespace GameEngine {
 	void Shader::SetVector3(const char* UniformName, Vector3 value) const
 	{
 
-		glUniform3f(glGetUniformLocation(ID, UniformName), value.x, value.y, value.z);
+		GLCall(glUniform3f(glGetUniformLocation(ID, UniformName), value.x, value.y, value.z));
 	}
 
 	void Shader::SetInteger(const char* UniformName, int value) const
 	{
 
-		glUniform1i(glGetUniformLocation(ID, UniformName), value);
+		GLCall(glUniform1i(glGetUniformLocation(ID, UniformName), value));
 	}
 
 	void Shader::SetMatrix4(const char* UniformName, Matrix4 value) const
 	{
 
-		glUniformMatrix4fv(glGetUniformLocation(ID, UniformName), 1, false, value.elements);
+		GLCall(glUniformMatrix4fv(glGetUniformLocation(ID, UniformName), 1, false, value.elements));
 	}
 
 	unsigned int Shader::GetID() const {
@@ -116,7 +116,7 @@ namespace GameEngine {
 
 	void Shader::Release()
 	{
-		glDeleteProgram(ID);
+		GLCall(glDeleteProgram(ID));
 		ID = 0;
 	}
 }

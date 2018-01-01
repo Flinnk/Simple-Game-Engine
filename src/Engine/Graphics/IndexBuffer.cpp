@@ -1,29 +1,29 @@
 #include <Engine\Graphics\IndexBuffer.h>
-#include <GL\glew.h>
+#include <Engine\Graphics\OpenGL.h>
 
 namespace GameEngine
 {
 	IndexBuffer::IndexBuffer(const unsigned int* Indices, const unsigned int IndicesCount): Count(IndicesCount)
 	{
-		glGenBuffers(1, &ID);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ID);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, Count * sizeof(unsigned int), Indices, GL_STATIC_DRAW);
+		GLCall(glGenBuffers(1, &ID));
+		GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ID));
+		GLCall(glBufferData(GL_ELEMENT_ARRAY_BUFFER, Count * sizeof(unsigned int), Indices, GL_STATIC_DRAW));
 	}
 
 	IndexBuffer::~IndexBuffer()
 	{
-		glDeleteBuffers(1, &ID);
+		GLCall(glDeleteBuffers(1, &ID));
 	}
 
 	void IndexBuffer::Bind() const
 	{
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ID);
+		GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ID));
 
 	}
 
 	void IndexBuffer::Unbind() const
 	{
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+		GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
 
 	}
 }

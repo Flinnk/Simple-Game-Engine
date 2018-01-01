@@ -5,7 +5,7 @@
 namespace GameEngine
 {
 
-	#ifdef ASSERT_ENABLE
+	#ifdef ENGINE_DEBUG
 
 	#define DebugBreak() __asm {int 3}
 
@@ -13,7 +13,7 @@ namespace GameEngine
 		if(expr){} \
 		else \
 		{ \
-			GameEngine::LogFormat("Assert %s Failed at: %s at line %d",#expr,__FILE__,__LINE__); \
+			GameEngine::LogFormat("Assert %s Failed at: %s at line %d\n",#expr,__FILE__,__LINE__); \
 			DebugBreak(); \
 		}
 	#else 

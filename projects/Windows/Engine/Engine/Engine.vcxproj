@@ -51,6 +51,7 @@
     <ClInclude Include="..\..\..\..\include\Engine\Utils\ResourceManager.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Utils\Stopwatch.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Utils\Time.h" />
+    <ClInclude Include="..\..\..\..\src\Engine\Graphics\OpenGL.h" />
     <ClInclude Include="..\..\..\..\src\Engine\Platform\Windows\WindowsGraphicContext.h" />
     <ClInclude Include="..\..\..\..\src\Engine\Platform\Windows\WindowsOpenGLContext.h" />
     <ClInclude Include="..\..\..\..\src\Engine\Renderer\CompiledShaders.h" />
@@ -76,10 +77,12 @@
     <ClCompile Include="..\..\..\..\src\Engine\Entities\EntityFactory.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Graphics\IndexBuffer.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Graphics\Mesh.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Graphics\OpenGL.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Graphics\Shader.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Graphics\Texture.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Graphics\VertexArray.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Graphics\VertexBuffer.cpp" />
+    <ClCompile Include="..\..\..\..\src\Engine\Graphics\VertexBufferLayout.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Math\Matrix4.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Math\Vector2.cpp" />
     <ClCompile Include="..\..\..\..\src\Engine\Math\Vector3.cpp" />
@@ -158,7 +161,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>ASSERT_ENABLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ENGINE_DEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Lib>
       <AdditionalDependencies>glew32s.lib;irrKlang.lib;opengl32.lib;freetype.lib;XInput.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -178,6 +181,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>ENGINE_RELEASE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

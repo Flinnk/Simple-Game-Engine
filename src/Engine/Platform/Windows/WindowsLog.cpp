@@ -6,9 +6,9 @@
 
 namespace GameEngine
 {
+#ifdef ENGINE_DEBUG
 	void Log(const char* Text)
 	{
-		OutputDebugStringA(Text);
 		std::cout << Text << std::endl;
 	}
 
@@ -22,4 +22,15 @@ namespace GameEngine
 		va_end(valist);
 		Log(Buffer);
 	}
+#else
+	void Log(const char* Text)
+	{
+
+	}
+
+	void LogFormat(const char* Text, ...)
+	{
+
+	}
+#endif
 }
