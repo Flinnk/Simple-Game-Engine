@@ -68,7 +68,7 @@ namespace GameEngine
 		Entity* ComponentOwner = GetOwner();
 		if (ComponentOwner)
 		{
-			return (ComponentOwner->GetAbsoluteScale() + ComponentTransform.Scale);
+			return (ComponentOwner->GetAbsoluteScale() * ComponentTransform.Scale);
 		}
 		else
 		{

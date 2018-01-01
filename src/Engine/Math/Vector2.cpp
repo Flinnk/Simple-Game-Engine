@@ -1,11 +1,14 @@
 #include  <Engine\Math\Utils.h>
 #include  <Engine\Math\Vector2.h>
+#include  <Engine\Math\Vector3.h>
 
 namespace GameEngine
 {
 
 	Vector2::Vector2() : x(0.0f), y(0.0f) {}
 	Vector2::Vector2(float _x, float _y) : x(_x), y(_y) {}
+
+	Vector2::Vector2(const Vector3& vector) : x(vector.x), y(vector.y) {}
 
 	Vector2 Vector2::operator-()
 	{
@@ -53,9 +56,17 @@ namespace GameEngine
 		return Result;
 	}
 
+	Vector2& Vector2::operator=(const Vector3& vector)
+	{
+		x = vector.x;
+		y = vector.y;
+		return *this;
+	}
+
+
 	Vector2 Vector2::Normalize()
 	{
-		Vector2 NormalizedVector (0,0);
+		Vector2 NormalizedVector(0, 0);
 		float VectorLength = Length();
 
 		NormalizedVector.x = x / VectorLength;

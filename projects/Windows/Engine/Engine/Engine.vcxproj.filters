@@ -222,6 +222,15 @@
     <ClInclude Include="..\..\..\..\src\Engine\Graphics\OpenGL.h">
       <Filter>Src\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Components\SpriteComponent.h">
+      <Filter>Include\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\src\Engine\Components\ComponentsInclude.h">
+      <Filter>Src\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\src\Engine\Entities\EntityIncludes.h">
+      <Filter>Src\Entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\Engine\Audio\SoundManager.cpp">
@@ -352,6 +361,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\Engine\Graphics\OpenGL.cpp">
       <Filter>Src\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Components\SpriteComponent.cpp">
+      <Filter>Src\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

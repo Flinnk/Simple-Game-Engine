@@ -10,7 +10,7 @@ namespace GameEngine
 {
 	ResourceManager::ResourceManager() 
 	{
-		std::string ExecutionDirectory = File::GetExecutionDirectory();
+		std::string& ExecutionDirectory = File::GetExecutionDirectory();
 		ResourceDirectory = ExecutionDirectory.substr(0,ExecutionDirectory.find_last_of("\\")) + "\\Resources\\";
 	}
 	ResourceManager::~ResourceManager() 
@@ -25,7 +25,7 @@ namespace GameEngine
 		return Instance;
 	}
 
-	Shader* ResourceManager::LoadShader(std::string VertexSourceCode, std::string FragmentSourceCode, std::string ResourceID)//TODO: Use path instead of provided string as id?
+	Shader* ResourceManager::LoadShader(std::string& VertexSourceCode, std::string& FragmentSourceCode, std::string& ResourceID)//TODO: Use path instead of provided string as id?
 	{
 		if (Shaders.find(ResourceID) == Shaders.end())//Not found
 		{
@@ -49,7 +49,7 @@ namespace GameEngine
 		}
 	}
 
-	Shader* ResourceManager::GetShader(std::string ResourceID)
+	Shader* ResourceManager::GetShader(std::string& ResourceID)
 	{
 		if (Shaders.find(ResourceID) == Shaders.end())//Not found
 			return nullptr;
@@ -57,7 +57,7 @@ namespace GameEngine
 	}
 
 
-	const Texture* ResourceManager::LoadTexture(std::string Path, std::string ResourceID)
+	const Texture* ResourceManager::LoadTexture(std::string& Path, std::string& ResourceID)
 	{
 		if (Textures.find(ResourceID) == Textures.end())//Not found
 		{
@@ -82,14 +82,14 @@ namespace GameEngine
 		}
 	}
 
-	const Texture* ResourceManager::GetTexture(std::string ResourceID)
+	const Texture* ResourceManager::GetTexture(std::string& ResourceID)
 	{
 		if (Textures.find(ResourceID) == Textures.end())//Not found
 			return nullptr;
 		return Textures[ResourceID];
 	}
 
-	const Mesh* ResourceManager::LoadMesh(std::string Path, std::string ResourceID)
+	const Mesh* ResourceManager::LoadMesh(std::string& Path, std::string& ResourceID)
 	{
 		if (Textures.find(ResourceID) == Textures.end())//Not found
 		{
@@ -110,7 +110,7 @@ namespace GameEngine
 		}
 	}
 
-	const Mesh* ResourceManager::GetMesh(std::string ResourceID)
+	const Mesh* ResourceManager::GetMesh(std::string& ResourceID)
 	{
 		if (Meshes.find(ResourceID) == Meshes.end())//Not found
 			return nullptr;
@@ -142,7 +142,7 @@ namespace GameEngine
 		Meshes.clear();
 	}
 
-	std::string ResourceManager::GetResourceDirectory() 
+	std::string& ResourceManager::GetResourceDirectory() 
 	{
 		return ResourceDirectory;
 	}

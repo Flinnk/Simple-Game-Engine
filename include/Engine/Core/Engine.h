@@ -88,6 +88,8 @@ namespace GameEngine {
 		*/
 		void Wait(double Seconds);
 
+		void RegisterFactoryTypes();
+
 		/** Target time in milliseconds for the duration of the frame lock */
 		double TargetTimePerFrame = (1.0f/60.0f);
 

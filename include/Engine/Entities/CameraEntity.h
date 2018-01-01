@@ -6,7 +6,7 @@ namespace GameEngine
 {
 	class CameraEntity : public Entity
 	{
-		RegisterEntityFactory(CameraEntity)
+		DeclareEntityFactory(CameraEntity)
 
 	public:
 		virtual void Deserialize(JSONObject& Data)override;

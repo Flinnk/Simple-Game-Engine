@@ -223,7 +223,7 @@ namespace GameEngine
 	{
 		if (Parent)
 		{
-			return (Parent->GetAbsoluteScale() + EntityTransform.Scale);
+			return (Parent->GetAbsoluteScale() * EntityTransform.Scale);
 		}
 		else
 		{
@@ -288,7 +288,7 @@ namespace GameEngine
 				for (int i = 0; i < 3; ++i) {
 					deserializeScale.elements[i] = scale[i]->AsNumber();
 				}
-				SetRelativePosition(deserializeScale);
+				SetRelativeScale(deserializeScale);
 			}
 		}
 	}

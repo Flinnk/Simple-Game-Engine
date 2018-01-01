@@ -256,8 +256,14 @@ namespace GameEngine {
 				GraphicBackend->Resize(Width, Height);
 
 				//MessageBoxA(0, (char*)glGetString(GL_VERSION), "OPENGL VERSION", 0);
-				Shader* SpriteShader = ResourceManager::GetInstance().LoadShader(std::string(DefaultVertexShader), std::string(DefaultFragmentShader), "SpriteShader");
-				Shader* TextShader = ResourceManager::GetInstance().LoadShader(std::string(TextVertexShader), std::string(TextFragmentShader), "TextShader");
+				std::string SpriteVertexCode(DefaultVertexShader);
+				std::string SpriteFragCode(DefaultFragmentShader); 
+				std::string TextVertexCode(TextVertexShader);
+				std::string TextFragCode(TextFragmentShader);
+				std::string SpriteShaderID("SpriteShader");
+				std::string TextShaderID("TextShader");
+				Shader* SpriteShader = ResourceManager::GetInstance().LoadShader(SpriteVertexCode, SpriteFragCode, SpriteShaderID);
+				Shader* TextShader = ResourceManager::GetInstance().LoadShader(TextVertexCode, TextFragCode, TextShaderID);
 				if (SpriteShader && TextShader) {
 					Render = new Renderer(SpriteShader, TextShader);
 				}
@@ -305,6 +311,11 @@ namespace GameEngine {
 
 	void WindowsGraphicContext::Release() {
 
+		if (Render)
+			Render->Release();
+		delete Render;
+		Render = nullptr;
+
 		ReleaseDC(WindowHandle, DeviceContext);
 
 		if (GraphicBackend) {
@@ -319,10 +330,7 @@ namespace GameEngine {
 		DeviceContext = nullptr;
 		GraphicBackend = nullptr;
 
-		if (Render)
-			Render->Release();
-		delete Render;
-		Render = nullptr;
+		
 	}
 
 	bool WindowsGraphicContext::HasToCLose() {

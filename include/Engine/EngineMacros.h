@@ -6,3 +6,5 @@
 															}\
 												}\
 
+#define RegisterToFactory(Class)\
+	Class::Register();

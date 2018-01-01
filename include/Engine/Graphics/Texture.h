@@ -19,6 +19,9 @@ namespace GameEngine {
 
 		void Release();
 
+		unsigned int GetWidth() const;
+		unsigned int GetHeight() const;
+
 		unsigned int GetID() const;
 	protected:
 		unsigned int ID = -1;

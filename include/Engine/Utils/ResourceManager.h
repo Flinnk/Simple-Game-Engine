@@ -22,18 +22,18 @@ namespace GameEngine
 
 		static ResourceManager& GetInstance();
 
-		Shader* LoadShader(std::string VertexSourceCode, std::string FragmentSourceCode, std::string ResourceID);
-		Shader* GetShader(std::string ResourceID);
+		Shader* LoadShader(std::string& VertexSourceCode, std::string& FragmentSourceCode, std::string& ResourceID);
+		Shader* GetShader(std::string& ResourceID);
 
-		const Texture* LoadTexture(std::string Path, std::string ResourceID);
-		const Texture* GetTexture(std::string ResourceID);
+		const Texture* LoadTexture(std::string& Path, std::string& ResourceID);
+		const Texture* GetTexture(std::string& ResourceID);
 
-		const Mesh* LoadMesh(std::string Path, std::string ResourceID);
-		const Mesh* GetMesh(std::string ResourceID);
+		const Mesh* LoadMesh(std::string& Path, std::string& ResourceID);
+		const Mesh* GetMesh(std::string& ResourceID);
 
 		void Clear();
 
-		std::string GetResourceDirectory();
+		std::string& GetResourceDirectory();
 
 	private:
 		ResourceManager();

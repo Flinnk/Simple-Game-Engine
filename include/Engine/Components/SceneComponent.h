@@ -8,7 +8,7 @@ namespace GameEngine
 	class SceneComponent : public Component
 	{
 
-		RegisterComponentFactory(SceneComponent)
+		DeclareComponentFactory(SceneComponent)
 	public:
 
 		virtual void Deserialize(JSONObject& Data) override;

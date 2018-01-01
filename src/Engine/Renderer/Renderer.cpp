@@ -1,7 +1,6 @@
 #include <Engine\Renderer\Renderer.h>
 #include <Engine\Renderer\SpriteRenderer.h>
 #include <Engine\Renderer\TextRenderer.h>
-
 namespace GameEngine {
 
 	Renderer::Renderer(Shader* SpriteShader, Shader* TextShader)

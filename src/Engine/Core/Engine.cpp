@@ -9,6 +9,11 @@
 #include <Engine\Audio\SoundManager.h>
 #include <Engine\Utils\ResourceManager.h>
 
+#include <Engine\EngineMacros.h>
+#include <Engine\Components\ComponentsInclude.h>
+#include <Engine\Entities\EntityIncludes.h>
+
+
 extern void UpdatePlatformInput(); //TODO: Maybe create an IPlatform class to handle platofrm specific events
 
 namespace GameEngine {
@@ -29,7 +34,10 @@ namespace GameEngine {
 	//Main Loop
 	void Engine::Run()
 	{
+
 		//Initialization
+		RegisterFactoryTypes();
+
 		GraphicContext = CreateGraphicContext();
 		SoundManager::GetInstance().Init();
 		CurrentApplication = GetApplicationInstance();
@@ -79,9 +87,9 @@ namespace GameEngine {
 		}
 
 		//Resource release
-		GraphicContext->Release();
 		SoundManager::GetInstance().Release();
 		ResourceManager::GetInstance().Clear();
+		GraphicContext->Release();
 
 		CurrentApplication->OnEnd();
 
@@ -128,6 +136,16 @@ namespace GameEngine {
 	void Engine::Exit()
 	{
 		CloseEngine = true;
+	}
+
+	void Engine::RegisterFactoryTypes()
+	{
+		RegisterToFactory(SceneComponent);
+		RegisterToFactory(CameraComponent);
+		RegisterToFactory(SpriteComponent);
+
+		RegisterToFactory(Entity);
+		RegisterToFactory(CameraEntity);
 	}
 
 }

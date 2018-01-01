@@ -8,17 +8,23 @@
 namespace GameEngine
 {
 
-	typedef Entity*(*EntityInstantiator)();
+typedef Entity*(*EntityInstantiator)();
 
-#define RegisterEntityFactory(Class) \
+#define DeclareEntityFactory(Class) \
 	public:\
-	static Entity* Instantiate()\
-	{\
-		return new Class();\
-	}\
+	static Entity* Instantiate();\
+	static void Register();
 
-#define ImplementEntityFactory(Class)\
-	static bool Result = EntityFactory::GetInstance().Register(std::string(#Class), &Class::Instantiate);
+#define ImplementEntityFactory(Class) \
+		Entity* Class::Instantiate()\
+		{\
+			return new Class();\
+		}\
+		\
+		 void Class::Register()\
+		{\
+			EntityFactory::GetInstance().Register(std::string(#Class), &Class::Instantiate);\
+		}
 
 	class Renderer;
 	class Scene;
@@ -27,7 +33,7 @@ namespace GameEngine
 		friend class Scene;
 		friend class EntityFactory;
 
-		RegisterEntityFactory(Entity)
+		DeclareEntityFactory(Entity)
 
 	public:
 		Entity();

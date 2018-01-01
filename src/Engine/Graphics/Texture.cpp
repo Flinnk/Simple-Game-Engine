@@ -55,4 +55,14 @@ namespace GameEngine {
 		ID = 0;
 	}
 
+	unsigned int Texture::GetWidth() const
+	{
+		return Width;
+	}
+
+	unsigned int Texture::GetHeight() const
+	{
+		return Height;
+	}
+
 }

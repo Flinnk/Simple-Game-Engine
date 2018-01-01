@@ -2,6 +2,8 @@
 
 namespace GameEngine
 {
+	struct Vector3;
+
 	struct Vector2 {
 		union
 		{
@@ -11,6 +13,7 @@ namespace GameEngine
 
 		Vector2();
 		Vector2(float _x, float _y);
+		Vector2(const Vector3& vector);
 		Vector2 operator*(float scalar);
 		Vector2 operator+(float scalar);
 
@@ -18,6 +21,7 @@ namespace GameEngine
 		Vector2 operator+(const Vector2& other);
 		Vector2 operator-(const Vector2& other);
 		Vector2 operator-();
+		Vector2& operator=(const Vector3& vector);
 
 		Vector2 Normalize();
 		float Dot(Vector2& other);
