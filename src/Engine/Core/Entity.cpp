@@ -1,19 +1,20 @@
 #include <Engine\Core\Entity.h>
 #include <Engine\Core\Scene.h>
 #include <Engine\Entities\EntityFactory.h>
-
+#include <Engine\Components\SceneComponent.h>
 namespace GameEngine
 {
 	ImplementEntityFactory(Entity)
 
-	bool Entity::IsDestroyed()
+		bool Entity::IsDestroyed()
 	{
 		return Destroyed;
 	}
 
 	Entity::Entity()
 	{
-
+		TransformComponent = new SceneComponent();
+		AddComponent(TransformComponent);
 	}
 
 	Entity::~Entity()
@@ -111,7 +112,8 @@ namespace GameEngine
 	{
 		Childs.push_back(Entity);
 		Entity->Parent = this;
-		Entity->EntityTransform.Position = this->GetAbsolutePosition()*-1;
+		if (Entity->TransformComponent)
+			Entity->TransformComponent->SetRelativePosition(this->GetAbsolutePosition()*-1);
 		Entity->OwnerScene = OwnerScene;//Added for deserialization 
 
 		if (OwnerScene)
@@ -131,7 +133,8 @@ namespace GameEngine
 				RemovedEntity = *it;
 				it = Childs.erase(it);
 				found = true;
-				RemovedEntity->EntityTransform.Position = RemovedEntity->GetAbsolutePosition();
+				if (RemovedEntity->TransformComponent)
+					RemovedEntity->TransformComponent->SetRelativePosition(RemovedEntity->GetAbsolutePosition());
 				RemovedEntity->Parent = nullptr;
 
 				if (OwnerScene)
@@ -164,12 +167,13 @@ namespace GameEngine
 
 	Transform Entity::GetTransform()
 	{
-		return EntityTransform;
+		return TransformComponent ? TransformComponent->GetTransform() : Transform();
 	}
 
 	void Entity::SetTransform(const Transform& Value)
 	{
-		EntityTransform = Value;
+		if (TransformComponent)
+			TransformComponent->SetTransform(Value);
 	}
 
 
@@ -177,68 +181,71 @@ namespace GameEngine
 	{
 		if (Parent)
 		{
-			return (Parent->GetAbsolutePosition() + EntityTransform.Position);
+			return (Parent->GetAbsolutePosition() + GetTransform().Position);
 		}
 		else
 		{
-			return EntityTransform.Position;
+			return GetTransform().Position;
 		}
 	}
 
 	Vector3 Entity::GetRelativePosition()
 	{
-		return EntityTransform.Position;
+		return GetTransform().Position;
 	}
 
 
 
 	void Entity::SetRelativePosition(const Vector3& Value)
 	{
-		EntityTransform.Position = Value;
+		if (TransformComponent)
+			TransformComponent->SetRelativePosition(Value);
 	}
 
 	Vector3 Entity::GetAbsoluteRotation()
 	{
 		if (Parent)
 		{
-			return (Parent->GetAbsoluteRotation() + EntityTransform.Rotation);
+			return (Parent->GetAbsoluteRotation() + GetTransform().Rotation);
 		}
 		else
 		{
-			return EntityTransform.Rotation;
+			return GetTransform().Rotation;
 		}
 	}
 
 	Vector3 Entity::GetRelativeRotation()
 	{
-		return EntityTransform.Rotation;
+		return GetTransform().Rotation;
 	}
 
 	void Entity::SetRelativeRotation(const Vector3& Value)
 	{
-		EntityTransform.Rotation = Value;
+		if (TransformComponent)
+			TransformComponent->SetRelativeRotation(Value);
 	}
 
 	Vector3 Entity::GetAbsoluteScale()
 	{
 		if (Parent)
 		{
-			return (Parent->GetAbsoluteScale() * EntityTransform.Scale);
+			return (Parent->GetAbsoluteScale() * GetTransform().Scale);
 		}
 		else
 		{
-			return EntityTransform.Scale;
+			return GetTransform().Scale;
 		}
 	}
 
 	Vector3 Entity::GetRelativeScale()
 	{
-		return EntityTransform.Scale;
+		return GetTransform().Scale;
 	}
 
 	void Entity::SetRelativeScale(const Vector3& Value)
 	{
-		EntityTransform.Scale = Value;
+		if (TransformComponent)
+			TransformComponent->SetRelativeScale(Value);
 	}
 
 	void Entity::SetScene(Scene* Scene)
@@ -259,38 +266,8 @@ namespace GameEngine
 
 	void Entity::Deserialize(JSONObject& Data)
 	{
-		if (Data.find(L"Transform") != Data.end() && Data[L"Transform"]->IsObject()) {
-			JSONObject transform = Data[L"Transform"]->AsObject();
-			if (transform.find(L"Position") != transform.end() && transform[L"Position"]->IsArray())
-			{
-				JSONArray position = transform[L"Position"]->AsArray();
-				Vector3 deserializePosition;
-				for (int i = 0; i < 3; ++i) {
-					deserializePosition.elements[i] = position[i]->AsNumber();
-				}
-				SetRelativePosition(deserializePosition);
-			}
-
-			if (transform.find(L"Rotation") != transform.end() && transform[L"Rotation"]->IsArray())
-			{
-				JSONArray rotation = transform[L"Rotation"]->AsArray();
-				Vector3 deserializeRotation;
-				for (int i = 0; i < 3; ++i) {
-					deserializeRotation.elements[i] = rotation[i]->AsNumber();
-				}
-				SetRelativeRotation(deserializeRotation);
-			}
-
-			if (transform.find(L"Scale") != transform.end() && transform[L"Scale"]->IsArray())
-			{
-				JSONArray scale = transform[L"Scale"]->AsArray();
-				Vector3 deserializeScale;
-				for (int i = 0; i < 3; ++i) {
-					deserializeScale.elements[i] = scale[i]->AsNumber();
-				}
-				SetRelativeScale(deserializeScale);
-			}
-		}
+		if (TransformComponent)
+			TransformComponent->Deserialize(Data);
 	}
 
 

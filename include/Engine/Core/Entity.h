@@ -28,6 +28,7 @@ typedef Entity*(*EntityInstantiator)();
 
 	class Renderer;
 	class Scene;
+	class SceneComponent;
 
 	class Entity {
 		friend class Scene;
@@ -78,12 +79,13 @@ typedef Entity*(*EntityInstantiator)();
 		unsigned int ID = 0;
 
 		void SetScene(Scene* Scene);
-		Transform EntityTransform;
 
 		std::vector<Component*> Components;
 		std::vector<Entity*> Childs;
 		Entity* Parent = nullptr;
 		bool Destroyed = false;
+
+		SceneComponent* TransformComponent;
 
 	};
 
