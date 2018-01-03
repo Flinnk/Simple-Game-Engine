@@ -143,21 +143,21 @@ namespace GameEngine
 	}
 
 	Matrix4 Matrix4::Perspective(float FieldOfView, float AspectRatio, float NearPlane, float FarPlane)
-	{	
+	{
 		//https://i.stack.imgur.com/oesw9.jpg
 		Matrix4 Result(1.0f);
-
-		float q = 1.0f / tan(ToRadians(0.5f * FieldOfView));
+		float q = 1.0f / tan(ToRadians(FieldOfView)*0.5f);
 		float a = q / AspectRatio;
 
-		float b = (NearPlane + FarPlane) / (NearPlane - FarPlane);
-		float c = (2.0f * NearPlane * FarPlane) / (NearPlane - FarPlane);
+		float b = (NearPlane + FarPlane) / (FarPlane - NearPlane);
+		float c = (2.0f * NearPlane * FarPlane) / (FarPlane - NearPlane);
+		float tanHalfFovy = tan(FieldOfView / 2.0f);
 
-		Result.elements[0 + 0 * 4] = a;
-		Result.elements[1 + 1 * 4] = q;
-		Result.elements[2 + 2 * 4] = b;
+		Result.elements[0 + 0 * 4] = 1 / (AspectRatio*tanHalfFovy);
+		Result.elements[1 + 1 * 4] = 1 / tanHalfFovy;
+		Result.elements[2 + 2 * 4] = -b;
 		Result.elements[2 + 3 * 4] = -1.0f;
-		Result.elements[3 + 2 * 4] = c;
+		Result.elements[3 + 2 * 4] = -c;
 
 		return Result;
 	}
@@ -200,4 +200,31 @@ namespace GameEngine
 	{
 		return Multiply(*this, Right);
 	}
+
+	Matrix4 Matrix4::LookAt(const Vector3& Position, const Vector3& Target, const Vector3& Up)
+	{
+		Matrix4 Result = Matrix4::Identity();
+
+		Vector3 f = (Target - Position).Normalize();
+		Vector3 s = Vector3::Cross(f, Up).Normalize();
+		Vector3 u = Vector3::Cross(s, f);
+
+		Result.elements[0] = s.x;
+		Result.elements[4] = s.y;
+		Result.elements[8] = s.z;
+		Result.elements[1] = u.x;
+		Result.elements[5] = u.y;
+		Result.elements[9] = u.z;
+		Result.elements[2] = -f.x;
+		Result.elements[6] = -f.y;
+		Result.elements[10] = -f.z;
+		Result.elements[12] = -Vector3::Dot(s, Position);
+		Result.elements[13] = -Vector3::Dot(u, Position);
+		Result.elements[14] = Vector3::Dot(f, Position);
+
+		return Result;
+	}
+	
+
+
 }

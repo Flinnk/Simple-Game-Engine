@@ -231,6 +231,9 @@
     <ClInclude Include="..\..\..\..\src\Engine\Entities\EntityIncludes.h">
       <Filter>Src\Entities</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Entities\Free3DCamera.h">
+      <Filter>Include\Entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\Engine\Audio\SoundManager.cpp">
@@ -364,6 +367,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\Engine\Components\SpriteComponent.cpp">
       <Filter>Src\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Entities\Free3DCamera.cpp">
+      <Filter>Src\Entities</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

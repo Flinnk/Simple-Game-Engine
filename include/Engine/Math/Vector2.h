@@ -24,8 +24,8 @@ namespace GameEngine
 		Vector2& operator=(const Vector3& vector);
 
 		Vector2 Normalize();
-		float Dot(Vector2& other);
 		float Length();
+		float Dot(Vector2& other);
 
 		static Vector2 Clamp(Vector2 value, Vector2 min, Vector2 max);
 	};

@@ -146,6 +146,8 @@ namespace GameEngine {
 
 		RegisterToFactory(Entity);
 		RegisterToFactory(CameraEntity);
+		RegisterToFactory(Free3DCamera);
+
 	}
 
 }

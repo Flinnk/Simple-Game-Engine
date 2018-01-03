@@ -13,7 +13,7 @@ namespace GameEngine
 
 		CameraEntity();
 		CameraComponent* GetCamera();
-	private:
+	protected:
 		CameraComponent* CameraComp;
 	};
 }

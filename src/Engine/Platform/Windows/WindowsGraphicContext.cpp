@@ -250,7 +250,6 @@ namespace GameEngine {
 			if (WindowHandle)
 			{
 				SetWindowLong(WindowHandle, GWLP_USERDATA, (long)this);
-
 				GraphicBackend = new WindowsOpenGLContext(WindowHandle);
 				GraphicBackend->Init();
 				GraphicBackend->Resize(Width, Height);

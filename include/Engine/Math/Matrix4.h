@@ -33,5 +33,8 @@ namespace GameEngine
 		static Matrix4 Scale(const Vector2& ScaleVector);
 		static Matrix4 Scale(const Vector3& ScaleVector);
 
+		static Matrix4 LookAt(const Vector3& Position,const Vector3& Target, const Vector3& Up);
+
+		Matrix4 inverseAffine() const;
 	};
 }
