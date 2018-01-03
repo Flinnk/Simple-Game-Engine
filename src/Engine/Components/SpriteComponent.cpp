@@ -18,8 +18,8 @@ namespace GameEngine
 		{
 			ResourceManager& resManager = ResourceManager::GetInstance();
 			const std::wstring& rawPath = Data[L"SpriteTexture"]->AsString();
-			std::string texturePath = resManager.GetResourceDirectory() + std::string(rawPath.begin(), rawPath.end());
-			SpriteTexture = resManager.LoadTexture(texturePath, texturePath);
+			std::string texturePath = std::string(rawPath.begin(), rawPath.end());
+			SpriteTexture = resManager.LoadTexture(texturePath.c_str());
 		}
 	}
 
