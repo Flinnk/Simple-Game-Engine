@@ -25,15 +25,17 @@ namespace GameEngine
 		Shader* LoadShader(std::string& VertexSourceCode, std::string& FragmentSourceCode, std::string& ResourceID);
 		Shader* GetShader(std::string& ResourceID);
 
-		const Texture* LoadTexture(std::string& Path, std::string& ResourceID);
-		const Texture* GetTexture(std::string& ResourceID);
+		const Texture* LoadTexture(const char* ResourceRelativePath);
+		const Texture* GetTexture(const char* ResourceRelativePath);
 
-		const Mesh* LoadMesh(std::string& Path, std::string& ResourceID);
-		const Mesh* GetMesh(std::string& ResourceID);
+		const Mesh* LoadMesh(const char* ResourceRelativePath);
+		const Mesh* GetMesh(const char* ResourceRelativePath);
 
 		void Clear();
 
 		std::string& GetResourceDirectory();
+
+		void MountResourceDirectory(std::string RootDirectory);
 
 	private:
 		ResourceManager();

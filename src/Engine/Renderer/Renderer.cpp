@@ -15,12 +15,10 @@ namespace GameEngine {
 		Release();
 	}
 
-	void Renderer::DrawTexture(const Texture *texture, const Vector2& position,
-		const Vector2& size, float rotate,
-		const Vector3& color) const
+	void Renderer::DrawSprite(const SpriteComponent* component) const
 	{
 		if (SpriteRender)
-			SpriteRender->DrawTexture(Camera, texture, position, size, rotate, color);
+			SpriteRender->Submit(component);
 	}
 
 	void Renderer::DrawText(const std::string& text, float x, float y, float scale, const Vector3& color) const
@@ -28,6 +26,12 @@ namespace GameEngine {
 		if (TextRender)
 			TextRender->DrawText(Camera, text, x, y, scale, color);
 	}
+
+	void Renderer::End()
+	{
+		SpriteRender->Draw(Camera);
+	}
+
 
 	void Renderer::Release()
 	{

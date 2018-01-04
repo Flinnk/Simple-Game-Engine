@@ -8,12 +8,13 @@
 
 namespace GameEngine
 {
-	ResourceManager::ResourceManager() 
+	ResourceManager::ResourceManager()
 	{
 		std::string& ExecutionDirectory = File::GetExecutionDirectory();
-		ResourceDirectory = ExecutionDirectory.substr(0,ExecutionDirectory.find_last_of("\\")) + "\\Resources\\";
+		MountResourceDirectory(ExecutionDirectory.substr(0, ExecutionDirectory.find_last_of("\\")) + "\\Resources\\");
 	}
-	ResourceManager::~ResourceManager() 
+
+	ResourceManager::~ResourceManager()
 	{
 		Clear();
 	}
@@ -57,15 +58,16 @@ namespace GameEngine
 	}
 
 
-	const Texture* ResourceManager::LoadTexture(std::string& Path, std::string& ResourceID)
+	const Texture* ResourceManager::LoadTexture(const char* ResourceRelativePath)
 	{
+		std::string ResourceID(ResourceRelativePath);
 		if (Textures.find(ResourceID) == Textures.end())//Not found
 		{
 			Texture* LoadTexture = nullptr;
 
 			int Width, Height, NrChannels;
 			stbi_set_flip_vertically_on_load(false);
-			unsigned char *Image = stbi_load(Path.c_str(), &Width, &Height, &NrChannels, 0);
+			unsigned char *Image = stbi_load((ResourceDirectory + ResourceRelativePath).c_str(), &Width, &Height, &NrChannels, 0);
 			if (Image)
 			{
 				LoadTexture = new Texture();
@@ -76,42 +78,48 @@ namespace GameEngine
 			stbi_image_free(Image);
 			return LoadTexture;
 		}
-		else 
+		else
 		{
-			return GetTexture(ResourceID);
+			return GetTexture(ResourceRelativePath);
 		}
 	}
 
-	const Texture* ResourceManager::GetTexture(std::string& ResourceID)
+	const Texture* ResourceManager::GetTexture(const char* ResourceRelativePath)
 	{
+		std::string ResourceID(ResourceRelativePath);
+
 		if (Textures.find(ResourceID) == Textures.end())//Not found
 			return nullptr;
 		return Textures[ResourceID];
 	}
 
-	const Mesh* ResourceManager::LoadMesh(std::string& Path, std::string& ResourceID)
+	const Mesh* ResourceManager::LoadMesh(const char* ResourceRelativePath)
 	{
-		if (Textures.find(ResourceID) == Textures.end())//Not found
+		std::string ResourceID(ResourceRelativePath);
+
+		if (Meshes.find(ResourceID) == Meshes.end())//Not found
 		{
-			Mesh* loadMesh = MeshLoader::ParseFile(Path);
+			Mesh* loadMesh = MeshLoader::ParseFile(ResourceDirectory + ResourceRelativePath);
 			if (loadMesh)
 			{
 				Meshes[ResourceID] = loadMesh;
 				return Meshes[ResourceID];
 			}
-			else 
+			else
 			{
 				return nullptr;
 			}
 		}
 		else
 		{
-			return GetMesh(ResourceID);
+			return GetMesh(ResourceRelativePath);
 		}
 	}
 
-	const Mesh* ResourceManager::GetMesh(std::string& ResourceID)
+	const Mesh* ResourceManager::GetMesh(const char* ResourceRelativePath)
 	{
+		std::string ResourceID(ResourceRelativePath);
+
 		if (Meshes.find(ResourceID) == Meshes.end())//Not found
 			return nullptr;
 		return Meshes[ResourceID];
@@ -142,10 +150,14 @@ namespace GameEngine
 		Meshes.clear();
 	}
 
-	std::string& ResourceManager::GetResourceDirectory() 
+	std::string& ResourceManager::GetResourceDirectory()
 	{
 		return ResourceDirectory;
 	}
 
+	void ResourceManager::MountResourceDirectory(std::string RootDirectory)
+	{
+		ResourceDirectory = RootDirectory;
+	}
 
 }

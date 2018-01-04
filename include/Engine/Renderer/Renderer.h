@@ -12,6 +12,7 @@ namespace GameEngine {
 	struct Vector3;
 	class Texture;
 	class CameraComponent;
+	class SpriteComponent;
 
 	class Renderer {
 	public:
@@ -19,11 +20,10 @@ namespace GameEngine {
 		Renderer(Shader* SpriteShader, Shader* TextShader);
 		~Renderer();
 
-		void DrawTexture(const Texture *texture, const Vector2& position,
-			const Vector2& size, float rotate,
-			const Vector3& color) const;
+		void DrawSprite(const SpriteComponent* component) const;
 		void DrawText(const std::string& text, float x, float y, float scale, const Vector3& color) const;
 
+		void End();
 		void Release();
 
 		unsigned int GetDrawCallStats();

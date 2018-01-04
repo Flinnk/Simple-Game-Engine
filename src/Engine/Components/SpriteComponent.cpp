@@ -18,8 +18,8 @@ namespace GameEngine
 		{
 			ResourceManager& resManager = ResourceManager::GetInstance();
 			const std::wstring& rawPath = Data[L"SpriteTexture"]->AsString();
-			std::string texturePath = resManager.GetResourceDirectory() + std::string(rawPath.begin(), rawPath.end());
-			SpriteTexture = resManager.LoadTexture(texturePath, texturePath);
+			std::string texturePath = std::string(rawPath.begin(), rawPath.end());
+			SpriteTexture = resManager.LoadTexture(texturePath.c_str());
 		}
 	}
 
@@ -28,7 +28,7 @@ namespace GameEngine
 		SpriteTexture = Texture;
 	}
 
-	const Texture* SpriteComponent::GetTexture()
+	const Texture* SpriteComponent::GetTexture() const
 	{
 		return SpriteTexture;
 	}
@@ -43,8 +43,25 @@ namespace GameEngine
 			size.y *= SpriteTexture->GetHeight();
 
 			Vector3 rotation = GetAbsoluteRotation();
-			Renderer->DrawTexture(SpriteTexture, position, size, rotation.z, TintColor);
+			Renderer->DrawSprite(this);
 		}
+	}
+
+	int SpriteComponent::GetRenderIdentifier() const
+	{
+		if (SpriteTexture)
+			return SpriteTexture->GetID();
+		return 0;
+	}
+
+	Vector3 SpriteComponent::GetTintColor() const
+	{
+		return TintColor;
+	}
+
+	void SpriteComponent::SetTintColor(const Vector3& Color)
+	{
+		TintColor = Color;
 	}
 
 

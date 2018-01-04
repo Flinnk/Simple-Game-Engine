@@ -17,7 +17,11 @@ namespace GameEngine
 		virtual void Render(class GameEngine::Renderer* Renderer);
 
 		void SetTexture(const Texture* Texture);
-		const Texture* GetTexture();
+		const Texture* GetTexture()const ;
+
+		int GetRenderIdentifier() const;
+		Vector3 GetTintColor() const;
+		void SetTintColor(const Vector3& Color);
 	private:
 		const Texture* SpriteTexture = nullptr;
 		Vector3 TintColor;

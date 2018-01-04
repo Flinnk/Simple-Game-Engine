@@ -1,7 +1,7 @@
 
 #include <Engine/Graphics/Texture.h>
 #include <Engine/Graphics/OpenGL.h>
-
+#include <Engine\Math\Vector2.h>
 namespace GameEngine {
 
 	Texture::Texture()
@@ -64,5 +64,11 @@ namespace GameEngine {
 	{
 		return Height;
 	}
+
+	Vector2 Texture::GetSize()const
+	{
+		return Vector2(Width,Height);
+	}
+
 
 }
