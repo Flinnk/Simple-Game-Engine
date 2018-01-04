@@ -303,6 +303,7 @@ namespace GameEngine {
 
 	void WindowsGraphicContext::End()
 	{
+		Render->End();
 		if (GraphicBackend)
 			GraphicBackend->Display();
 		Render->ClearDebugStats();

@@ -2,6 +2,8 @@
 
 namespace GameEngine {
 
+	struct Vector2;
+
 	class Texture
 	{
 
@@ -21,6 +23,8 @@ namespace GameEngine {
 
 		unsigned int GetWidth() const;
 		unsigned int GetHeight() const;
+
+		Vector2 GetSize()const;
 
 		unsigned int GetID() const;
 	protected:

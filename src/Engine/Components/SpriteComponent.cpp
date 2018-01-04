@@ -28,7 +28,7 @@ namespace GameEngine
 		SpriteTexture = Texture;
 	}
 
-	const Texture* SpriteComponent::GetTexture()
+	const Texture* SpriteComponent::GetTexture() const
 	{
 		return SpriteTexture;
 	}
@@ -43,8 +43,25 @@ namespace GameEngine
 			size.y *= SpriteTexture->GetHeight();
 
 			Vector3 rotation = GetAbsoluteRotation();
-			Renderer->DrawTexture(SpriteTexture, position, size, rotation.z, TintColor);
+			Renderer->DrawSprite(this);
 		}
+	}
+
+	int SpriteComponent::GetRenderIdentifier() const
+	{
+		if (SpriteTexture)
+			return SpriteTexture->GetID();
+		return 0;
+	}
+
+	Vector3 SpriteComponent::GetTintColor() const
+	{
+		return TintColor;
+	}
+
+	void SpriteComponent::SetTintColor(const Vector3& Color)
+	{
+		TintColor = Color;
 	}
 
 

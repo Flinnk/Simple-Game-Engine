@@ -73,7 +73,6 @@ typedef Entity*(*EntityInstantiator)();
 		void DetachFromParent();
 
 		Scene* GetScene() const;
-
 	private:
 		Scene* OwnerScene = nullptr;
 		unsigned int ID = 0;
