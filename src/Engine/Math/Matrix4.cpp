@@ -206,8 +206,8 @@ namespace GameEngine
 		Matrix4 Result = Matrix4::Identity();
 
 		Vector3 f = (Target - Position).Normalize();
-		Vector3 s = Vector3::Cross(f, Up).Normalize();
-		Vector3 u = Vector3::Cross(s, f);
+		Vector3 s = Vector3::Cross(Up, f).Normalize();
+		Vector3 u = Vector3::Cross(f, s);
 
 		Result.elements[0] = s.x;
 		Result.elements[4] = s.y;
@@ -215,12 +215,12 @@ namespace GameEngine
 		Result.elements[1] = u.x;
 		Result.elements[5] = u.y;
 		Result.elements[9] = u.z;
-		Result.elements[2] = -f.x;
-		Result.elements[6] = -f.y;
-		Result.elements[10] = -f.z;
+		Result.elements[2] = f.x;
+		Result.elements[6] = f.y;
+		Result.elements[10] = f.z;
 		Result.elements[12] = -Vector3::Dot(s, Position);
 		Result.elements[13] = -Vector3::Dot(u, Position);
-		Result.elements[14] = Vector3::Dot(f, Position);
+		Result.elements[14] = -Vector3::Dot(f, Position);
 
 		return Result;
 	}
