@@ -4,11 +4,11 @@
 namespace GameEngine
 {
 
-	VertexBuffer::VertexBuffer(const void* Data, const unsigned int Size) :DataSize(Size)
+	VertexBuffer::VertexBuffer(const void* Data, const unsigned int Size, bool dynamic) :DataSize(Size), Dynamic(dynamic)
 	{
 		GLCall(glGenBuffers(1, &ID));
 		GLCall(glBindBuffer(GL_ARRAY_BUFFER, ID));
-		GLCall(glBufferData(GL_ARRAY_BUFFER, Size, Data, GL_STATIC_DRAW));
+		GLCall(glBufferData(GL_ARRAY_BUFFER, Size, Data, dynamic ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW));
 	}
 	VertexBuffer::~VertexBuffer()
 	{
@@ -29,6 +29,25 @@ namespace GameEngine
 
 	void VertexBuffer::Draw() const
 	{
-		GLCall(glDrawArrays(GL_TRIANGLES, 0, DataSize/(sizeof(float)*8)));
+		GLCall(glDrawArrays(GL_TRIANGLES, 0, DataSize / (sizeof(float) * 8)));
+	}
+
+	void* VertexBuffer::BeginWrite()
+	{
+		if (Dynamic)
+		{
+			Bind();
+			return glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+		}
+		return nullptr;
+	}
+
+	void VertexBuffer::EndWrite()
+	{
+		if (Dynamic)
+		{
+			Bind();
+			glUnmapBuffer(GL_ARRAY_BUFFER);
+		}
 	}
 }

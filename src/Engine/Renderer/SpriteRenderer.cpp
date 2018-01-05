@@ -9,12 +9,12 @@
 #include <Engine\Graphics\VertexBuffer.h>
 #include <Engine\Graphics\VertexBufferLayout.h>
 #include <Engine\Components\CameraComponent.h>
-#include <Engine\Graphics\OpenGL.h>
 #include <algorithm>
 #include <Engine\Components\SpriteComponent.h>
 #include <Engine\Utils\Log.h>
 #include <Engine\Utils\Stopwatch.h>
 #include <Engine\EngineMacros.h>
+#include <Engine\Graphics\IndexBuffer.h>
 
 namespace GameEngine {
 
@@ -29,8 +29,17 @@ namespace GameEngine {
 
 	SpriteRenderer::~SpriteRenderer()
 	{
-		glDeleteVertexArrays(1, &VAO);
-		glDeleteBuffers(1, &VBO);
+		if (EBO)
+			delete EBO;
+		EBO = nullptr;
+
+		if (VBO)
+			delete VBO;
+		VBO = nullptr;
+
+		if (VAO)
+			delete VAO;
+		VAO = nullptr;
 	}
 
 	void SpriteRenderer::Submit(const SpriteComponent* component) {
@@ -42,8 +51,7 @@ namespace GameEngine {
 		DrawCalls = 0;
 		if (Sprites.size() > 0)
 		{
-			glBindBuffer(GL_ARRAY_BUFFER, VBO);
-			VertexData* buffer = (VertexData*)glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+			VertexData* buffer = (VertexData*)VBO->BeginWrite();
 			std::stable_sort(Sprites.begin(), Sprites.end(), CompareFunction);
 			int currentState = (*Sprites.begin())->GetRenderIdentifier();
 			int indicesToDraw = 0;
@@ -53,10 +61,11 @@ namespace GameEngine {
 				for (const SpriteComponent* Sprite : Sprites)
 				{
 					int elementKey = Sprite->GetRenderIdentifier();
+					//If different state finish writting draw previous state
 					if (elementKey != currentState)
 					{
-						DrawBuffer(Camera, indicesToDraw, currentSprite->GetTexture()->GetID());
-						buffer = (VertexData*)glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+						DrawBuffer(Camera, indicesToDraw, currentSprite->GetTexture());
+						buffer = (VertexData*)VBO->BeginWrite();
 						indicesToDraw = 0;
 						currentState = elementKey;
 					}
@@ -64,7 +73,6 @@ namespace GameEngine {
 					currentSprite = Sprite;
 
 					//Fill Buffer
-
 					Vector3 position = Sprite->GetAbsolutePosition();
 					Vector3 size = Sprite->GetAbsoluteScale();
 					size.x *= Sprite->GetTexture()->GetWidth();
@@ -84,7 +92,7 @@ namespace GameEngine {
 					buffer->position = position;
 					buffer->color = color;
 					buffer->uv = Vector2(0, 0);
-					++buffer;	
+					++buffer;
 
 					buffer->position = Vector3(position.x + size.x, position.y + size.y, position.z);
 					buffer->color = color;
@@ -92,23 +100,25 @@ namespace GameEngine {
 					++buffer;
 
 					indicesToDraw += INDICES_PER_SPRITE;
-					if (indicesToDraw == MAX_SPRITES * VERTEX_PER_SPRITE)
+					//If filled the buffer send draw call and start a new one
+					if (indicesToDraw >= MAX_SPRITES * VERTEX_PER_SPRITE)
 					{
-						DrawBuffer(Camera, indicesToDraw, currentSprite->GetTexture()->GetID());
-						buffer = (VertexData*)glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+						DrawBuffer(Camera, indicesToDraw, currentSprite->GetTexture());
+						(VertexData*)VBO->BeginWrite();
 						indicesToDraw = 0;
 					}
 				}
 				if (indicesToDraw > 0)
 				{
-					DrawBuffer(Camera, indicesToDraw, currentSprite->GetTexture()->GetID());
+					DrawBuffer(Camera, indicesToDraw, currentSprite->GetTexture());
 				}
 			}
+
 			Sprites.clear();
 		}
 	}
 
-	void SpriteRenderer::DrawBuffer(const CameraComponent* cam, int indicesToDraw, int texture)
+	void SpriteRenderer::DrawBuffer(const CameraComponent* cam, int indicesToDraw, const Texture* texture)
 	{
 		Vector2 Size = Engine::GetInstance().GetDisplaySize();//TODO: Callback with Graphic context to be notified of resizing to adjust the viewport parameters
 		Matrix4 ViewMatrix = Matrix4::Identity();
@@ -122,8 +132,7 @@ namespace GameEngine {
 		//ViewMatrix *= Matrix4::Translation(Vector3(-0.5f * size.x, -0.5f * size.y, 0.0f));
 
 		Camera CameraData = cam->GetCameraData();
-		CameraData.NearPlane += abs(CameraPosition.z);
-		CameraData.FarPlane += abs(CameraPosition.z);
+
 		Matrix4 PerspectiveMatrix;
 
 		if (CameraData.Mode == CameraMode::ORTHOGRAPHIC)
@@ -138,11 +147,12 @@ namespace GameEngine {
 		shader->Use();
 		shader->SetMatrix4("view", ViewMatrix);
 		shader->SetMatrix4("projection", PerspectiveMatrix);
-		glUnmapBuffer(GL_ARRAY_BUFFER);
-		glBindVertexArray(VAO);
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, texture);
-		glDrawElements(GL_TRIANGLES, indicesToDraw, GL_UNSIGNED_INT, 0);
+		VBO->EndWrite();
+		VAO->Bind();
+
+		texture->Use();
+		EBO->Bind();
+		EBO->Draw(indicesToDraw);
 		++DrawCalls;
 	}
 
@@ -163,28 +173,14 @@ namespace GameEngine {
 			offset += VERTEX_PER_SPRITE;
 		}
 
-		glGenVertexArrays(1, &VAO);
-		glGenBuffers(1, &VBO);
-		glGenBuffers(1, &EBO);
-
-		glBindVertexArray(VAO);
-
-		glBindBuffer(GL_ARRAY_BUFFER, VBO);
-		glBufferData(GL_ARRAY_BUFFER, BUFFER_SIZE, NULL, GL_DYNAMIC_DRAW);
-
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, VERTEX_SIZE, (const void*)0);
-
-		glEnableVertexAttribArray(1);
-		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, VERTEX_SIZE, (const void*)(sizeof(float) * 3));
-
-		glEnableVertexAttribArray(2);
-		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, VERTEX_SIZE, (const void*)(sizeof(float) * 6));
-
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		glBindVertexArray(0);
+		EBO = new IndexBuffer(indices, INDICES_SIZE);
+		VAO = new VertexArray();
+		VBO = new VertexBuffer(nullptr, BUFFER_SIZE, true);
+		VertexBufferLayout layout;
+		layout.PushFloat(3);
+		layout.PushFloat(3);
+		layout.PushFloat(2);
+		VAO->AddBuffer(*VBO, layout);
 	}
 
 	unsigned int SpriteRenderer::GetDrawCallStats()

@@ -7,7 +7,7 @@ namespace GameEngine
 {
 	Mesh::Mesh(const void* Data, const unsigned int Size)
 	{
-		VBO = new VertexBuffer(Data, Size);
+		VBO = new VertexBuffer(Data, Size, false);
 		VAO = new VertexArray();
 		VertexBufferLayout Layout;
 		Layout.PushFloat(3);

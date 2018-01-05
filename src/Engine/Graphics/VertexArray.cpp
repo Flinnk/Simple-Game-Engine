@@ -39,5 +39,7 @@ namespace GameEngine
 			GLCall(glVertexAttribPointer(i, Element.Count, Element.Type, Element.Normalized, Layout.GetStride(), (const void*)Offset));
 			Offset += Element.Count *VertexBufferElement::GetTypeSize(Element.Type);
 		}
+		Buffer.Unbind();
+		Unbind();
 	}
 }

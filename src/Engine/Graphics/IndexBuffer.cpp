@@ -3,7 +3,7 @@
 
 namespace GameEngine
 {
-	IndexBuffer::IndexBuffer(const unsigned int* Indices, const unsigned int IndicesCount): Count(IndicesCount)
+	IndexBuffer::IndexBuffer(const unsigned int* Indices, const unsigned int IndicesCount) : Count(IndicesCount)
 	{
 		GLCall(glGenBuffers(1, &ID));
 		GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ID));
@@ -24,6 +24,12 @@ namespace GameEngine
 	void IndexBuffer::Unbind() const
 	{
 		GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
-
 	}
+
+	void IndexBuffer::Draw(unsigned int DrawCount)
+	{
+		int num = DrawCount > Count ? Count : DrawCount;
+		GLCall(glDrawElements(GL_TRIANGLES, num, GL_UNSIGNED_INT, 0));
+	}
+
 }
