@@ -5,9 +5,27 @@
 #include <stb_image.h>
 #include <Engine\Utils\File.h>
 #include <Engine\Utils\MeshLoader.h>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <sstream>
 
 namespace GameEngine
 {
+
+	enum class ShaderType
+	{
+		NONE = -1,
+		VERTEX = 0,
+		FRAGMENT = 1
+	};
+
+	struct ShaderSource
+	{
+		std::string VertexSource;
+		std::string FragmentSource;
+	};
+
 	ResourceManager::ResourceManager()
 	{
 		std::string& ExecutionDirectory = File::GetExecutionDirectory();
@@ -26,12 +44,14 @@ namespace GameEngine
 		return Instance;
 	}
 
-	Shader* ResourceManager::LoadShader(std::string& VertexSourceCode, std::string& FragmentSourceCode, std::string& ResourceID)//TODO: Use path instead of provided string as id?
+	Shader* ResourceManager::LoadShader(const char* ResourceRelativePath)
 	{
+		std::string ResourceID(ResourceRelativePath);
 		if (Shaders.find(ResourceID) == Shaders.end())//Not found
 		{
 			Shader* shader = new Shader();
-			if (shader->Compile(VertexSourceCode.c_str(), FragmentSourceCode.c_str()))
+			ShaderSource source = ParseShader((ResourceDirectory + ResourceRelativePath).c_str());
+			if (shader->Compile(source.VertexSource.c_str(), source.FragmentSource.c_str()))
 			{
 
 				Shaders[ResourceID] = shader;
@@ -46,12 +66,46 @@ namespace GameEngine
 		}
 		else
 		{
-			return GetShader(ResourceID);
+			return GetShader(ResourceRelativePath);
 		}
 	}
 
-	Shader* ResourceManager::GetShader(std::string& ResourceID)
+
+
+	ShaderSource ResourceManager::ParseShader(const char* Path)
 	{
+		std::ifstream stream(Path);
+		std::stringstream ss[2];
+		ShaderType parsingShader;
+		if (stream)
+		{
+			std::string line;
+			while (getline(stream, line))
+			{
+				if (line.find("#shader") != std::string::npos)
+				{
+					if (line.find("vertex") != std::string::npos)
+					{
+						parsingShader = ShaderType::VERTEX;
+					}
+					else if (line.find("fragment") != std::string::npos)
+					{
+						parsingShader = ShaderType::FRAGMENT;
+					}
+				}
+				else
+				{
+					ss[(int)parsingShader] << line << "\n";
+				}
+			}
+		}
+
+		return { ss[0].str(),ss[1].str() };
+	}
+
+	Shader* ResourceManager::GetShader(const char* ResourceRelativePath)
+	{
+		std::string ResourceID(ResourceRelativePath);
 		if (Shaders.find(ResourceID) == Shaders.end())//Not found
 			return nullptr;
 		return Shaders[ResourceID];

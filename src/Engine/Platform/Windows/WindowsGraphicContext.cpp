@@ -7,9 +7,9 @@
 #include <Engine\Renderer\Renderer.h>
 #include <Engine\Utils\ResourceManager.h>
 #include <Engine\Utils\File.h>
-#include <Engine\Renderer\CompiledShaders.h>
 #include <Engine\Core\Input.h>
 #include <Windowsx.h>
+#include <Engine\Renderer\CompiledShaders.h>
 
 //WS_THICKFRAME Controls resizing
 #define WINDOWED_STYLE  ((WS_OVERLAPPEDWINDOW^ WS_THICKFRAME) | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_VISIBLE)
@@ -255,14 +255,19 @@ namespace GameEngine {
 				GraphicBackend->Resize(Width, Height);
 
 				//MessageBoxA(0, (char*)glGetString(GL_VERSION), "OPENGL VERSION", 0);
-				std::string SpriteVertexCode(DefaultVertexShader);
-				std::string SpriteFragCode(DefaultFragmentShader); 
-				std::string TextVertexCode(TextVertexShader);
-				std::string TextFragCode(TextFragmentShader);
-				std::string SpriteShaderID("SpriteShader");
-				std::string TextShaderID("TextShader");
-				Shader* SpriteShader = ResourceManager::GetInstance().LoadShader(SpriteVertexCode, SpriteFragCode, SpriteShaderID);
-				Shader* TextShader = ResourceManager::GetInstance().LoadShader(TextVertexCode, TextFragCode, TextShaderID);
+				Shader* SpriteShader = new Shader();
+				if (!SpriteShader->Compile(DefaultVertexShader,DefaultFragmentShader))
+				{
+					delete SpriteShader;
+					SpriteShader = nullptr;
+				}
+				Shader* TextShader = new Shader();
+				if(!TextShader->Compile(TextVertexShader,TextFragmentShader))
+				{
+					delete TextShader;
+					TextShader = nullptr;
+				}
+
 				if (SpriteShader && TextShader) {
 					Render = new Renderer(SpriteShader, TextShader);
 				}

@@ -8,6 +8,7 @@
 
 namespace GameEngine
 {
+	struct ShaderSource;
 
 	class ResourceManager
 	{
@@ -22,8 +23,8 @@ namespace GameEngine
 
 		static ResourceManager& GetInstance();
 
-		Shader* LoadShader(std::string& VertexSourceCode, std::string& FragmentSourceCode, std::string& ResourceID);
-		Shader* GetShader(std::string& ResourceID);
+		Shader* LoadShader(const char* ResourceRelativePath);
+		Shader* GetShader(const char* ResourceRelativePath);
 
 		const Texture* LoadTexture(const char* ResourceRelativePath);
 		const Texture* GetTexture(const char* ResourceRelativePath);
@@ -39,6 +40,8 @@ namespace GameEngine
 
 	private:
 		ResourceManager();
+		ShaderSource ParseShader(const char* Path);
+
 
 		std::map<std::string, Shader*> Shaders;
 		std::map<std::string, Texture*> Textures;
