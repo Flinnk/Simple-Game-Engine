@@ -1,6 +1,8 @@
 #pragma once 
 #include <Engine\Math\Math.h>
 #include <vector>
+#include <Engine\Math\Rect.h>
+
 namespace GameEngine {
 
 	struct VertexData
@@ -28,6 +30,7 @@ namespace GameEngine {
 	class SpriteComponent;
 
 	class IndexBuffer;
+	struct Rect;
 
 
 	class SpriteRenderer {
@@ -40,17 +43,19 @@ namespace GameEngine {
 		unsigned int GetDrawCallStats();
 		void ResetStats();
 
-		void Draw(const CameraComponent* Camera);
+		void Draw();
+		void SetCamera(const CameraComponent* Camera);
 
 	private:
-		void DrawBuffer(const CameraComponent* Camera, int verticesToDraw, const Texture* texture);
+		void DrawBuffer(int verticesToDraw, const Texture* texture);
 		std::vector<const SpriteComponent*> Sprites;
 		Shader* shader;
 		VertexArray* VAO;
 		VertexBuffer* VBO;
 		IndexBuffer* EBO;
 		unsigned int DrawCalls = 0;
-
+		const CameraComponent* CameraRef = nullptr;
+		Rect CameraRect;
 		void InitRenderData();
 	};
 }

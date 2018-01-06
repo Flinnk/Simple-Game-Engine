@@ -4,4 +4,5 @@
 #include <Engine\Math\Vector3.h>
 #include <Engine\Math\Matrix4.h>
 #include <Engine\Math\Utils.h>
+#include <Engine\Math\Rect.h>
 

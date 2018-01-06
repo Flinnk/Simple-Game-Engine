@@ -4,16 +4,6 @@
 
 namespace GameEngine {
 
-	bool CheckCollision(const Rect &one, const Rect &two)
-	{
-		bool collisionX = one.x + one.width >= two.x &&
-			two.x + two.width >= one.x;
-		bool collisionY = one.y + one.height >= two.y &&
-			two.y + two.height >= one.y;
-
-		return collisionX && collisionY;
-	}
-
 	CollisionData CheckCollision(const Circle &one, const Rect &two)
 	{
 		CollisionData result;

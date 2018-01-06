@@ -43,10 +43,15 @@ namespace GameEngine {
 	}
 
 	void SpriteRenderer::Submit(const SpriteComponent* component) {
-		Sprites.push_back(component);
+		Rect SpriteRect = component->GetBounds();
+
+		if (Rect::CheckOverlap(CameraRect, SpriteRect))
+		{
+			Sprites.push_back(component);
+		}
 	}
 
-	void SpriteRenderer::Draw(const CameraComponent* Camera)
+	void SpriteRenderer::Draw()
 	{
 		DrawCalls = 0;
 		if (Sprites.size() > 0)
@@ -64,7 +69,7 @@ namespace GameEngine {
 					//If different state finish writting draw previous state
 					if (elementKey != currentState)
 					{
-						DrawBuffer(Camera, indicesToDraw, currentSprite->GetTexture());
+						DrawBuffer(indicesToDraw, currentSprite->GetTexture());
 						buffer = (VertexData*)VBO->BeginWrite();
 						indicesToDraw = 0;
 						currentState = elementKey;
@@ -103,14 +108,14 @@ namespace GameEngine {
 					//If filled the buffer send draw call and start a new one
 					if (indicesToDraw >= MAX_SPRITES * VERTEX_PER_SPRITE)
 					{
-						DrawBuffer(Camera, indicesToDraw, currentSprite->GetTexture());
+						DrawBuffer(indicesToDraw, currentSprite->GetTexture());
 						(VertexData*)VBO->BeginWrite();
 						indicesToDraw = 0;
 					}
 				}
 				if (indicesToDraw > 0)
 				{
-					DrawBuffer(Camera, indicesToDraw, currentSprite->GetTexture());
+					DrawBuffer(indicesToDraw, currentSprite->GetTexture());
 				}
 			}
 
@@ -118,12 +123,12 @@ namespace GameEngine {
 		}
 	}
 
-	void SpriteRenderer::DrawBuffer(const CameraComponent* cam, int indicesToDraw, const Texture* texture)
+	void SpriteRenderer::DrawBuffer(int indicesToDraw, const Texture* texture)
 	{
 		Vector2 Size = Engine::GetInstance().GetDisplaySize();//TODO: Callback with Graphic context to be notified of resizing to adjust the viewport parameters
 		Matrix4 ViewMatrix = Matrix4::Identity();
 
-		Vector3 CameraPosition = cam->GetAbsolutePosition();
+		Vector3 CameraPosition = CameraRef->GetAbsolutePosition();
 		ViewMatrix *= Matrix4::Translation(CameraPosition*-1.0f);
 
 		//Rotation base on the center pivot point
@@ -131,7 +136,7 @@ namespace GameEngine {
 		//ViewMatrix *= Matrix4::Rotation(rotate, Vector3(0.0f, 0.0f, 1.0f));
 		//ViewMatrix *= Matrix4::Translation(Vector3(-0.5f * size.x, -0.5f * size.y, 0.0f));
 
-		Camera CameraData = cam->GetCameraData();
+		Camera CameraData = CameraRef->GetCameraData();
 
 		Matrix4 PerspectiveMatrix;
 
@@ -193,4 +198,15 @@ namespace GameEngine {
 		//DrawCalls = 0;
 	}
 
+	void SpriteRenderer::SetCamera(const CameraComponent* CameraPointer)
+	{
+		CameraRef = CameraPointer;
+		Vector2 Size = Engine::GetInstance().GetDisplaySize();
+		Vector3 position = CameraRef->GetAbsolutePosition();
+		CameraRect.x = position.x;
+		CameraRect.y = position.y;
+		CameraRect.width = Size.x;
+		CameraRect.height = Size.y;
+
+	}
 }

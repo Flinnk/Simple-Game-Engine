@@ -38,6 +38,7 @@
     <ClInclude Include="..\..\..\..\include\Engine\Graphics\VertexBufferLayout.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Math\Math.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Math\Matrix4.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Math\Rect.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Math\Utils.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Math\Vector2.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Math\Vector3.h" />

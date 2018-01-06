@@ -7,6 +7,7 @@ namespace GameEngine
 	class Texture;
 	class Renderer;
 	struct Vector3;
+	struct Rect;
 
 	class SpriteComponent : public SceneComponent
 	{
@@ -22,6 +23,7 @@ namespace GameEngine
 		int GetRenderIdentifier() const;
 		Vector3 GetTintColor() const;
 		void SetTintColor(const Vector3& Color);
+		Rect GetBounds() const;
 	private:
 		const Texture* SpriteTexture = nullptr;
 		Vector3 TintColor;

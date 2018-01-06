@@ -3,6 +3,7 @@
 #include <Engine\Utils\ResourceManager.h>
 #include <Engine\Renderer\Renderer.h>
 #include <Engine\Math\Vector2.h>
+#include <Engine\Math\Rect.h>
 
 namespace GameEngine
 {
@@ -62,6 +63,16 @@ namespace GameEngine
 	void SpriteComponent::SetTintColor(const Vector3& Color)
 	{
 		TintColor = Color;
+	}
+
+	Rect SpriteComponent::GetBounds() const
+	{
+		Vector3 position = GetAbsolutePosition();
+		Vector3 size = GetAbsoluteScale();
+		size.x *= GetTexture()->GetWidth();
+		size.y *= GetTexture()->GetHeight();
+		
+		return { position.x ,position.y,size.x,size.y};
 	}
 
 

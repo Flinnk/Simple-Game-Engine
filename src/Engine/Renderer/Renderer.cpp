@@ -1,6 +1,9 @@
 #include <Engine\Renderer\Renderer.h>
 #include <Engine\Renderer\SpriteRenderer.h>
 #include <Engine\Renderer\TextRenderer.h>
+#include <Engine\Math\Vector3.h>
+#include <Engine\Components\CameraComponent.h>
+#include <Engine\Core\Engine.h>
 namespace GameEngine {
 
 	Renderer::Renderer(Shader* SpriteShader, Shader* TextShader)
@@ -29,7 +32,7 @@ namespace GameEngine {
 
 	void Renderer::End()
 	{
-		SpriteRender->Draw(Camera);
+		SpriteRender->Draw();
 	}
 
 
@@ -66,6 +69,7 @@ namespace GameEngine {
 	void Renderer::SetCamera(const CameraComponent* CameraPointer)
 	{
 		Camera = CameraPointer;
+		SpriteRender->SetCamera(CameraPointer);
 	}
 
 

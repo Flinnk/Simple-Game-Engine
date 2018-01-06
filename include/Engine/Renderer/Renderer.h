@@ -13,6 +13,7 @@ namespace GameEngine {
 	class Texture;
 	class CameraComponent;
 	class SpriteComponent;
+	struct Rect;
 
 	class Renderer {
 	public:
