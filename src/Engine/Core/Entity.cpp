@@ -42,15 +42,16 @@ namespace GameEngine
 
 	void Entity::Update(float DeltaTime)
 	{
-		std::vector<Component*> _Components = Components;
+		std::vector<Component*> _Components(Components.begin(),Components.end());
 		std::vector<Component*>::iterator componentIterator = _Components.begin();
 		while (componentIterator != _Components.end())
 		{
-			(*componentIterator)->Update(DeltaTime);
+			if ((*componentIterator)->RequireUpdate())
+				(*componentIterator)->Update(DeltaTime);
 			++componentIterator;
 		}
 
-		std::vector<Entity*> _Childs = Childs;
+		std::vector<Entity*> _Childs(Childs.begin(), Childs.end());
 		std::vector<Entity*>::iterator childIterator = _Childs.begin();
 		while (childIterator != _Childs.end())
 		{
@@ -64,14 +65,14 @@ namespace GameEngine
 		std::vector<Component*>::iterator it = Components.begin();
 		while (it != Components.end())
 		{
-			(*it)->Render(Renderer);
+			if ((*it)->RequireRendering())
+				(*it)->Render(Renderer);
 			++it;
 		}
 
 
-		std::vector<Entity*> _Childs = Childs;
-		std::vector<Entity*>::iterator childIterator = _Childs.begin();
-		while (childIterator != _Childs.end())
+		std::vector<Entity*>::iterator childIterator = Childs.begin();
+		while (childIterator != Childs.end())
 		{
 			(*childIterator)->Render(Renderer);
 			++childIterator;

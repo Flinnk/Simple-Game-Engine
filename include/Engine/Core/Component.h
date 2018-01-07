@@ -42,6 +42,11 @@ namespace GameEngine
 		void Destroy();
 		bool IsDestroyed();
 		bool IsInitialized();
+		bool RequireRendering() const;
+		bool RequireUpdate() const;
+	protected:
+		bool RenderingRequire = false;
+		bool UpdateRequire = false;
 	private:
 		Entity* Owner;
 		bool Destroyed = false;

@@ -109,7 +109,7 @@ namespace GameEngine {
 					if (indicesToDraw >= MAX_SPRITES * VERTEX_PER_SPRITE)
 					{
 						DrawBuffer(indicesToDraw, currentSprite->GetTexture());
-						(VertexData*)VBO->BeginWrite();
+						buffer = (VertexData*)VBO->BeginWrite();
 						indicesToDraw = 0;
 					}
 				}

@@ -59,5 +59,14 @@ namespace GameEngine
 		return Initialized;
 	}
 
+	bool Component::RequireRendering() const
+	{
+		return RenderingRequire;
+	}
+
+	bool Component::RequireUpdate() const
+	{
+		return UpdateRequire;
+	}
 
 }

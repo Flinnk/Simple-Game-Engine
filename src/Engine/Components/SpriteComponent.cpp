@@ -9,7 +9,10 @@ namespace GameEngine
 {
 	ImplementComponentFactory(SpriteComponent)
 
-	SpriteComponent::SpriteComponent() : TintColor(Vector3(1,1,1)){}
+	SpriteComponent::SpriteComponent() : TintColor(Vector3(1,1,1))
+	{
+		RenderingRequire = true;
+	}
 
 	void SpriteComponent::Deserialize(JSONObject& Data)
 	{

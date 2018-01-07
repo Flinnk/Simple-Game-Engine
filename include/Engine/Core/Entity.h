@@ -42,7 +42,7 @@ typedef Entity*(*EntityInstantiator)();
 
 		virtual void Deserialize(JSONObject& Data);//TODO:: Use own parser to be able to pass a const reference
 		virtual void Update(float DeltaTime);
-		virtual void Render(Renderer* Renderer);
+		void Render(Renderer* Renderer);
 
 
 		void Destroy();
