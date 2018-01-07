@@ -18,7 +18,7 @@
 
 namespace GameEngine {
 
-	bool CompareFunction(const SpriteComponent* lhs, const SpriteComponent* rhs) { return (lhs->GetRenderIdentifier() < rhs->GetRenderIdentifier()); }
+	bool CompareFunction(const SpriteComponent* lhs, const SpriteComponent* rhs) { return (lhs->GetRenderIdentifier() > rhs->GetRenderIdentifier()); }
 
 
 	SpriteRenderer::SpriteRenderer(Shader *renderShader)

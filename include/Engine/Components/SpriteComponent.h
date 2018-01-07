@@ -24,8 +24,12 @@ namespace GameEngine
 		Vector3 GetTintColor() const;
 		void SetTintColor(const Vector3& Color);
 		Rect GetBounds() const;
+		unsigned int GetOrderInLayer()const;
+		void SetOrderInLayer(unsigned int Order);
+
 	private:
 		const Texture* SpriteTexture = nullptr;
 		Vector3 TintColor;
+		unsigned int OrderInLayer = 0;
 	};
 }

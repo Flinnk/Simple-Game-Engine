@@ -48,11 +48,12 @@ namespace GameEngine
 		}
 	}
 
-	int SpriteComponent::GetRenderIdentifier() const
+	int SpriteComponent::GetRenderIdentifier() const 
 	{
-		if (SpriteTexture)
-			return SpriteTexture->GetID();
-		return 0;
+		int identifier = 0;
+		identifier = (OrderInLayer << 24) | (GetTexture()->GetID() << 8);
+
+		return identifier;
 	}
 
 	Vector3 SpriteComponent::GetTintColor() const
@@ -75,5 +76,13 @@ namespace GameEngine
 		return { position.x ,position.y,size.x,size.y};
 	}
 
+	unsigned int SpriteComponent::GetOrderInLayer() const 
+	{
+		return OrderInLayer;
+	}
 
+	void SpriteComponent::SetOrderInLayer(unsigned int Order)
+	{
+		OrderInLayer = Order;
+	}
 }
