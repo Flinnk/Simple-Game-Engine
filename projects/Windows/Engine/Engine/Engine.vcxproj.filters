@@ -237,6 +237,9 @@
     <ClInclude Include="..\..\..\..\include\Engine\Math\Rect.h">
       <Filter>Include\Math</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Graphics\TextureAtlas.h">
+      <Filter>Include\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\Engine\Audio\SoundManager.cpp">
@@ -373,6 +376,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\Engine\Entities\Free3DCamera.cpp">
       <Filter>Src\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Engine\Graphics\TextureAtlas.cpp">
+      <Filter>Src\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

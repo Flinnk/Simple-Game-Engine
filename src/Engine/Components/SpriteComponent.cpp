@@ -9,7 +9,7 @@ namespace GameEngine
 {
 	ImplementComponentFactory(SpriteComponent)
 
-	SpriteComponent::SpriteComponent() : TintColor(Vector3(1,1,1))
+		SpriteComponent::SpriteComponent() : TintColor(Vector3(1, 1, 1))
 	{
 		RenderingRequire = true;
 	}
@@ -23,35 +23,42 @@ namespace GameEngine
 			ResourceManager& resManager = ResourceManager::GetInstance();
 			const std::wstring& rawPath = Data[L"SpriteTexture"]->AsString();
 			std::string texturePath = std::string(rawPath.begin(), rawPath.end());
-			SpriteTexture = resManager.LoadTexture(texturePath.c_str());
+			SpriteAtlas = resManager.LoadTextureAtlas(texturePath.c_str());
 		}
 	}
-
-	void SpriteComponent::SetTexture(const Texture* Texture)
-	{
-		SpriteTexture = Texture;
-	}
-
-	const Texture* SpriteComponent::GetTexture() const
-	{
-		return SpriteTexture;
-	}
-
 	void SpriteComponent::Render(class GameEngine::Renderer* Renderer)
 	{
-		if (SpriteTexture)
+		if (SpriteAtlas && SpriteAtlas->GetTexture())
 		{
 			Vector2 position = GetAbsolutePosition();
 			Vector3 size = GetAbsoluteScale();
-			size.x *= SpriteTexture->GetWidth();
-			size.y *= SpriteTexture->GetHeight();
+			size.x *= SpriteAtlas->GetTexture()->GetWidth();
+			size.y *= SpriteAtlas->GetTexture()->GetHeight();
 
 			Vector3 rotation = GetAbsoluteRotation();
 			Renderer->DrawSprite(this);
 		}
 	}
 
-	int SpriteComponent::GetRenderIdentifier() const 
+	const TextureAtlas* SpriteComponent::GetTextureAtlas() const
+	{
+		return SpriteAtlas;
+	}
+
+	void SpriteComponent::SetTextureAtlas(const TextureAtlas* Atlas)
+	{
+		SpriteAtlas = Atlas;
+	}
+
+	const Texture* SpriteComponent::GetTexture()const
+	{
+		if (SpriteAtlas)
+			return SpriteAtlas->GetTexture();
+		return nullptr;
+	}
+
+
+	int SpriteComponent::GetRenderIdentifier() const
 	{
 		int identifier = 0;
 		identifier = (OrderInLayer << 24) | (GetTexture()->GetID() << 8);
@@ -75,11 +82,11 @@ namespace GameEngine
 		Vector3 size = GetAbsoluteScale();
 		size.x *= GetTexture()->GetWidth();
 		size.y *= GetTexture()->GetHeight();
-		
-		return { position.x ,position.y,size.x,size.y};
+
+		return { position.x ,position.y,size.x,size.y };
 	}
 
-	unsigned int SpriteComponent::GetOrderInLayer() const 
+	unsigned int SpriteComponent::GetOrderInLayer() const
 	{
 		return OrderInLayer;
 	}
@@ -88,4 +95,22 @@ namespace GameEngine
 	{
 		OrderInLayer = Order;
 	}
+
+	const TextureRegion& SpriteComponent::GetCurrentRegion()const
+	{
+		return SpriteAtlas ? SpriteAtlas->GetTextureRegion(CurrentDrawingRegionIndex) : TextureRegion();
+	}
+
+	void SpriteComponent::SetCurrentDrawingRegionIndex(int index)
+	{
+		CurrentDrawingRegionIndex=std::fmaxf(0,std::fminf(SpriteAtlas->RegionsNum(), index));//Clamp
+	}
+
+	int  SpriteComponent::GetCurrentDrawingRegionIndex()const
+	{
+		return CurrentDrawingRegionIndex;
+	}
+
+
+
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Engine\Components\SceneComponent.h>
+#include <Engine\Graphics\TextureAtlas.h>
 
 namespace GameEngine
 {
@@ -17,8 +18,9 @@ namespace GameEngine
 		virtual void Deserialize(JSONObject& Data) override;
 		virtual void Render(class GameEngine::Renderer* Renderer);
 
-		void SetTexture(const Texture* Texture);
-		const Texture* GetTexture()const ;
+		const Texture* GetTexture()const;
+		const TextureAtlas* GetTextureAtlas() const;
+		void SetTextureAtlas(const TextureAtlas* Atlas);
 
 		int GetRenderIdentifier() const;
 		Vector3 GetTintColor() const;
@@ -27,9 +29,14 @@ namespace GameEngine
 		unsigned int GetOrderInLayer()const;
 		void SetOrderInLayer(unsigned int Order);
 
+		const TextureRegion& GetCurrentRegion()const;
+		void SetCurrentDrawingRegionIndex(int index);
+		int  GetCurrentDrawingRegionIndex()const ;
+
 	private:
-		const Texture* SpriteTexture = nullptr;
+		const TextureAtlas* SpriteAtlas = nullptr;
 		Vector3 TintColor;
 		unsigned int OrderInLayer = 0;
+		int CurrentDrawingRegionIndex = 0;
 	};
 }

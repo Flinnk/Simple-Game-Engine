@@ -5,7 +5,7 @@
 #include <Engine\Graphics\Shader.h>
 #include <Engine\Graphics\Texture.h>
 #include <Engine\Graphics\Mesh.h>
-
+#include <Engine\Graphics\TextureAtlas.h>
 namespace GameEngine
 {
 	struct ShaderSource;
@@ -29,6 +29,10 @@ namespace GameEngine
 		const Texture* LoadTexture(const char* ResourceRelativePath);
 		const Texture* GetTexture(const char* ResourceRelativePath);
 
+		const TextureAtlas* LoadTextureAtlas(const char* ResourceRelativePath);
+		const TextureAtlas* LoadTextureAtlas(const char* ResourceRelativePath, Vector2 size, int columns, int elements);
+		const TextureAtlas* GetTextureAtlas(const char* ResourceRelativePath);
+
 		const Mesh* LoadMesh(const char* ResourceRelativePath);
 		const Mesh* GetMesh(const char* ResourceRelativePath);
 
@@ -45,6 +49,8 @@ namespace GameEngine
 
 		std::map<std::string, Shader*> Shaders;
 		std::map<std::string, Texture*> Textures;
+		std::map<std::string, TextureAtlas*> TextureAtlases;
+
 		std::map<std::string, Mesh*> Meshes;
 
 		std::string ResourceDirectory;

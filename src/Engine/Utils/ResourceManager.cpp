@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <Engine\Math\Vector2.h>
 
 namespace GameEngine
 {
@@ -138,6 +139,58 @@ namespace GameEngine
 		}
 	}
 
+	const TextureAtlas* ResourceManager::LoadTextureAtlas(const char* ResourceRelativePath)
+	{
+		std::string ResourceID(ResourceRelativePath);
+		if (TextureAtlases.find(ResourceID) == TextureAtlases.end())//Not found
+		{
+			const Texture* texture = LoadTexture(ResourceRelativePath);
+			if (!texture)
+				return nullptr;
+
+			TextureAtlas* atlas = new TextureAtlas();
+			atlas->Build(texture);
+
+			TextureAtlases[ResourceID] = atlas;
+			return atlas;
+		}
+		else
+		{
+			return GetTextureAtlas(ResourceRelativePath);
+		}
+	}
+
+	const TextureAtlas* ResourceManager::LoadTextureAtlas(const char* ResourceRelativePath, Vector2 size, int columns, int elements)
+	{
+		std::string ResourceID(ResourceRelativePath);
+		if (TextureAtlases.find(ResourceID) == TextureAtlases.end())//Not found
+		{
+			const Texture* texture = LoadTexture(ResourceRelativePath);
+			if (!texture)
+				return nullptr;
+
+			TextureAtlas* atlas = new TextureAtlas();
+			atlas->Build(texture,size,columns,elements);
+
+			TextureAtlases[ResourceID] = atlas;
+			return atlas;
+		}
+		else
+		{
+			return GetTextureAtlas(ResourceRelativePath);
+		}
+	}
+
+
+	const TextureAtlas* ResourceManager::GetTextureAtlas(const char* ResourceRelativePath)
+	{
+		std::string ResourceID(ResourceRelativePath);
+
+		if (TextureAtlases.find(ResourceID) == TextureAtlases.end())//Not found
+			return nullptr;
+		return TextureAtlases[ResourceID];
+	}
+
 	const Texture* ResourceManager::GetTexture(const char* ResourceRelativePath)
 	{
 		std::string ResourceID(ResourceRelativePath);
@@ -199,9 +252,17 @@ namespace GameEngine
 			iter.second = nullptr;
 		}
 
+		for (auto iter : TextureAtlases) {
+			iter.second->Release();
+			delete iter.second;
+			iter.second = nullptr;
+		}
+
+
 		Shaders.clear();
 		Textures.clear();
 		Meshes.clear();
+		TextureAtlases.clear();
 	}
 
 	std::string& ResourceManager::GetResourceDirectory()
