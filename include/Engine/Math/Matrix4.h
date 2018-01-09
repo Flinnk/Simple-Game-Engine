@@ -35,6 +35,5 @@ namespace GameEngine
 
 		static Matrix4 LookAt(const Vector3& Position,const Vector3& Target, const Vector3& Up);
 
-		Matrix4 inverseAffine() const;
 	};
 }

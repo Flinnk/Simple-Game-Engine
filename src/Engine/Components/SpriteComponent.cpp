@@ -12,6 +12,7 @@ namespace GameEngine
 		SpriteComponent::SpriteComponent() : TintColor(Vector3(1, 1, 1))
 	{
 		RenderingRequire = true;
+		UpdateRequire = true;
 	}
 
 	void SpriteComponent::Deserialize(JSONObject& Data)
@@ -26,6 +27,22 @@ namespace GameEngine
 			SpriteAtlas = resManager.LoadTextureAtlas(texturePath.c_str());
 		}
 	}
+
+	void SpriteComponent::Update(float DeltaSeconds)
+	{
+		if (CurrentAnimation)
+		{
+			CurrentAnimationPlayTime += DeltaSeconds;
+			if (CurrentAnimationPlayTime > (1 / CurrentAnimation->FramesPerSecond))
+			{
+				CurrentAnimationPlayTime = 0;
+				++CurrentDrawingRegionIndex;
+				if (CurrentDrawingRegionIndex > CurrentAnimation->FinalTextureRegion)
+					CurrentDrawingRegionIndex = CurrentAnimation->InitialTextureRegion;
+			}
+		}
+	}
+
 	void SpriteComponent::Render(class GameEngine::Renderer* Renderer)
 	{
 		if (SpriteAtlas && SpriteAtlas->GetTexture())
@@ -103,7 +120,7 @@ namespace GameEngine
 
 	void SpriteComponent::SetCurrentDrawingRegionIndex(int index)
 	{
-		CurrentDrawingRegionIndex=std::fmaxf(0,std::fminf(SpriteAtlas->RegionsNum(), index));//Clamp
+		CurrentDrawingRegionIndex = std::fmaxf(0, std::fminf(SpriteAtlas->RegionsNum(), index));//Clamp
 	}
 
 	int  SpriteComponent::GetCurrentDrawingRegionIndex()const
@@ -111,6 +128,38 @@ namespace GameEngine
 		return CurrentDrawingRegionIndex;
 	}
 
+	void SpriteComponent::AddAnimationClip(const char* Name, const AnimationClip& Clip)
+	{
+		std::string name(Name);
+		if (Animations.find(name) == Animations.end())
+		{
+			Animations[name] = Clip;
+		}
+	}
+
+	void SpriteComponent::PlayAnimation(const char* ClipName)
+	{
+		std::string name(ClipName);
+		if (Animations.find(name) != Animations.end())
+		{
+			if (&Animations[name] != CurrentAnimation)
+			{
+				StopCurrentAnimation();
+				CurrentAnimation = &Animations[name];
+				CurrentDrawingRegionIndex = CurrentAnimation->InitialTextureRegion;
+			}
+		}
+		else 
+		{
+			StopCurrentAnimation();
+		}
+	}
+
+	void SpriteComponent::StopCurrentAnimation()
+	{
+		CurrentAnimation = nullptr;
+		CurrentAnimationPlayTime = 0;
+	}
 
 
 }

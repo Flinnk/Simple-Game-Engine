@@ -81,29 +81,33 @@ namespace GameEngine {
 					const TextureRegion uvRegion = Sprite->GetCurrentRegion();
 
 					Vector3 position = Sprite->GetAbsolutePosition();
+					
 					Vector3 size = Sprite->GetAbsoluteScale();
 					size.x *= Sprite->GetTexture()->GetWidth()*(uvRegion.width - uvRegion.x);
 					size.y *= Sprite->GetTexture()->GetHeight()*(uvRegion.height - uvRegion.y);
 					Vector3 color = Sprite->GetTintColor();
 
+
+					//NOTE: To change to the default top left origin we have to change the uv y coordinate to y or height 
+
 					buffer->position = Vector3(position.x, position.y + size.y, position.z);
-					buffer->color = color;
-					buffer->uv = Vector2(uvRegion.x, uvRegion.height);
-					++buffer;
-
-					buffer->position = Vector3(position.x + size.x, position.y, position.z);
-					buffer->color = color;
-					buffer->uv = Vector2(uvRegion.width, uvRegion.y);
-					++buffer;
-
-					buffer->position = position;
 					buffer->color = color;
 					buffer->uv = Vector2(uvRegion.x, uvRegion.y);
 					++buffer;
 
-					buffer->position = Vector3(position.x + size.x, position.y + size.y, position.z);
+					buffer->position = Vector3(position.x + size.x, position.y, position.z);
 					buffer->color = color;
 					buffer->uv = Vector2(uvRegion.width, uvRegion.height);
+					++buffer;
+
+					buffer->position = position;
+					buffer->color = color;
+					buffer->uv = Vector2(uvRegion.x, uvRegion.height);
+					++buffer;
+
+					buffer->position = Vector3(position.x + size.x, position.y + size.y, position.z);
+					buffer->color = color;
+					buffer->uv = Vector2(uvRegion.width, uvRegion.y);
 					++buffer;
 
 					indicesToDraw += INDICES_PER_SPRITE;
@@ -144,7 +148,8 @@ namespace GameEngine {
 
 		if (CameraData.Mode == CameraMode::ORTHOGRAPHIC)
 		{
-			PerspectiveMatrix = Matrix4::Orthographic(0.0f, Size.x, Size.y, 0.0f, CameraData.NearPlane, CameraData.FarPlane);
+			//NOTE: To change to the default top left origin we have to flip the top and bottom values
+			PerspectiveMatrix = Matrix4::Orthographic(0.0f, Size.x, 0.0f, Size.y,  CameraData.NearPlane, CameraData.FarPlane);
 		}
 		else
 		{

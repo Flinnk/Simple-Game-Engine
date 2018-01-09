@@ -2,6 +2,7 @@
 
 #include <Engine\Components\SceneComponent.h>
 #include <Engine\Graphics\TextureAtlas.h>
+#include <map>
 
 namespace GameEngine
 {
@@ -10,12 +11,20 @@ namespace GameEngine
 	struct Vector3;
 	struct Rect;
 
+	struct AnimationClip {
+		AnimationClip(){}
+		int InitialTextureRegion=0;
+		int FinalTextureRegion=0;
+		float FramesPerSecond=60.0f;
+	};
+
 	class SpriteComponent : public SceneComponent
 	{
 		DeclareComponentFactory(SpriteComponent)
 	public:
 		SpriteComponent();
 		virtual void Deserialize(JSONObject& Data) override;
+		virtual void Update(float DeltaSeconds)override;
 		virtual void Render(class GameEngine::Renderer* Renderer);
 
 		const Texture* GetTexture()const;
@@ -31,12 +40,20 @@ namespace GameEngine
 
 		const TextureRegion& GetCurrentRegion()const;
 		void SetCurrentDrawingRegionIndex(int index);
-		int  GetCurrentDrawingRegionIndex()const ;
+		int  GetCurrentDrawingRegionIndex()const;
 
+		void AddAnimationClip(const char* Name,const AnimationClip& Clip);
+		void PlayAnimation(const char* ClipName);
+		void StopCurrentAnimation();
 	private:
+		std::map<std::string, AnimationClip> Animations;
+		float CurrentAnimationPlayTime = 0.0f;
+		const AnimationClip* CurrentAnimation = nullptr;
+
 		const TextureAtlas* SpriteAtlas = nullptr;
 		Vector3 TintColor;
 		unsigned int OrderInLayer = 0;
 		int CurrentDrawingRegionIndex = 0;
+
 	};
 }
