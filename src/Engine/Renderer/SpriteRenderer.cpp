@@ -10,7 +10,6 @@
 #include <Engine\Graphics\VertexBufferLayout.h>
 #include <Engine\Components\CameraComponent.h>
 #include <algorithm>
-#include <Engine\Components\SpriteComponent.h>
 #include <Engine\Utils\Log.h>
 #include <Engine\Utils\Stopwatch.h>
 #include <Engine\EngineMacros.h>
@@ -18,7 +17,7 @@
 
 namespace GameEngine {
 
-	bool CompareFunction(const SpriteComponent* lhs, const SpriteComponent* rhs) { return (lhs->GetRenderIdentifier() > rhs->GetRenderIdentifier()); }
+	bool CompareFunction(const DrawCall2D& lhs, const DrawCall2D& rhs) { return (lhs.DrawCallIdentifier > rhs.DrawCallIdentifier); }
 
 
 	SpriteRenderer::SpriteRenderer(Shader *renderShader)
@@ -42,12 +41,17 @@ namespace GameEngine {
 		VAO = nullptr;
 	}
 
-	void SpriteRenderer::Submit(const SpriteComponent* component) {
-		Rect SpriteRect = component->GetBounds();
+	void SpriteRenderer::Submit(const DrawCall2D& DrawCall) {
+		
+		Rect SpriteRect;
+		SpriteRect.x = DrawCall.Postion.x;
+		SpriteRect.y = DrawCall.Postion.y;
+		SpriteRect.width = DrawCall.Scale.x*DrawCall.Texture->GetWidth()*(DrawCall.Region.width - DrawCall.Region.x);
+		SpriteRect.height = DrawCall.Scale.y*DrawCall.Texture->GetHeight()*(DrawCall.Region.height - DrawCall.Region.y);
 
 		if (Rect::CheckOverlap(CameraRect, SpriteRect))
 		{
-			Sprites.push_back(component);
+			Sprites.push_back(DrawCall);
 		}
 	}
 
@@ -58,34 +62,34 @@ namespace GameEngine {
 		{
 			VertexData* buffer = (VertexData*)VBO->BeginWrite();
 			std::stable_sort(Sprites.begin(), Sprites.end(), CompareFunction);
-			int currentState = (*Sprites.begin())->GetRenderIdentifier();
+			int currentState = (*Sprites.begin()).DrawCallIdentifier;
 			int indicesToDraw = 0;
 			if (buffer)
 			{
-				const SpriteComponent* currentSprite = nullptr;
-				for (const SpriteComponent* Sprite : Sprites)
+				const DrawCall2D* currentDrawCall = nullptr;
+				for (const DrawCall2D& DrawCall : Sprites)
 				{
-					int elementKey = Sprite->GetRenderIdentifier();
+					int elementKey = DrawCall.DrawCallIdentifier;
 					//If different state finish writting draw previous state
 					if (elementKey != currentState)
 					{
-						DrawBuffer(indicesToDraw, currentSprite->GetTexture());
+						DrawBuffer(indicesToDraw, currentDrawCall->Texture);
 						buffer = (VertexData*)VBO->BeginWrite();
 						indicesToDraw = 0;
 						currentState = elementKey;
 					}
 
-					currentSprite = Sprite;
+					currentDrawCall = &DrawCall;
 
 					//Fill Buffer
-					const TextureRegion uvRegion = Sprite->GetCurrentRegion();
+					const TextureRegion uvRegion = DrawCall.Region;
 
-					Vector3 position = Sprite->GetAbsolutePosition();
+					Vector3 position = DrawCall.Postion;
 					
-					Vector3 size = Sprite->GetAbsoluteScale();
-					size.x *= Sprite->GetTexture()->GetWidth()*(uvRegion.width - uvRegion.x);
-					size.y *= Sprite->GetTexture()->GetHeight()*(uvRegion.height - uvRegion.y);
-					Vector3 color = Sprite->GetTintColor();
+					Vector3 size = DrawCall.Scale;
+					size.x *= DrawCall.Texture->GetWidth()*(uvRegion.width - uvRegion.x);
+					size.y *= DrawCall.Texture->GetHeight()*(uvRegion.height - uvRegion.y);
+					Vector3 color = DrawCall.Color;
 
 
 					//NOTE: To change to the default top left origin we have to change the uv y coordinate to y or height 
@@ -114,14 +118,14 @@ namespace GameEngine {
 					//If filled the buffer send draw call and start a new one
 					if (indicesToDraw >= MAX_SPRITES * VERTEX_PER_SPRITE)
 					{
-						DrawBuffer(indicesToDraw, currentSprite->GetTexture());
+						DrawBuffer(indicesToDraw, currentDrawCall->Texture);
 						buffer = (VertexData*)VBO->BeginWrite();
 						indicesToDraw = 0;
 					}
 				}
 				if (indicesToDraw > 0)
 				{
-					DrawBuffer(indicesToDraw, currentSprite->GetTexture());
+					DrawBuffer(indicesToDraw, currentDrawCall->Texture);
 				}
 			}
 

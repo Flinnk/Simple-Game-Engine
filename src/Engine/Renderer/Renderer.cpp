@@ -18,10 +18,10 @@ namespace GameEngine {
 		Release();
 	}
 
-	void Renderer::DrawSprite(const SpriteComponent* component) const
+	void Renderer::DrawSprite(const DrawCall2D& DrawCall) const
 	{
 		if (SpriteRender)
-			SpriteRender->Submit(component);
+			SpriteRender->Submit(DrawCall);
 	}
 
 	void Renderer::DrawText(const std::string& text, float x, float y, float scale, const Vector3& color) const

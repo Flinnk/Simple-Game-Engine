@@ -46,6 +46,7 @@
     <ClInclude Include="..\..\..\..\include\Engine\Physics\SandboxPhysics.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Renderer\Camera.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Renderer\IGraphicContext.h" />
+    <ClInclude Include="..\..\..\..\include\Engine\Renderer\RenderData.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Renderer\Renderer.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Utils\Assert.h" />
     <ClInclude Include="..\..\..\..\include\Engine\Utils\File.h" />

@@ -2,6 +2,7 @@
 #include <Engine\Components\ComponentFactory.h>
 #include <Engine\Utils\ResourceManager.h>
 #include <Engine\Renderer\Renderer.h>
+#include <Engine\Renderer\RenderData.h>
 #include <Engine\Math\Vector2.h>
 #include <Engine\Math\Rect.h>
 
@@ -47,13 +48,14 @@ namespace GameEngine
 	{
 		if (SpriteAtlas && SpriteAtlas->GetTexture())
 		{
-			Vector2 position = GetAbsolutePosition();
-			Vector3 size = GetAbsoluteScale();
-			size.x *= SpriteAtlas->GetTexture()->GetWidth();
-			size.y *= SpriteAtlas->GetTexture()->GetHeight();
+			DrawCall2D DrawCall;
+			DrawCall.Postion = GetAbsolutePosition();
+			DrawCall.Color = GetTintColor();
+			DrawCall.Scale = GetAbsoluteScale();
+			DrawCall.Texture = SpriteAtlas->GetTexture();
+			DrawCall.Region = SpriteAtlas->GetTextureRegion(CurrentDrawingRegionIndex);		
 
-			Vector3 rotation = GetAbsoluteRotation();
-			Renderer->DrawSprite(this);
+			Renderer->DrawSprite(DrawCall);
 		}
 	}
 

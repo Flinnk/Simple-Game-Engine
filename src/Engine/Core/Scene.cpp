@@ -55,9 +55,8 @@ namespace GameEngine
 
 			Renderer->SetCamera(SceneCamera);
 
-			std::vector<Entity*> _Entities = Entities;
-			std::vector<Entity*>::iterator it = _Entities.begin();
-			while (it != _Entities.end())
+			std::vector<Entity*>::iterator it = Entities.begin();
+			while (it != Entities.end())
 			{
 				(*it)->Render(Renderer);
 				++it;

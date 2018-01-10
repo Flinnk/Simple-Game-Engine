@@ -240,6 +240,9 @@
     <ClInclude Include="..\..\..\..\include\Engine\Graphics\TextureAtlas.h">
       <Filter>Include\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\Engine\Renderer\RenderData.h">
+      <Filter>Include\Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\Engine\Audio\SoundManager.cpp">

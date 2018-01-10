@@ -1,6 +1,8 @@
 #pragma once 
 
 #include <string>
+#include <Engine\Renderer\RenderData.h>
+
 
 namespace GameEngine {
 
@@ -8,8 +10,7 @@ namespace GameEngine {
 	class SpriteRenderer;
 	class TextRenderer;
 	class Shader;
-	struct Vector2;
-	struct Vector3;
+
 	class Texture;
 	class CameraComponent;
 	class SpriteComponent;
@@ -21,7 +22,7 @@ namespace GameEngine {
 		Renderer(Shader* SpriteShader, Shader* TextShader);
 		~Renderer();
 
-		void DrawSprite(const SpriteComponent* component) const;
+		void DrawSprite(const DrawCall2D& DrawCall) const;
 		void DrawText(const std::string& text, float x, float y, float scale, const Vector3& color) const;
 
 		void End();

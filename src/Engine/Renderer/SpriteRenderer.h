@@ -1,6 +1,7 @@
 #pragma once 
 #include <Engine\Math\Math.h>
 #include <vector>
+#include <Engine\Renderer\RenderData.h>
 #include <Engine\Math\Rect.h>
 
 namespace GameEngine {
@@ -27,7 +28,6 @@ namespace GameEngine {
 	class CameraComponent;
 	class VertexArray;
 	class VertexBuffer;
-	class SpriteComponent;
 
 	class IndexBuffer;
 	struct Rect;
@@ -38,7 +38,7 @@ namespace GameEngine {
 		SpriteRenderer(Shader *renderShader);
 		~SpriteRenderer();
 
-		void Submit(const SpriteComponent* component);
+		void Submit(const DrawCall2D& DrawCall);
 
 		unsigned int GetDrawCallStats();
 		void ResetStats();
@@ -48,7 +48,7 @@ namespace GameEngine {
 
 	private:
 		void DrawBuffer(int verticesToDraw, const Texture* texture);
-		std::vector<const SpriteComponent*> Sprites;
+		std::vector<DrawCall2D> Sprites;
 		Shader* shader;
 		VertexArray* VAO;
 		VertexBuffer* VBO;
