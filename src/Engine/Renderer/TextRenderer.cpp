@@ -94,6 +94,7 @@ namespace GameEngine {
 
 	void TextRenderer::DrawText(const CameraComponent* CameraComponent, const std::string& text, float x, float y, float scale, const Vector3& color)
 	{
+
 		Vector2 Size = Engine::GetInstance().GetDisplaySize();//TODO: Callback with Graphic context to be notified of resizing to adjust the viewport parameters
 		Matrix4 ViewMatrix = Matrix4::Identity();
 

@@ -92,22 +92,36 @@ namespace GameEngine {
 	}
 
 
-	void Shader::SetVector3(const char* UniformName, Vector3 value) const
+	void Shader::SetVector3(const char* UniformName, Vector3 value) 
 	{
 
-		GLCall(glUniform3f(glGetUniformLocation(ID, UniformName), value.x, value.y, value.z));
+		GLCall(glUniform3f(GetUniformLocation(UniformName), value.x, value.y, value.z));
 	}
 
-	void Shader::SetInteger(const char* UniformName, int value) const
+	void Shader::SetInteger(const char* UniformName, int value) 
 	{
 
-		GLCall(glUniform1i(glGetUniformLocation(ID, UniformName), value));
+		GLCall(glUniform1i(GetUniformLocation(UniformName), value));
 	}
 
-	void Shader::SetMatrix4(const char* UniformName, Matrix4 value) const
+	void Shader::SetMatrix4(const char* UniformName, Matrix4 value) 
 	{
 
-		GLCall(glUniformMatrix4fv(glGetUniformLocation(ID, UniformName), 1, false, value.elements));
+		GLCall(glUniformMatrix4fv(GetUniformLocation(UniformName), 1, false, value.elements));
+	}
+
+	int Shader::GetUniformLocation(const char* UniformName)
+	{
+		std::string name = UniformName;
+		if (UniformLocationCache.find(name) != UniformLocationCache.end())
+			return UniformLocationCache[name];
+
+		int location = GLCall(glGetUniformLocation(ID, UniformName));
+		if (location == -1)
+			LogFormat("Shader ID: %d failed to retrive uniform with name %s",ID,UniformName);
+
+			UniformLocationCache[name] = location;
+		return location;
 	}
 
 	unsigned int Shader::GetID() const {

@@ -19,7 +19,7 @@ namespace GameEngine {
 	{
 	public:
 		std::map<char, Character> Characters;
-		const Shader* TextShader;
+		Shader* TextShader;
 		TextRenderer(Shader* shader);
 		void Load(const std::string& font, unsigned int fontSize);
 		void DrawText(const CameraComponent* Camera,const std::string& text, float x, float y, float scale,const Vector3& color);

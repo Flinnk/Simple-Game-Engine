@@ -17,7 +17,7 @@
 
 namespace GameEngine {
 
-	bool CompareFunction(const DrawCall2D& lhs, const DrawCall2D& rhs) { return (lhs.DrawCallIdentifier > rhs.DrawCallIdentifier); }
+	bool CompareFunction(const DrawCall2D& lhs, const DrawCall2D& rhs) { return (lhs.DrawCallIdentifier < rhs.DrawCallIdentifier); }
 
 
 	SpriteRenderer::SpriteRenderer(Shader *renderShader)
@@ -42,12 +42,27 @@ namespace GameEngine {
 	}
 
 	void SpriteRenderer::Submit(const DrawCall2D& DrawCall) {
-		
+
 		Rect SpriteRect;
+
+		float Width = 0;
+		float Height = 0;
+
+		if (DrawCall.UseTextureSize)
+		{
+			Width = DrawCall.Scale.x*DrawCall.Texture->GetWidth()*(DrawCall.Region.width - DrawCall.Region.x);
+			Height = DrawCall.Scale.y*DrawCall.Texture->GetHeight()*(DrawCall.Region.height - DrawCall.Region.y);
+		}
+		else
+		{
+			Width = DrawCall.Scale.x*DrawCall.DrawWidth;
+			Height = DrawCall.Scale.y*DrawCall.DrawHeight;
+		}
+
 		SpriteRect.x = DrawCall.Postion.x;
 		SpriteRect.y = DrawCall.Postion.y;
-		SpriteRect.width = DrawCall.Scale.x*DrawCall.Texture->GetWidth()*(DrawCall.Region.width - DrawCall.Region.x);
-		SpriteRect.height = DrawCall.Scale.y*DrawCall.Texture->GetHeight()*(DrawCall.Region.height - DrawCall.Region.y);
+		SpriteRect.width = Width;
+		SpriteRect.height = Height;
 
 		if (Rect::CheckOverlap(CameraRect, SpriteRect))
 		{
@@ -85,10 +100,23 @@ namespace GameEngine {
 					const TextureRegion uvRegion = DrawCall.Region;
 
 					Vector3 position = DrawCall.Postion;
-					
+
+
+
 					Vector3 size = DrawCall.Scale;
-					size.x *= DrawCall.Texture->GetWidth()*(uvRegion.width - uvRegion.x);
-					size.y *= DrawCall.Texture->GetHeight()*(uvRegion.height - uvRegion.y);
+					
+					if (DrawCall.UseTextureSize)
+					{
+						size.x *= DrawCall.Texture->GetWidth()*(uvRegion.width - uvRegion.x);
+						size.y *= DrawCall.Texture->GetHeight()*(uvRegion.height - uvRegion.y);
+					}
+					else
+					{
+						size.x *= DrawCall.DrawWidth;
+						size.y *= DrawCall.DrawHeight;
+					}
+					
+					
 					Vector3 color = DrawCall.Color;
 
 
@@ -153,7 +181,7 @@ namespace GameEngine {
 		if (CameraData.Mode == CameraMode::ORTHOGRAPHIC)
 		{
 			//NOTE: To change to the default top left origin we have to flip the top and bottom values
-			PerspectiveMatrix = Matrix4::Orthographic(0.0f, Size.x, 0.0f, Size.y,  CameraData.NearPlane, CameraData.FarPlane);
+			PerspectiveMatrix = Matrix4::Orthographic(0.0f, Size.x, 0.0f, Size.y, CameraData.NearPlane, CameraData.FarPlane);
 		}
 		else
 		{

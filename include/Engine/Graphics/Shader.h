@@ -1,5 +1,7 @@
 #pragma once 
 
+#include <map>
+
 namespace GameEngine {
 
 	struct Vector3;
@@ -19,9 +21,9 @@ namespace GameEngine {
 		void Use() const;
 		bool Compile(const char* VertexShaderPath, const char* FragmentShaderPath);
 
-		void SetVector3(const char* UniformName, Vector3 value) const;
-		void SetMatrix4(const char* UniformName, Matrix4 value) const;
-		void SetInteger(const char* UniformName, int value) const;
+		void SetVector3(const char* UniformName, Vector3 value) ;
+		void SetMatrix4(const char* UniformName, Matrix4 value) ;
+		void SetInteger(const char* UniformName, int value) ;
 
 		void Release();
 
@@ -32,6 +34,8 @@ namespace GameEngine {
 
 	private:
 
+		std::map<std::string, int> UniformLocationCache;
+		int GetUniformLocation(const char* UniformName);
 		bool CompileShader(int ShaderType, const char* ShaderSource, int &ShaderID);
 		bool CheckCompilationErrors(int ShaderType, int Shader);
 	};

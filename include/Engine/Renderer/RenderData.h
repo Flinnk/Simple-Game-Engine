@@ -7,12 +7,16 @@ namespace GameEngine
 {
 
 	struct DrawCall2D {
-		int DrawCallIdentifier;
-		const Texture* Texture;
 		TextureRegion Region;
 		Vector3 Postion;
 		Vector3 Scale;
 		Vector3 Color;
+		const Texture* Texture;
+		int DrawCallIdentifier;
+		int DrawWidth = 0;
+		int DrawHeight = 0;
+		bool UseTextureSize = true;
+
 	};
 
 }
