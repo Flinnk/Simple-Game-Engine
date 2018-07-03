@@ -31,28 +31,53 @@ namespace GameEngine {
 		return Instance;
 	}
 
+	void Engine::ExecuteEngine()
+	{
+		if (Init())
+		{
+			Run();
+		}
+		else
+		{
+			//Show log
+		}
+
+		Release();
+	}
+
+	bool Engine::Init()
+	{
+		RegisterFactoryTypes();
+
+		if (!SoundManager::GetInstance().Init())
+			return false;
+
+		GraphicContext = CreateGraphicContext();
+		if (GraphicContext == nullptr)
+			return false;
+
+		CurrentApplication = GetApplicationInstance();
+		if (CurrentApplication == nullptr)
+			return false;
+		CurrentApplication->OnInitialize();
+
+		return true;
+	}
+
 	//Main Loop
 	void Engine::Run()
 	{
-
-		//Initialization
-		RegisterFactoryTypes();
-
-		GraphicContext = CreateGraphicContext();
-		SoundManager::GetInstance().Init();
-		CurrentApplication = GetApplicationInstance();
-		CurrentApplication->OnInitialize();
-
-		CurrentApplication->OnBegin();
 
 		double LastTime = Time::GetCurrentSeconds();
 		double DeltaSeconds = 0;
 
 		Renderer* Renderer = GraphicContext->GetRenderer();
 
+		CurrentApplication->OnBegin();
+
 		//Execution Loop
 		while (!GraphicContext->HasToCLose() && !CloseEngine) {
-			
+
 			//Frame Begin
 			UpdatePlatformInput();
 			GraphicContext->Begin();
@@ -85,16 +110,24 @@ namespace GameEngine {
 			LastTime = Time::GetCurrentSeconds();
 
 		}
+	}
 
+	void Engine::Release()
+	{
 		//Resource release
 		SoundManager::GetInstance().Release();
 		ResourceManager::GetInstance().Clear();
-		GraphicContext->Release();
 
-		CurrentApplication->OnEnd();
+		if (CurrentApplication != nullptr)
+			CurrentApplication->OnEnd();
+
+		delete CurrentApplication;
+
+		if (GraphicContext != nullptr)
+			GraphicContext->Release();
 
 		delete GraphicContext;
-		delete CurrentApplication;
+
 	}
 
 	void Engine::Wait(double Seconds)

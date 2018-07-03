@@ -12,7 +12,10 @@ namespace GameEngine {
 	*/
 	class Engine {
 
+
 	public:
+
+		void ExecuteEngine();
 
 		/**
 		* Obtains the unique Engine class instance
@@ -27,10 +30,6 @@ namespace GameEngine {
 		Engine& operator=(Engine const&) = delete;  // Copy assign
 		Engine& operator=(Engine &&) = delete;      // Move assign
 
-		/**
-		* Starts the execution of the Main Loop, this method should not be called by the Game
-		*/
-		void Run();
 
 		/**
 		* Ends the execution of the Engine, freeing resources and calling OnEnd method of the running game
@@ -81,6 +80,14 @@ namespace GameEngine {
 		* Default destructor
 		*/
 		~Engine();
+
+
+		bool Init();
+
+		void Run();
+
+		void Release();
+
 
 		/**
 		* Wait for the next frame using a lazy loop

@@ -7,7 +7,7 @@ namespace GameEngine {
 
 		static SoundManager& GetInstance();
 
-		void Init();
+		bool Init();
 
 		void PlaySound(const char* FilePath, bool Loop);
 

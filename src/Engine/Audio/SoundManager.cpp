@@ -13,9 +13,10 @@ namespace GameEngine {
 		return Instance;
 	}
 
-	void SoundManager::Init()
+	bool SoundManager::Init()
 	{
 		SoundEngine = createIrrKlangDevice();
+		return SoundEngine != nullptr;
 	}
 
 	void SoundManager::PlaySound(const char* FilePath, bool Loop)
